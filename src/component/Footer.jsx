@@ -1,14 +1,19 @@
-import React from 'react'
+import React from 'react';
+import logo from "../images/logo.svg"
 
 export const Footer = () => {
   const year = new Date()
   return (
-    <footer className='flex flex-col justify-center items-center bg-gray-950 p-4'>
+    <footer className='flex flex-col md:flex-row justify-between items-center bg-xounity-blue p-2'>
+        <a className='flex items-center' href='/'><img className='w-[100px]' src={logo} alt='logo'/><span className='text-white font-semibold text-md'>© {year.getFullYear()} Xounity</span></a>
       <div>
-        <h3 className='text-orange-400 font-semibold text-xl'>Follow our team</h3>
-      </div>
-      <div>
-        <p className='text-white text-sm'>Xounity Copyrights@{year.getFullYear()} </p>
+        <ul className='flex justify-center items-center text-white gap-5'>
+          <li className='ease-in-out duration-700 hover:text-xounity-orange text-2xl'><a href='https://www.instagram.com/xounity1' target='_blank' rel='noreferrer'><i class="ri-instagram-line"></i></a></li>
+          <li className='ease-in-out duration-700 hover:text-xounity-orange text-2xl'><a href='https://www.facebook.com/xounity1' target='_blank' rel='noreferrer'><i class="ri-facebook-fill"></i></a></li>
+          <li className='ease-in-out duration-700 hover:text-xounity-orange text-2xl'><a href=' https://www.linkedin.com/company/xounity/' target='_blank' rel='noreferrer'><i class="ri-linkedin-box-fill"></i></a></li>
+          <li className='ease-in-out duration-700 hover:text-xounity-orange text-2xl'><a href=' https://discord.com/invite/V9mJaQUAu4' target='_blank' rel='noreferrer'><i class="ri-discord-fill"></i></a></li>
+          <li className='ease-in-out duration-700 hover:text-xounity-orange text-2xl'><a href=' https://www.youtube.com/@xounity1' target='_blank' rel='noreferrer'><i class="ri-youtube-fill"></i></a></li>
+        </ul>
       </div>
     </footer>
   )
