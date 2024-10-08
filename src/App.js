@@ -1,8 +1,8 @@
 import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
 import { Footer } from "./component/Footer";
 import { Hero } from "./component/Hero";
-import { Navbar } from "./component/Navbar";
 import About from "./component/About";
+import Navbar from "./component/Navbar";
 
 
 function App() {

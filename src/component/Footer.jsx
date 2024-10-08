@@ -4,7 +4,7 @@ import logo from "../images/logo.svg"
 export const Footer = () => {
   const year = new Date()
   return (
-    <footer className='flex flex-col md:flex-row justify-between items-center bg-xounity-blue p-2'>
+    <footer className='flex flex-col md:flex-row justify-between items-center bg-xounity-blue p-2 border border-gray-600 border-t-[1px] border-b-0 border-r-0 border-l-0'>
         <a className='flex items-center' href='/'><img className='w-[100px]' src={logo} alt='logo'/><span className='text-white font-semibold text-md'>© {year.getFullYear()} Xounity</span></a>
       <div>
         <ul className='flex justify-center items-center text-white gap-5'>

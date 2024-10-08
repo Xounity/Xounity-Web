@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import logo from "../images/logo.svg";
 
-export const Navbar = () => {
+const Navbar = () => {
   // State to manage mobile menu visibility
   const [isMobileMenuVisible, setIsMobileMenuVisible] = useState(false);
 
@@ -11,56 +11,69 @@ export const Navbar = () => {
   };
 
   return (
-    <header className="w-full h-[15%] bg-transparent backdrop-blur-md text-white flex justify-between items-center p-4">
-      <img className="w-[28%] md:w-[12%]" src={logo} alt="logo" />
-      <div className="hamburger md:hidden text-2xl" onClick={toggleMobileMenu}>
-        <i className="ri-menu-line"></i>
-      </div>
-      <div id="desktop" className="hidden md:flex gap-5">
-        <ul className="flex items-center gap-9">
-          <li className="text-md font-light ease-in-out duration-500 hover:text-xounity-orange">
-            <a href="/">Home</a>
-          </li>
-          <li className="text-md font-light ease-in-out duration-500 hover:text-xounity-orange">
-            <a href="/about">About Us</a>
-          </li>
-          <li className="text-md font-light ease-in-out duration-500 hover:text-xounity-orange">
-            <a href="/event">Events</a>
-          </li>
-          <li className="text-md font-light ease-in-out duration-500 hover:text-xounity-orange">
-            <a href="/res">Resources</a>
-          </li>
-        </ul>
-        <button className="px-4 py-2 bg-xounity-orange text-black font-semibold rounded-md left-1/2 ease-in-out duration-500 hover:bg-yellow-400 hover:text-white">
-          <a href="https://www.whatsapp.com/channel/0029VaYhJmD9cDDVJLuqao0Y" target="_blank" rel="noreferrer">Join Us</a>
-        </button>
-      </div>
-      {isMobileMenuVisible && (
-        <div
-          id="mobile"
-          className="md:hidden absolute top-[15%] left-0 w-full bg-xounity-blue text-white">
-          <ul className="flex flex-col items-center gap-4 p-4">
-            <li className="text-md font-light ease-in-out duration-500 hover:text-xounity-orange">
+    <>
+      <header className="w-screen h-[15%] bg-transparent text-white flex justify-between items-center p-5 flex-nowrap border border-gray-600 border-b-[1px] border-t-0 border-r-0 border-l-0 ">
+        <a className="w-2/3 md:w-[20%]" href="/">
+          <img className="w-[50%]" src={logo} alt="Logo" />
+        </a>
+        <div className="hamburger md:hidden text-2xl" onClick={toggleMobileMenu}>
+          <i className="ri-menu-line"></i>
+        </div>
+        <div id="desktop" className="hidden md:flex gap-5 items-center">
+          <ul className="flex gap-9">
+            <li className="text-lg font-medium text-white hover:text-xounity-orange ease-in-out duration-500">
               <a href="/">Home</a>
             </li>
-            <li className="text-md font-light ease-in-out duration-500 hover:text-xounity-orange">
-              <a href="/about">About Us</a>
+            <li className="text-lg font-medium text-white hover:text-xounity-orange ease-in-out duration-500">
+              <a href="/about">About</a>
             </li>
-            <li className="text-md font-light ease-in-out duration-500 hover:text-xounity-orange">
+            <li className="text-lg font-medium text-white hover:text-xounity-orange ease-in-out duration-500">
               <a href="/event">Events</a>
             </li>
-            <li className="text-md font-light ease-in-out duration-500 hover:text-xounity-orange">
-              <a href="/res">Resources</a>
+            <li className="text-lg font-medium text-white hover:text-xounity-orange ease-in-out duration-500">
+              <a href="/resource">Resources</a>
+            </li>
+            <li className="text-lg font-medium text-white hover:text-xounity-orange ease-in-out duration-500">
+              <a href="/contact">Contact</a>
             </li>
           </ul>
-          <div className="flex justify-center p-5">
-            <button className="px-4 py-2 bg-xounity-orange text-black font-semibold rounded-md left-1/2 ease-in-out duration-500 hover:bg-yellow-400 hover:text-white">
-              <a href="https://www.whatsapp.com/channel/0029VaYhJmD9cDDVJLuqao0Y" target="_blank" rel="noreferrer">Join Us</a>
+          <div>
+            <button className='border-2 border-xounity-orange px-5 py-2 rounded-md font-medium text-white ease-in-out duration-700 hover:bg-xounity-orange'>
+              <a href='https://www.whatsapp.com/channel/0029VaYhJmD9cDDVJLuqao0Y' target="_blank" rel="noreferrer" >Join Us</a>
+            </button>
+          </div>
+        </div>
+      </header>
+      {isMobileMenuVisible && (
+        <div id="mobile" className="md:hidden fixed inset-0 bg-transparent backdrop-blur-md text-white flex flex-col items-center justify-center z-50">
+          <div className="absolute top-5 right-5 text-2xl" onClick={toggleMobileMenu}>
+            <i className="ri-close-line"></i>
+          </div>
+          <ul className="flex flex-col items-center gap-4 p-4">
+            <li className="text-lg font-medium text-white hover:text-xounity-orange ease-in-out duration-500">
+              <a href="/home">Home</a>
+            </li>
+            <li className="text-lg font-medium text-white hover:text-xounity-orange ease-in-out duration-500">
+              <a href="/about">About</a>
+            </li>
+            <li className="text-lg font-medium text-white hover:text-xounity-orange ease-in-out duration-500">
+              <a href="/event">Events</a>
+            </li>
+            <li className="text-lg font-medium text-white hover:text-xounity-orange ease-in-out duration-500">
+              <a href="/resource">Resources</a>
+            </li>
+            <li className="text-lg font-medium text-white hover:text-xounity-orange ease-in-out duration-500">
+              <a href="/contact">Contact</a>
+            </li>
+          </ul>
+          <div>
+            <button className='border-2 border-xounity-orange px-5 py-2 rounded-md font-medium text-white ease-in-out duration-700 hover:bg-xounity-orange'>
+              <a href='https://www.whatsapp.com/channel/0029VaYhJmD9cDDVJLuqao0Y' target="_blank" rel="noreferrer" >Join Us</a>
             </button>
           </div>
         </div>
       )}
-    </header>
+    </>
   );
 };
 
