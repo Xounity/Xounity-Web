@@ -47,16 +47,16 @@ const Navbar = () => {
             <i className="ri-close-line"></i>
           </div>
           <ul className="flex flex-col items-center gap-4 p-4">
-            <li className="text-lg font-medium text-white hover:text-xounity-orange ease-in-out duration-500 underline underline-offset-2 decoration-xounity-orange">
+            <li className="text-lg font-medium text-white hover:text-xounity-orange ease-in-out duration-500">
               <a href="/">Home</a>
             </li>
-            <li className="text-lg font-medium text-white hover:text-xounity-orange ease-in-out duration-500 underline underline-offset-2 decoration-xounity-orange">
+            <li className="text-lg font-medium text-white hover:text-xounity-orange ease-in-out duration-500">
               <a href="/about">About</a>
             </li>
-            <li className="text-lg font-medium text-white hover:text-xounity-orange ease-in-out duration-500 underline underline-offset-2 decoration-xounity-orange">
+            <li className="text-lg font-medium text-white hover:text-xounity-orange ease-in-out duration-500">
               <a href="/events">Events</a>
             </li>
-            <li className="text-lg font-medium text-white hover:text-xounity-orange ease-in-out duration-500 underline underline-offset-2 decoration-xounity-orange">
+            <li className="text-lg font-medium text-white hover:text-xounity-orange ease-in-out duration-500">
               <a href="/resources">Resources</a>
             </li>
           </ul>
