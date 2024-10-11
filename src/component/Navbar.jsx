@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import logo from "../images/logo.svg";
+import logo from "images/logo.svg";
 
 const Navbar = () => {
   // State to manage mobile menu visibility
@@ -12,62 +12,87 @@ const Navbar = () => {
 
   return (
     <>
-      <header className="w-screen h-28 bg-transparent backdrop-blur-md text-white flex justify-between items-center p-5 flex-nowrap border border-gray-600 border-b-[1px] border-t-0 border-r-0 border-l-0 sticky top-0 z-50">
-        <a className="w-2/3 md:w-[20%]" href="/">
-          <img className="w-[50%]" src={logo} alt="Logo" />
-        </a>
-        <div className="hamburger md:hidden text-2xl" onClick={toggleMobileMenu}>
-          <i className="ri-menu-line"></i>
-        </div>
-        <div id="desktop" className="hidden md:flex gap-5 items-center">
-          <ul className="flex gap-9">
-            <li className="text-lg font-medium text-white hover:text-xounity-orange ease-in-out duration-500">
-              <a href="/">Home</a>
-            </li>
-            <li className="text-lg font-medium text-white hover:text-xounity-orange ease-in-out duration-500">
-              <a href="/about">About</a>
-            </li>
-            <li className="text-lg font-medium text-white hover:text-xounity-orange ease-in-out duration-500">
-              <a href="/events">Events</a>
-            </li>
-            <li className="text-lg font-medium text-white hover:text-xounity-orange ease-in-out duration-500">
-              <a href="/resources">Resources</a>
-            </li>
-          </ul>
-          <div>
-            <button className='border-2 border-xounity-orange px-5 py-2 rounded-md font-medium text-white ease-in-out duration-700 hover:bg-xounity-orange'>
-              <a href='https://www.whatsapp.com/channel/0029VaYhJmD9cDDVJLuqao0Y'>Join Us</a>
+  {/* Header start */}
+  <header
+    id="home"
+    className="text-gray-400 bg-transparent top-0 body-font w-full h-24 flex justify-between items-center"
+    style={{
+      position: "fixed",
+      zIndex: 1000,
+      backdropFilter: "blur(5px)",
+      borderBottom: "1px solid rgba(255, 255, 255, 0.2)"
+    }}
+  >
+    <div className="container mx-auto flex flex-wrap p-5 flex-row md:flex-column justify-between items-center">
+      <a
+        href="#home"
+        className="flex title-font font-medium items-center text-white mb-4 md:mb-0"
+      >
+        <img
+          src={logo}
+          alt="logo"
+          className="w-36 object-cover cursor-pointer"
+        />
+      </a>
+      <nav className="md:ml-auto flex-wrap flex items-center text-base justify-center menu-items md:flex ">
+        
+        {/* Desktop Nav */}
+        <div className="menu-items hidden md:flex justify-center items-center">
+          <a
+            href="#home"
+            className="mr-5 cursor-pointer nav-link active hover:text-white"
+          >
+            Home
+          </a>
+          <a
+            href="#about"
+            className="mr-5 cursor-pointer nav-link hover:text-white"
+          >
+            About
+          </a>
+          <a
+            href="events.html"
+            className="mr-5 cursor-pointer nav-link hover:text-white"
+          >
+            Events
+          </a>
+          <a
+            href="resources.html"
+            className="mr-5 cursor-pointer nav-link hover:text-white"
+          >
+            Resources
+          </a>
+          <a href="#contact">
+            <button
+              className="contact-btn h-10 mr-2 inline-flex items-center border-solid border-xounity-orange border-2 text-rose-50  focus:outline-none hover:bg-transparent py-1 px-3 rounded text-base mt-4 md:mt-0"
+              style={{ transitionDuration: "0.5s" }}
+            >
+              Contact Us
+              <svg
+                fill="none"
+                stroke="currentColor"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                className="w-4 h-4 ml-1"
+                viewBox="0 0 24 24"
+              >
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
             </button>
-          </div>
+          </a>
         </div>
-      </header>
-      {isMobileMenuVisible && (
-        <div id="mobile" className="md:hidden fixed inset-0 bg-transparent backdrop-blur-lg text-white flex flex-col items-center justify-center z-50">
-          <div className="absolute top-5 right-5 text-2xl" onClick={toggleMobileMenu}>
-            <i className="ri-close-line"></i>
-          </div>
-          <ul className="flex flex-col items-center gap-4 p-4">
-            <li className="text-lg font-medium text-white hover:text-xounity-orange ease-in-out duration-500 underline underline-offset-2 decoration-xounity-orange">
-              <a href="/">Home</a>
-            </li>
-            <li className="text-lg font-medium text-white hover:text-xounity-orange ease-in-out duration-500 underline underline-offset-2 decoration-xounity-orange">
-              <a href="/about">About</a>
-            </li>
-            <li className="text-lg font-medium text-white hover:text-xounity-orange ease-in-out duration-500 underline underline-offset-2 decoration-xounity-orange">
-              <a href="/events">Events</a>
-            </li>
-            <li className="text-lg font-medium text-white hover:text-xounity-orange ease-in-out duration-500 underline underline-offset-2 decoration-xounity-orange">
-              <a href="/resources">Resources</a>
-            </li>
-          </ul>
-          <div>
-            <button className='border-2 border-xounity-orange px-5 py-2 rounded-md font-medium text-white ease-in-out duration-700 hover:bg-xounity-orange'>
-              <a href='https://www.whatsapp.com/channel/0029VaYhJmD9cDDVJLuqao0Y'>Join Us</a>
-            </button>
-          </div>
-        </div>
-      )}
-    </>
+      </nav>
+    </div>
+  </header>
+  {/* Header end */}
+  {/* Goto Top button */}
+  <a href="#home" id="myBtn" title="Go to Top">
+    <i className="fa fa-angle-up" />
+  </a>
+  {/* home section */}
+</>
+
   );
 };
 
