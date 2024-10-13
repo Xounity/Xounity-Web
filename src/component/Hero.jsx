@@ -12,6 +12,7 @@ import youtube from "images/youtube.png"
 import harsh from "images/harsh.png"
 import amna from "images/amna.png"
 import hamza from "images/hamza.png"
+import "globals.css";
 
 export const metadata = {
   title: "Xounity - Home"
@@ -54,7 +55,7 @@ const Hero = () => {
           style={{ transitionDelay: "0.2s" }}
         >
           {/* add socialmedia circle logos link with links here */}
-          <div className="flex items-center justify-center gap-4 flex-wrap">
+          <div className="social-icons flex items-center justify-center gap-4 flex-wrap">
             <a href="https://www.instagram.com/xounity1" target="_blank">
               <img
                 src={instagram}
@@ -281,7 +282,7 @@ const Hero = () => {
           </div>
           <a href="events.html" className="flex justify-center">
             <button
-              className="h-10 mr-2 inline-flex items-center border-solid border-xounity-orange border-2 text-rose-50  focus:outline-none hover:bg-xounity-orange py-1 px-3 rounded text-base mt-8 md:mt-4"
+              className="h-10 mr-2 inline-flex items-center border-solid border-xounity-orange border-2 text-rose-50 focus:outline-none hover:bg-xounity-orange py-1 px-3 rounded text-base mt-8 md:mt-4"
               style={{ transitionDuration: "0.5s" }}
             >
               More Events

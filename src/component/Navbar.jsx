@@ -64,7 +64,7 @@ const Navbar = () => {
           </a>
           <a href="#contact">
             <button
-              className="contact-btn h-10 mr-2 inline-flex items-center border-solid border-xounity-orange border-2 text-rose-50  focus:outline-none hover:bg-transparent py-1 px-3 rounded text-base mt-4 md:mt-0"
+              className="contact-btn h-10 mr-2 inline-flex items-center bg-transparent border-solid border-xounity-orange border-2 hover:bg-xounity-orange text-rose-50  focus:outline-none hover:bg-transparent py-1 px-3 rounded text-base mt-4 md:mt-0"
               style={{ transitionDuration: "0.5s" }}
             >
               Contact Us
