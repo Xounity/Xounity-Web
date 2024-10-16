@@ -1,27 +1,27 @@
-import React from 'react'
-import { Helmet } from "react-helmet"
-import replace from "images/replacement.jpg"
-import instagram from "images/instagram.png"
-import discord from "images/discord.png"
-import facebook from "images/facebook.png"
-import linkedin from "images/linkedin.png"
-import telegram from "images/telegram.png"
-import wa_channel from "images/wa-channel.png"
-import whatsapp from "images/whatsapp.png"
-import youtube from "images/youtube.png"
-import harsh from "images/harsh.png"
-import amna from "images/amna.png"
-import hamza from "images/hamza.png"
-import "globals.css";
+import Image from "next/image";
+import Header from "@/app/components/Header";
+import Footer from "@/app/components/Footer";
+import replace from "@/app/images/replacement.jpg"
+import instagram from "@/app/images/instagram.png"
+import discord from "@/app/images/discord.png"
+import facebook from "@/app/images/facebook.png"
+import linkedin from "@/app/images/linkedin.png"
+import telegram from "@/app/images/telegram.png"
+import wa_channel from "@/app/images/wa-channel.png"
+import whatsapp from "@/app/images/whatsapp.png"
+import youtube from "@/app/images/youtube.png"
+import harsh from "@/app/images/harsh.png"
+import amna from "@/app/images/amna.png"
+import hamza from "@/app/images/hamza.png"
+import About from "@/app/components/About";
+import Link from "next/link";
+import Contact from "./components/Contact";
 
-export const metadata = {
-  title: "Xounity - Home"
-}
-
-
-const Hero = () => {
+export default function Home() {
   return (
     <>
+    <div className="w-full h-screen flex flex-col">
+    <Header />
   {/* Hero start */}
   <section className="text-gray-400 bg-xounity-blue body-font mt-10">
     <div className="container mx-auto flex px-5 py-24 md:flex-row flex-col items-center">
@@ -29,9 +29,10 @@ const Hero = () => {
         className="side lg:max-w-lg lg:w-full md:w-1/2 w-5/6 md:mb-0 mb-10"
         style={{ transitionDelay: "0.3s" }}
       >
-        <img
+        <Image
           className="object-cover object-center rounded"
           src={replace}
+          alt="replace"
         />
         {/* https://dummyimage.com/720x600 */}
       </div>
@@ -56,76 +57,76 @@ const Hero = () => {
         >
           {/* add socialmedia circle logos link with links here */}
           <div className="social-icons flex items-center justify-center gap-4 flex-wrap">
-            <a href="https://www.instagram.com/xounity1" target="_blank">
-              <img
+            <Link href="https://www.instagram.com/xounity1" target="_blank">
+              <Image
                 src={instagram}
                 alt="instagram"
                 id="s1"
                 className="social-icon w-10 object-cover"
               />
-            </a>
-            <a href="https://www.linkedin.com/company/xounity" target="_blank">
-              <img
+            </Link>
+            <Link href="https://www.linkedin.com/company/xounity" target="_blank">
+              <Image
                 src={linkedin}
                 alt="linkedin"
                 id="s2"
                 className="social-icon w-10 object-cover"
               />
-            </a>
-            <a href="https://www.facebook.com/xounity1" target="_blank">
-              <img
+            </Link>
+            <Link href="https://www.facebook.com/xounity1" target="_blank">
+              <Image
                 src={facebook}
                 alt="facebook"
                 id="s3"
                 className="social-icon w-10 object-cover"
               />
-            </a>
-            <a href="https://discord.com/invite/V9mJaQUAu4" target="_blank">
-              <img
+            </Link>
+            <Link href="https://discord.com/invite/V9mJaQUAu4" target="_blank">
+              <Image
                 src={discord}
                 alt="discord"
                 id="s4"
                 className="social-icon w-10 object-cover"
               />
-            </a>
-            <a href="https://www.youtube.com/@xounity1" target="_blank">
-              <img
+            </Link>
+            <Link href="https://www.youtube.com/@xounity1" target="_blank">
+              <Image
                 src={youtube}
                 alt="youtube"
                 id="s5"
                 className="social-icon w-10 object-cover"
               />
-            </a>
-            <a href="https://t.me/xounity1" target="_blank">
-              <img
+            </Link>
+            <Link href="https://t.me/xounity1" target="_blank">
+              <Image
                 src={telegram}
                 alt="telegram"
                 id="s6"
                 className="social-icon w-10 object-cover"
               />
-            </a>
-            <a
+            </Link>
+            <Link
               href="https://chat.whatsapp.com/Dglys3PUmK3Ktt2OOyKdY6"
               target="_blank"
             >
-              <img
+              <Image
                 src={whatsapp}
                 alt="whatsapp commmunity"
                 id="s7"
                 className="social-icon w-10 object-cover"
               />
-            </a>
-            <a
+            </Link>
+            <Link
               href="https://whatsapp.com/channel/0029VaYhJmD9cDDVJLuqao0Y"
               target="_blank"
             >
-              <img
+              <Image
                 src={wa_channel}
                 alt="whatsapp-channel"
                 id="s8"
                 className="social-icon w-10 object-cover"
               />
-            </a>
+            </Link>
           </div>
         </div>
       </div>
@@ -155,25 +156,25 @@ const Hero = () => {
               className="p-4 md:w-1/3 side"
               style={{ transitionDelay: "0.3s" }}
             >
-              <a
+              <Link
                 className="rounded-lg overflow-hidden drop-shadow-lg"
                 href="https://www.youtube.com/watch?v=vpBBQ9OX2ho"
                 target="_blank"
               >
-                <img
+                <Image
                   alt="event"
                   className="object-cover object-center h-64 w-full cursor-pointer hover:scale-110"
                   src={harsh}
                   style={{ transition: "all 0.5s" }}
                 />
-              </a>
+              </Link>
               <h2 className="text-xl font-medium title-font text-white mt-5">
                 How To Pursue Your Career in UI/UX
               </h2>
               <p className="text-base font-normal leading-relaxed mt-2">
                 By Harsh Advani
               </p>
-              <a
+              <Link
                 href="https://www.youtube.com/watch?v=vpBBQ9OX2ho"
                 target="_blank"
               >
@@ -191,32 +192,32 @@ const Hero = () => {
                     <path d="M5 12h14M12 5l7 7-7 7" />
                   </svg>
                 </button>
-              </a>
+              </Link>
             </div>
             {/* Event 2 */}
             <div
               className="p-4 md:w-1/3 side"
               style={{ transitionDelay: "0.4s" }}
             >
-              <a
+              <Link
                 className="rounded-lg overflow-hidden drop-shadow-lg"
                 href="https://youtu.be/aV5YVTzqsoQ?si=8CCx2tRrZ2AKd2JB"
                 target="_blank"
               >
-                <img
+                <Image
                   alt="event"
                   className="object-cover object-center h-64 w-full cursor-pointer hover:scale-110"
                   src={amna}
                   style={{ transition: "all 0.5s" }}
                 />
-              </a>
+              </Link>
               <h2 className="text-xl font-medium title-font text-white mt-5">
                 Unlocking Data Science
               </h2>
               <p className="text-base font-normal leading-relaxed mt-2">
                 By Amna Shahzad
               </p>
-              <a
+              <Link
                 href="https://youtu.be/aV5YVTzqsoQ?si=8CCx2tRrZ2AKd2JB"
                 target="_blank"
               >
@@ -234,32 +235,32 @@ const Hero = () => {
                     <path d="M5 12h14M12 5l7 7-7 7" />
                   </svg>
                 </button>
-              </a>
+              </Link>
             </div>
             {/* Event 3 */}
             <div
               className="p-4 md:w-1/3 side"
               style={{ transitionDelay: "0.6s" }}
             >
-              <a
+              <Link
                 className="rounded-lg overflow-hidden drop-shadow-lg"
                 href="https://www.youtube.com/watch?v=YuT4maa08xg"
                 target="_blank"
               >
-                <img
+                <Image
                   alt="event"
                   className="object-cover object-center h-64 w-full cursor-pointer hover:scale-110"
                   src={hamza}
                   style={{ transition: "all 0.5s" }}
                 />
-              </a>
+              </Link>
               <h2 className="text-xl font-medium title-font text-white mt-5">
                 Career Building While Studying
               </h2>
               <p className="text-base leading-relaxed mt-2">
                 By Hamza Farooqui
               </p>
-              <a
+              <Link
                 href="https://www.youtube.com/watch?v=YuT4maa08xg"
                 className="text-xounity-orange inline-flex items-center mt-3"
               >
@@ -277,25 +278,28 @@ const Hero = () => {
                     <path d="M5 12h14M12 5l7 7-7 7" />
                   </svg>
                 </button>
-              </a>
+              </Link>
             </div>
           </div>
-          <a href="events.html" className="flex justify-center">
+          <Link href="/Events" className="flex justify-center">
             <button
               className="h-10 mr-2 inline-flex items-center border-solid border-xounity-orange border-2 text-rose-50 focus:outline-none hover:bg-xounity-orange py-1 px-3 rounded text-base mt-8 md:mt-4"
               style={{ transitionDuration: "0.5s" }}
             >
               More Events
             </button>
-          </a>
+          </Link>
         </div>
       </div>
     </section>
   </section>
   {/* home section end */}
   <hr />
-</>
-  )
+  <About />
+  <hr />
+  <Contact />
+    <Footer />
+    </div>
+    </>
+  );
 }
-
-export default Hero
