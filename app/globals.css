@@ -19,9 +19,13 @@ body {
   background-color: #090529;
 }
 
+body::-webkit-scrollbar {
+  display: none;
+}
+
 @layer utilities {
   .text-balance {
-    text-wrap: balance;
+    word-wrap: break-word;
   }
 }
 

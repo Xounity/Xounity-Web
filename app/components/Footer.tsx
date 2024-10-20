@@ -32,6 +32,7 @@ const Footer = () => {
             href="https://www.facebook.com/xounity1"
             target="_blank"
             className="text-gray-500 socials"
+             rel="noopener noreferrer" title="Facebook"
           >
             <svg
               fill="currentColor"
@@ -44,7 +45,7 @@ const Footer = () => {
               <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z" />
             </svg>
           </a>
-          <a href="#" target="_blank" className="ml-3 text-gray-500 socials">
+          <a href="#" target="_blank" className="ml-3 text-gray-500 socials" rel="noopener noreferrer" title="Twitter">
             <svg
               fill="currentColor"
               strokeLinecap="round"
@@ -60,6 +61,7 @@ const Footer = () => {
             href="https://www.instagram.com/xounity1"
             target="_blank"
             className="ml-3 text-gray-500 socials"
+             rel="noopener noreferrer" title="Instagram"
           >
             <svg
               fill="none"
@@ -78,6 +80,7 @@ const Footer = () => {
             href="https://www.linkedin.com/company/xounity"
             target="_blank"
             className="ml-3 text-gray-500 socials"
+             rel="noopener noreferrer" title="LinkedIn"
           >
             <svg
               fill="currentColor"

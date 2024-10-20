@@ -15,8 +15,7 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <>
-      <div className="w-screen h-screen flex flex-col">
+      <div className="flex-1">
         {/* Hero start */}
         <section className="text-gray-400 bg-xounity-blue body-font mt-10">
           <div className="container mx-auto flex px-5 py-24 md:flex-row flex-col items-center">
@@ -127,16 +126,12 @@ export default function Home() {
             </div>
           </div>
         </section>
-        {/* Hero end */}
         <hr />
-        {/* Upcoming events (part of home) */}
         <Event />
-        {/* home section end */}
         <hr />
         <About />
         <hr />
         <Contact />
       </div>
-    </>
   );
 }
