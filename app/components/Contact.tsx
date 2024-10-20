@@ -4,21 +4,24 @@ const Contact = () => {
   return (
     <section
       id="contact"
-      className="text-gray-400 bg-transparent body-font relative mt-8">
+      className="text-gray-400 bg-transparent body-font relative mt-8"
+    >
       <div className="container px-5 py-24 mx-auto">
         <div className="flex flex-col text-center w-full mb-12">
           <h1 className="sm:text-3xl text-2xl font-medium title-font mb-4 text-white reveal">
             Contact Us
           </h1>
           <p
-            className="lg:w-2/3 mx-auto leading-relaxed text-base reveal delay-200"
+            className="lg:w-2/3 mx-auto leading-relaxed text-base reveal"
+            style={{ transitionDelay: "0.3s" }}
           >
-            Get in touch via our contact form or drop us an email – we'd love to
+            Get in touch via our contact form or drop us an email &ndash; we&apos;d love to
             hear from you!
           </p>
         </div>
         <div
-          className="lg:w-1/2 md:w-2/3 mx-auto reveal delay-150"
+          className="lg:w-1/2 md:w-2/3 mx-auto reveal"
+          style={{ transitionDelay: "0.4s" }}
         >
           <form method="POST" name="contact-form" data-netlify="true">
             <div className="flex flex-wrap -m-2">
