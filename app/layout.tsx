@@ -1,12 +1,9 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-<<<<<<< HEAD
-=======
 import 'remixicon/fonts/remixicon.css';
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
->>>>>>> 665a8f1e4b0f1ff594eb129cd66ab90ff6829663
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -32,16 +29,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-<<<<<<< HEAD
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
-=======
         className={`${geistSans.variable} ${geistMono.variable} antialiased`} >
         <Navbar />
         {children}
         <Footer />
->>>>>>> 665a8f1e4b0f1ff594eb129cd66ab90ff6829663
       </body>
     </html>
   );
