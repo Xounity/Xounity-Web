@@ -1,6 +1,4 @@
 import Image from "next/image";
-import Header from "@/app/components/Header";
-import Footer from "@/app/components/Footer";
 import replace from "@/app/images/replacement.jpg"
 import instagram from "@/app/images/instagram.png"
 import discord from "@/app/images/discord.png"
