@@ -1,8 +1,9 @@
 import React from 'react'
-import logo from "@/app/images/logo.svg"
+import darklogo from "@/app/images/logo_dark.png";
 import Image from 'next/image'
 
 const Footer = () => {
+  
   return (
     <>
     {/* Footer */}
@@ -11,7 +12,7 @@ const Footer = () => {
       <div className="container px-5 py-8 mx-auto flex items-center sm:flex-row flex-col">
         <a className="flex title-font font-medium items-center text-white mb-4 md:mb-0">
           <Image
-            src={logo}
+            src={darklogo}
             alt="logo"
             className="w-36 object-cover cursor-pointer"
           />

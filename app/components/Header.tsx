@@ -3,7 +3,8 @@ import React from "react";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import Image from "next/image";
-import logo from "@/app/images/logo.svg";
+import darklogo from "@/app/images/logo_dark.png";
+import lightlogo from "@/app/images/logo_light.png";
 import Link from "next/link";
 import { useTheme } from "../ThemeContext";
 
@@ -31,7 +32,7 @@ const Header = () => {
             title="Home"
           >
             <Image
-              src={logo}
+              src={theme === "dark" ? darklogo : lightlogo}
               alt="logo"
               className="w-36 object-cover cursor-pointer"
             />
