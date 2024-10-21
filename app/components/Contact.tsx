@@ -4,15 +4,15 @@ const Contact = () => {
   return (
     <section
       id="contact"
-      className="text-gray-400 bg-transparent body-font relative mt-8"
+      className="bg-transparent body-font relative mt-8"
     >
       <div className="container px-5 py-24 mx-auto">
         <div className="flex flex-col text-center w-full mb-12">
-          <h1 className="sm:text-3xl text-2xl font-medium title-font mb-4 text-white reveal">
+          <h1 className="sm:text-3xl text-2xl font-medium title-font mb-4">
             Contact Us
           </h1>
           <p
-            className="lg:w-2/3 mx-auto leading-relaxed text-base reveal"
+            className="lg:w-2/3 mx-auto leading-relaxed text-base text-gray-400"
             style={{ transitionDelay: "0.3s" }}
           >
             Get in touch via our contact form or drop us an email &ndash; we&apos;d love to
@@ -29,7 +29,7 @@ const Contact = () => {
                 <div className="relative">
                   <label
                     htmlFor="name"
-                    className="leading-7 text-sm text-gray-400"
+                    className="leading-7 text-sm"
                   >
                     Name
                   </label>
@@ -45,7 +45,7 @@ const Contact = () => {
                 <div className="relative">
                   <label
                     htmlFor="email"
-                    className="leading-7 text-sm text-gray-400"
+                    className="leading-7 text-sm"
                   >
                     Email
                   </label>
@@ -61,7 +61,7 @@ const Contact = () => {
                 <div className="relative">
                   <label
                     htmlFor="message"
-                    className="leading-7 text-sm text-gray-400"
+                    className="leading-7 text-sm"
                   >
                     Message
                   </label>
