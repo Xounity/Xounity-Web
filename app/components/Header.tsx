@@ -105,7 +105,7 @@ const Header = () => {
               
             </div>
             <Link href="#" className="hidden md:block">
-                <button onClick={toggleTheme}>
+                <button onClick={toggleTheme} title="Toggle theme">
                   <i className={theme === 'light' ? "ri-sun-fill text-black" : "ri-moon-fill text-white"}></i>
                 </button>
               </Link>
