@@ -4,15 +4,15 @@ const Contact = () => {
   return (
     <section
       id="contact"
-      className="bg-transparent body-font relative mt-8"
+      className="text-gray-400 bg-transparent body-font relative mt-8"
     >
       <div className="container px-5 py-24 mx-auto">
         <div className="flex flex-col text-center w-full mb-12">
-          <h1 className="sm:text-3xl text-2xl font-medium title-font mb-4">
+          <h1 className="sm:text-3xl text-2xl font-medium title-font mb-4 text-white reveal">
             Contact Us
           </h1>
           <p
-            className="lg:w-2/3 mx-auto leading-relaxed text-base text-gray-400"
+            className="lg:w-2/3 mx-auto leading-relaxed text-base reveal"
             style={{ transitionDelay: "0.3s" }}
           >
             Get in touch via our contact form or drop us an email &ndash; we&apos;d love to
@@ -23,13 +23,13 @@ const Contact = () => {
           className="lg:w-1/2 md:w-2/3 mx-auto reveal"
           style={{ transitionDelay: "0.4s" }}
         >
-          <form method="POST" name="contact-form" data-netlify="true">
+          <form>
             <div className="flex flex-wrap -m-2">
               <div className="p-2 w-1/2">
                 <div className="relative">
                   <label
                     htmlFor="name"
-                    className="leading-7 text-sm"
+                    className="leading-7 text-sm text-gray-400"
                   >
                     Name
                   </label>
@@ -45,7 +45,7 @@ const Contact = () => {
                 <div className="relative">
                   <label
                     htmlFor="email"
-                    className="leading-7 text-sm"
+                    className="leading-7 text-sm text-gray-400"
                   >
                     Email
                   </label>
@@ -61,7 +61,7 @@ const Contact = () => {
                 <div className="relative">
                   <label
                     htmlFor="message"
-                    className="leading-7 text-sm"
+                    className="leading-7 text-sm text-gray-400"
                   >
                     Message
                   </label>
