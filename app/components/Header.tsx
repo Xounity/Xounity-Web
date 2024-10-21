@@ -26,6 +26,7 @@ const Header = () => {
           <a
             href="#home"
             className="flex title-font font-medium items-center text-white mb-4 md:mb-0"
+            title="Home"
           >
             <Image
               src={logo}
@@ -107,6 +108,7 @@ const Header = () => {
                 onClick={() => {
                   setMob(!mob);
                 }}
+                title={mob ? "Close menu" : "Open menu"}
               >
                 <i className={mob ? "ri-close-line" : "ri-menu-line"}></i>
               </button>
