@@ -4,15 +4,15 @@ const Contact = () => {
   return (
     <section
       id="contact"
-      className="text-gray-400 bg-transparent body-font relative mt-8"
+      className="bg-transparent body-font relative mt-8"
     >
       <div className="container px-5 py-24 mx-auto">
         <div className="flex flex-col text-center w-full mb-12">
-          <h1 className="sm:text-3xl text-2xl font-medium title-font mb-4 text-white reveal">
+          <h1 className="sm:text-3xl text-2xl font-medium title-font mb-4">
             Contact Us
           </h1>
           <p
-            className="lg:w-2/3 mx-auto leading-relaxed text-base reveal"
+            className="lg:w-2/3 mx-auto leading-relaxed text-base text-gray-400"
             style={{ transitionDelay: "0.3s" }}
           >
             Get in touch via our contact form or drop us an email &ndash; we&apos;d love to
@@ -29,7 +29,7 @@ const Contact = () => {
                 <div className="relative">
                   <label
                     htmlFor="name"
-                    className="leading-7 text-sm text-gray-400"
+                    className="leading-7 text-sm"
                   >
                     Name
                   </label>
@@ -45,7 +45,7 @@ const Contact = () => {
                 <div className="relative">
                   <label
                     htmlFor="email"
-                    className="leading-7 text-sm text-gray-400"
+                    className="leading-7 text-sm"
                   >
                     Email
                   </label>
@@ -61,7 +61,7 @@ const Contact = () => {
                 <div className="relative">
                   <label
                     htmlFor="message"
-                    className="leading-7 text-sm text-gray-400"
+                    className="leading-7 text-sm"
                   >
                     Message
                   </label>
@@ -74,13 +74,13 @@ const Contact = () => {
                 </div>
               </div>
               <div className="p-2 w-full">
-                <button className="send-btn flex mx-auto text-white bg-xounity-orange border-0 py-2 px-8 focus:outline-none rounded text-lg">
+                <button className="send-btn flex mx-auto border-solid border-2 border-xounity-orange py-2 px-8 focus:outline-none rounded text-lg hover:bg-xounity-orange transition duration-300">
                   Send
                 </button>
               </div>
               <div className="p-2 w-full pt-8 mt-8 border-t border-gray-800 text-center">
                 <a className="text-xounity-orange">xounity1@gmail.com</a>
-                <p className="leading-normal my-5">Based in Karachi, Pakistan</p>
+                <p className="leading-normal my-5 text-gray-400">Based in Karachi, Pakistan</p>
               </div>
             </div>
           </form>

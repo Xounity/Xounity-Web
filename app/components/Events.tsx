@@ -29,10 +29,10 @@ const EventItem: React.FC<EventItemProps> = ({ href, imgSrc, title, description,
         style={{ transition: "all 0.5s" }}
       />
     </a>
-    <h2 className="text-xl font-medium title-font text-white mt-5">
+    <h2 className="text-xl font-medium title-font mt-5">
       {title}
     </h2>
-    <p className="text-base font-normal leading-relaxed mt-2">
+    <p className="text-base font-normal leading-relaxed text-gray-400 mt-2">
       {description}
     </p>
     <a href={watchLink} target="_blank" rel="noopener noreferrer">
@@ -57,11 +57,11 @@ const EventItem: React.FC<EventItemProps> = ({ href, imgSrc, title, description,
 const Events: React.FC = () => {
   return (
     <>
-      <section className="text-gray-400 bg-xounity-blue body-font mt-10">
+      <section className="body-font mt-10">
         {/* Current Events start */}
         <div className="container px-5 py-24 mx-auto">
           <div className="flex flex-col w-full mb-4">
-            <h1 className="text-3xl font-medium title-font mb-2 text-white">
+            <h1 className="text-3xl font-medium title-font mb-2">
               Recent Events
             </h1>
           </div>

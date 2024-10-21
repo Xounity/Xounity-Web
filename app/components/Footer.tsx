@@ -7,7 +7,7 @@ const Footer = () => {
     <>
     {/* Footer */}
     <hr/>
-    <footer className="text-gray-600 body-font bg-xounity-blue">
+    <footer className="text-gray-600 body-font">
       <div className="container px-5 py-8 mx-auto flex items-center sm:flex-row flex-col">
         <a className="flex title-font font-medium items-center text-white mb-4 md:mb-0">
           <Image

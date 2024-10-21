@@ -11,14 +11,14 @@ import noman from "@/app/images/noman.jpeg"
 const About = () => {
   return (
     <>
-    <section id="about" className="text-gray-400 body-font hidden md:flex bg-xounity-blue mt-8">
+    <section id="about" className="body-font hidden md:flex mt-8">
           <div className="container px-5 py-24 mx-auto">
             <div className="flex flex-col text-center w-full mb-20">
-              <h1 className="text-3xl font-medium title-font mb-4 text-white reveal">
+              <h1 className="text-3xl font-medium title-font mb-4">
                 OUR TEAM
               </h1>
               <p
-                className="lg:w-2/3 mx-auto leading-relaxed text-base reveal"
+                className="lg:w-2/3 mx-auto leading-relaxed text-base text-gray-400"
                 style={{ transitionDelay: "0.3s" }}
               >
                 Get to know the faces shaping Xounity - our team of diverse

@@ -5,9 +5,11 @@ import { useState } from "react";
 import Image from "next/image";
 import logo from "@/app/images/logo.svg";
 import Link from "next/link";
+import { useTheme } from "../ThemeContext";
 
 const Header = () => {
   const pathname = usePathname();
+  const {theme, toggleTheme} = useTheme();
   const [mob, setMob] = useState(false);
 
   return (
@@ -15,7 +17,7 @@ const Header = () => {
       {/* Header start */}
       <header
         id="home"
-        className="z-50 text-gray-400 bg-transparent top-0 body-font w-full h-24 flex justify-between items-center"
+        className="z-50 bg-transparent top-0 body-font w-full h-24 flex justify-between items-center"
         style={{
           position: "fixed",
           backdropFilter: "blur(5px)",
@@ -41,8 +43,8 @@ const Header = () => {
                 href="/"
                 className={
                   pathname === "/"
-                    ? "mr-5 cursor-pointer hover:text-white text-white"
-                    : "mr-5 cursor-pointer hover:text-white"
+                    ? "mr-5 cursor-pointer"
+                    : "mr-5 cursor-pointer text-gray-400"
                 }
               >
                 Home
@@ -52,8 +54,8 @@ const Header = () => {
                 href="/about"
                 className={
                   pathname === "/about"
-                    ? "mr-5 cursor-pointer hover:text-white text-white"
-                    : "mr-5 cursor-pointer hover:text-white"
+                    ? "mr-5 cursor-pointer "
+                    : "mr-5 cursor-pointer text-gray-400"
                 }
               >
                 About
@@ -63,8 +65,8 @@ const Header = () => {
                 href="/event"
                 className={
                   pathname === "/event"
-                    ? "mr-5 cursor-pointer hover:text-white text-white"
-                    : "mr-5 cursor-pointer hover:text-white"
+                    ? "mr-5 cursor-pointer "
+                    : "mr-5 cursor-pointer text-gray-400"
                 }
               >
                 Events
@@ -74,15 +76,15 @@ const Header = () => {
                 href="/resources"
                 className={
                   pathname === "/resources"
-                    ? "mr-5 cursor-pointer hover:text-white text-white"
-                    : "mr-5 cursor-pointer hover:text-white"
+                    ? "mr-5 cursor-pointer"
+                    : "mr-5 cursor-pointer text-gray-400"
                 }
               >
                 Resources
               </Link>
               <Link passHref href="/contact">
                 <button
-                  className="contact-btn h-10 mr-2 inline-flex items-center bg-transparent border-solid border-xounity-orange border-2 hover:bg-xounity-orange text-rose-50  focus:outline-none hover:bg-transparent py-1 px-3 rounded text-base mt-4 md:mt-0"
+                  className="contact-btn h-10 mr-2 inline-flex items-center bg-transparent border-solid border-xounity-orange border-2 hover:bg-xounity-orange focus:outline-none hover:bg-transparent py-1 px-3 rounded text-base mt-4 md:mt-0"
                   style={{ transitionDuration: "0.5s" }}
                 >
                   Contact Us
@@ -99,7 +101,13 @@ const Header = () => {
                   </svg>
                 </button>
               </Link>
+              
             </div>
+            <Link href="#" className="hidden md:block">
+                <button onClick={toggleTheme}>
+                  <i className={theme === 'light' ? "ri-sun-fill text-black" : "ri-moon-fill text-white"}></i>
+                </button>
+              </Link>
 
             <div className="md:hidden z-50">
               <button
@@ -112,14 +120,21 @@ const Header = () => {
               </button>
             </div>
           </nav>
+
           {/* Mobile Nav */}
           {mob && (
-            <div className={"md:hidden fixed top-0 left-0 z-40 h-screen w-full bg-xounity-blue"}>
+            <div
+              className={
+                "md:hidden fixed top-0 left-0 z-40 h-screen w-full bg-xounity-blue"
+              }
+            >
               <div className="h-full w-full flex flex-col items-center justify-evenly">
                 <Link
                   passHref
                   href="/"
-                  onClick={()=>{setMob(!mob);}}
+                  onClick={() => {
+                    setMob(!mob);
+                  }}
                   className={
                     pathname === "/"
                       ? "mr-5 cursor-pointer text-white"
@@ -131,7 +146,9 @@ const Header = () => {
                 <Link
                   passHref
                   href="/about"
-                  onClick={()=>{setMob(!mob);}}
+                  onClick={() => {
+                    setMob(!mob);
+                  }}
                   className={
                     pathname === "/about"
                       ? "mr-5 cursor-pointer text-white"
@@ -143,7 +160,9 @@ const Header = () => {
                 <Link
                   passHref
                   href="/event"
-                  onClick={()=>{setMob(!mob);}}
+                  onClick={() => {
+                    setMob(!mob);
+                  }}
                   className={
                     pathname === "/event"
                       ? "mr-5 cursor-pointer text-white"
@@ -155,7 +174,9 @@ const Header = () => {
                 <Link
                   passHref
                   href="/resources"
-                  onClick={()=>{setMob(!mob);}}
+                  onClick={() => {
+                    setMob(!mob);
+                  }}
                   className={
                     pathname === "/resources"
                       ? "mr-5 cursor-pointer text-white"
@@ -167,7 +188,9 @@ const Header = () => {
                 <Link
                   passHref
                   href="/contact"
-                  onClick={()=>{setMob(!mob);}}
+                  onClick={() => {
+                    setMob(!mob);
+                  }}
                   className="contact-btn h-10 mr-2 inline-flex items-center bg-transparent border-solid border-xounity-orange border-2 hover:bg-xounity-orange text-rose-50  focus:outline-none hover:bg-transparent py-1 px-3 rounded text-base mt-4 md:mt-0"
                   style={{ transitionDuration: "0.5s" }}
                 >
