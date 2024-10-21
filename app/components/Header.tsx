@@ -114,7 +114,7 @@ const Header = () => {
           </nav>
           {/* Mobile Nav */}
           {mob && (
-            <div className={"fixed top-0 left-0 z-40 h-screen w-full bg-xounity-blue"}>
+            <div className={"md:hidden fixed top-0 left-0 z-40 h-screen w-full bg-xounity-blue"}>
               <div className="h-full w-full flex flex-col items-center justify-evenly">
                 <Link
                   passHref
