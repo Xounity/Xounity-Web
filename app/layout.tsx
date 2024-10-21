@@ -4,6 +4,7 @@ import "./globals.css";
 import 'remixicon/fonts/remixicon.css';
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import Header from "./components/Header";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -30,7 +31,7 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={"max-w-screen h-screen flex flex-col " + `${geistSans.variable} ${geistMono.variable} antialiased`} >
-        <Navbar />
+        <Header />
         {children}
         <Footer />
       </body>

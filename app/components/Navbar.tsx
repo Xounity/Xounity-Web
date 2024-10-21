@@ -7,7 +7,7 @@ const Navbar = () => {
     const [mob, setMob] = useState(false)
     return (
         <>
-                        <header className='w-screen h-24 p-4 fixed bg-transparent backdrop-blur-md flex justify-between items-center text-gray-400 border border-gray-400 border-t-0 border-b-1 border-l-0 border-r-0 z-50'>
+                        <header className='w-full h-24 p-4 fixed bg-transparent backdrop-blur-md flex justify-between items-center text-gray-400 border border-gray-400 border-t-0 border-b-1 border-l-0 border-r-0 z-50'>
                 <a href='/' target='_self' rel='noopener' title='Home'>
                     <Image
                         src={logo}
