@@ -55,7 +55,7 @@ const Header = () => {
                 href="/about"
                 className={
                   pathname === "/about"
-                    ? "mr-5 cursor-pointer "
+                    ? "mr-5 cursor-pointer"
                     : "mr-5 cursor-pointer text-gray-400"
                 }
               >
@@ -127,7 +127,7 @@ const Header = () => {
           {mob && (
             <div
               className={
-                "md:hidden fixed top-0 left-0 z-40 h-screen w-full bg-xounity-blue"
+                theme === "light" ? "bg-white md:hidden fixed top-0 left-0 z-40 h-screen w-full" : "bg-black md:hidden fixed top-0 left-0 z-40 h-screen w-full"
               }
             >
               <div className="h-full w-full flex flex-col items-center justify-evenly">
@@ -139,8 +139,8 @@ const Header = () => {
                   }}
                   className={
                     pathname === "/"
-                      ? "mr-5 cursor-pointer text-white"
-                      : "mr-5 cursor-pointer"
+                      ? "mr-5 cursor-pointer"
+                      : "mr-5 cursor-pointer text-gray-400"
                   }
                 >
                   Home
@@ -153,8 +153,8 @@ const Header = () => {
                   }}
                   className={
                     pathname === "/about"
-                      ? "mr-5 cursor-pointer text-white"
-                      : "mr-5 cursor-pointer"
+                      ? "mr-5 cursor-pointer"
+                      : "mr-5 cursor-pointer text-gray-400"
                   }
                 >
                   About
@@ -167,8 +167,8 @@ const Header = () => {
                   }}
                   className={
                     pathname === "/event"
-                      ? "mr-5 cursor-pointer text-white"
-                      : "mr-5 cursor-pointer"
+                      ? "mr-5 cursor-pointer"
+                      : "mr-5 cursor-pointer text-gray-400"
                   }
                 >
                   Events
@@ -181,8 +181,8 @@ const Header = () => {
                   }}
                   className={
                     pathname === "/resources"
-                      ? "mr-5 cursor-pointer text-white"
-                      : "mr-5 cursor-pointer"
+                      ? "mr-5 cursor-pointer"
+                      : "mr-5 cursor-pointer text-gray-400"
                   }
                 >
                   Resources
@@ -193,7 +193,7 @@ const Header = () => {
                   onClick={() => {
                     setMob(!mob);
                   }}
-                  className="contact-btn h-10 mr-2 inline-flex items-center bg-transparent border-solid border-xounity-orange border-2 hover:bg-xounity-orange text-rose-50  focus:outline-none hover:bg-transparent py-1 px-3 rounded text-base mt-4 md:mt-0"
+                  className="contact-btn h-10 mr-2 inline-flex items-center bg-transparent border-solid border-xounity-orange border-2 hover:bg-xounity-orange focus:outline-none hover:bg-transparent py-1 px-3 rounded text-base mt-4 md:mt-0"
                   style={{ transitionDuration: "0.5s" }}
                 >
                   Contact Us
