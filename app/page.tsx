@@ -17,7 +17,7 @@ export default function Home() {
   return (
     <div className="flex-1">
       {/* Hero start */}
-      <section className=" body-font mt-10">
+      <section id="home" className=" body-font mt-10">
         <div className="container mx-auto flex px-5 py-24 md:flex-row flex-col items-center">
           <div className="side lg:max-w-lg lg:w-full md:w-1/2 w-5/6 md:mb-0 mb-10 delay-200">
             <Image

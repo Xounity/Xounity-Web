@@ -10,14 +10,13 @@ import { useTheme } from "../ThemeContext";
 
 const Header = () => {
   const pathname = usePathname();
-  const {theme, toggleTheme} = useTheme();
+  const { theme, toggleTheme } = useTheme();
   const [mob, setMob] = useState(false);
 
   return (
     <>
       {/* Header start */}
       <header
-        id="home"
         className="z-50 bg-transparent top-0 body-font w-full h-24 flex justify-between items-center"
         style={{
           position: "fixed",
@@ -26,9 +25,9 @@ const Header = () => {
         }}
       >
         <div className="container mx-auto flex flex-wrap p-5 flex-row md:flex-column justify-between items-center">
-          <a
-            href="#home"
-            className="flex title-font font-medium items-center text-white mb-4 md:mb-0"
+          <Link
+            href="/"
+            className="flex title-font font-medium items-center mb-4 md:mb-0"
             title="Home"
           >
             <Image
@@ -36,7 +35,7 @@ const Header = () => {
               alt="logo"
               className="w-36 object-cover cursor-pointer"
             />
-          </a>
+          </Link>
           <nav className="md:ml-auto flex-wrap flex items-center text-base justify-center menu-items md:flex">
             {/* Desktop Nav */}
             <div className="menu-items hidden md:flex justify-center items-center">
@@ -103,13 +102,21 @@ const Header = () => {
                   </svg>
                 </button>
               </Link>
-              
             </div>
-            <Link href="#" className="mr-5 md:mr-0">
-                <button onClick={toggleTheme} title="Toggle theme">
-                  <i className={theme === 'light' ? "ri-sun-fill text-black" : "ri-moon-fill text-white"}></i>
-                </button>
-              </Link>
+
+            <button
+              className="mr-5 md:mr-0"
+              onClick={toggleTheme}
+              title="Toggle theme"
+            >
+              <i
+                className={
+                  theme === "light"
+                    ? "ri-moon-fill text-black"
+                    : "ri-sun-fill text-white"
+                }
+              ></i>
+            </button>
 
             <div className="md:hidden z-50">
               <button
@@ -128,7 +135,9 @@ const Header = () => {
           {mob && (
             <div
               className={
-                theme === "light" ? "bg-white md:hidden fixed top-0 left-0 z-40 h-screen w-full" : "bg-black md:hidden fixed top-0 left-0 z-40 h-screen w-full"
+                theme === "light"
+                  ? "bg-white md:hidden fixed top-0 left-0 z-40 h-screen w-full"
+                  : "bg-black md:hidden fixed top-0 left-0 z-40 h-screen w-full"
               }
             >
               <div className="h-full w-full flex flex-col items-center justify-evenly">
@@ -218,9 +227,9 @@ const Header = () => {
 
       {/* Header end */}
       {/* Goto Top button */}
-      <a href="#home" id="myBtn" title="Go to Top">
+      <Link href="#home" target="_self" id="myBtn" title="Go to Top">
         <i className="fa fa-angle-up" />
-      </a>
+      </Link>
       {/* home section */}
     </>
   );

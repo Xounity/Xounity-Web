@@ -4,6 +4,7 @@ import harsh from "@/app/images/harsh.png";
 import { StaticImageData } from 'next/image';
 import amna from "@/app/images/amna.png";
 import hamza from "@/app/images/hamza.png";
+import Link from 'next/link';
 
 interface EventItemProps {
   href: string;
@@ -15,7 +16,7 @@ interface EventItemProps {
 
 const EventItem: React.FC<EventItemProps> = ({ href, imgSrc, title, description, watchLink }) => (
   <div className="p-4 md:w-1/3 transition-delay-03">
-    <a
+    <Link
       className="rounded-lg overflow-hidden drop-shadow-lg"
       href={href}
       target="_blank"
@@ -28,14 +29,14 @@ const EventItem: React.FC<EventItemProps> = ({ href, imgSrc, title, description,
         src={imgSrc}
         style={{ transition: "all 0.5s" }}
       />
-    </a>
+    </Link>
     <h2 className="text-xl font-medium title-font mt-5">
       {title}
     </h2>
     <p className="text-base font-normal leading-relaxed text-gray-400 mt-2">
       {description}
     </p>
-    <a href={watchLink} target="_blank" rel="noopener noreferrer">
+    <Link href={watchLink} target="_blank" rel="noopener noreferrer">
       <button className="text-xounity-orange inline-flex items-center mt-3 hover:text-orange-600 duration-300 ease-in-out font-medium">
         Watch Now
         <svg
@@ -50,7 +51,7 @@ const EventItem: React.FC<EventItemProps> = ({ href, imgSrc, title, description,
           <path d="M5 12h14M12 5l7 7-7 7" />
         </svg>
       </button>
-    </a>
+    </Link>
   </div>
 );
 

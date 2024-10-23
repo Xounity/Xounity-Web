@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import React from 'react';
 
 const Contact = () => {
@@ -79,7 +80,7 @@ const Contact = () => {
                 </button>
               </div>
               <div className="p-2 w-full pt-8 mt-8 border-t border-gray-800 text-center">
-                <a className="text-xounity-orange">xounity1@gmail.com</a>
+                <Link href="#" className="text-xounity-orange">xounity1@gmail.com</Link>
                 <p className="leading-normal my-5 text-gray-400">Based in Karachi, Pakistan</p>
               </div>
             </div>

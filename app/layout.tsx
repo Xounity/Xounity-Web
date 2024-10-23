@@ -29,14 +29,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <ThemeProvider>
       <body
         className={"max-w-screen h-screen flex flex-col " + `${geistSans.variable} ${geistMono.variable} antialiased`} >
+          <ThemeProvider>
         <Header />
         {children}
         <Footer />
-      </body>
         </ThemeProvider>
+      </body>
     </html>
   );
 }
