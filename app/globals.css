@@ -30,6 +30,10 @@ body.dark{
   background-color: black;
 }
 
+.main-heading {
+  font-display: swap;
+}
+
 ::-webkit-scrollbar{
   width: 15px;
 }

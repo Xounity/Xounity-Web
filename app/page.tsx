@@ -19,7 +19,7 @@ export default function Home() {
       {/* Hero start */}
       <section id="home" className=" body-font mt-10">
         <div className="container mx-auto flex px-5 py-24 md:flex-row flex-col items-center">
-          <div className="side lg:max-w-lg lg:w-full md:w-1/2 w-5/6 md:mb-0 mb-10 delay-200">
+          <div className="lg:max-w-lg lg:w-full md:w-1/2 w-5/6 md:mb-0 mb-10 delay-200">
             <Image
               className="object-cover object-center rounded"
               src={replace}
@@ -28,15 +28,15 @@ export default function Home() {
             {/* https://dummyimage.com/720x600 */}
           </div>
           <div className="lg:flex-grow md:w-1/2 lg:pl-24 md:pl-16 flex flex-col md:items-start md:text-left items-center text-center">
-            <h1 className="reveal title-font sm:text-4xl text-3xl mb-4 font-medium delay-75">
+            <h1 className="main-heading title-font sm:text-4xl text-3xl mb-4 font-medium delay-75">
               Diverse Minds, One Vision
             </h1>
-            <p className="reveal mb-8 leading-relaxed delay-100 text-gray-400">
+            <p className="mb-8 leading-relaxed delay-100 text-gray-400">
               Join us at Xounity, where diverse minds foster innovation and unite
               under one vision. Together, we&apos;re creating a zone for an inclusive
               future. #Xounity
             </p>
-            <div className="reveal flex justify-center delay-100">
+            <div className="flex justify-center delay-100">
               {/* add socialmedia circle logos link with links here */}
               <div className="social-icons flex items-center justify-center gap-4 flex-wrap">
                 <Link href="https://www.instagram.com/xounity1" target="_blank" rel="noopener noreferrer" title="Instagram">
