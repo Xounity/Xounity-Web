@@ -31,6 +31,7 @@ const Header = () => {
             title="Home"
           >
             <Image
+              priority={true}
               src={theme === "dark" ? darklogo : lightlogo}
               alt="logo"
               className="w-36 object-cover cursor-pointer"
