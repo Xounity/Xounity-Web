@@ -1,9 +1,9 @@
 import React from 'react';
 import Image from 'next/image';
-import harsh from "@/app/images/harsh.png";
+import harsh from "@/app/images/harsh.webp";
 import { StaticImageData } from 'next/image';
-import amna from "@/app/images/amna.png";
-import hamza from "@/app/images/hamza.png";
+import amna from "@/app/images/amna.webp";
+import hamza from "@/app/images/hamza.webp";
 import Link from 'next/link';
 
 interface EventItemProps {

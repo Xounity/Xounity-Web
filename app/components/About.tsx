@@ -1,12 +1,12 @@
 import React from "react";
 import Image from "next/image";
-import mirza from "@/app/images/mirza.jpg";
-import muhaddis from "@/app/images/Muhaddis-mob.jpg";
-import ahmed from "@/app/images/Ahmed-mob.jpeg";
+import mirza from "@/app/images/mirza.webp";
+import muhaddis from "@/app/images/Muhaddis-mob.webp";
+import ahmed from "@/app/images/Ahmed-mob.webp";
 import junaid from "@/app/images/junaid.webp";
-import hafeez from "@/app/images/hafeez.jpg";
-import furqan from "@/app/images/furqan.png";
-import noman from "@/app/images/noman.jpg";
+import hafeez from "@/app/images/hafeez.webp";
+import furqan from "@/app/images/furqan.webp";
+import noman from "@/app/images/noman.webp";
 
 const About = () => {
   return (

@@ -3,8 +3,8 @@ import React from "react";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import Image from "next/image";
-import darklogo from "@/app/images/logo_dark.png";
-import lightlogo from "@/app/images/logo_light.png";
+import darklogo from "@/app/images/logo_dark.webp";
+import lightlogo from "@/app/images/logo_light.webp";
 import Link from "next/link";
 import { useTheme } from "../ThemeContext";
 

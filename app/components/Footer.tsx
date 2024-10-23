@@ -1,8 +1,8 @@
 "use client";
 import React from 'react';
 import { useTheme } from '@/app/ThemeContext';
-import darklogo from "@/app/images/logo_dark.png";
-import lightlogo from "@/app/images/logo_light.png";
+import darklogo from "@/app/images/logo_dark.webp";
+import lightlogo from "@/app/images/logo_light.webp";
 import Image from 'next/image';
 import Link from 'next/link';
 
