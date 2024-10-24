@@ -62,7 +62,7 @@ const Events: React.FC = () => {
         {/* Current Events start */}
         <div className="container px-5 py-24 mx-auto">
           <div className="flex flex-col w-full mb-4">
-            <h1 className="text-3xl font-medium title-font mb-2">
+            <h1 className="text-center text-3xl font-medium title-font mb-2">
               Recent Events
             </h1>
           </div>
