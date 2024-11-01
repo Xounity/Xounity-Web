@@ -1,5 +1,4 @@
 import React from "react";
-import Image from "next/image";
 import mirza from "@/app/images/mirza.webp";
 import muhaddis from "@/app/images/Muhaddis-mob.webp";
 import ahmed from "@/app/images/Ahmed-mob.webp";
