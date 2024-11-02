@@ -4,12 +4,8 @@ import Contact from "@/app/components/Contact";
 import Event from "@/app/components/Events";
 import Hero from "@/app/components/Hero";
 import Link from "next/link";
-import { useState } from "react";
-import JoinPopup from "./components/JoinPopup";
 
 export default function Home() {
-
-  const [PopupIsOpen, SetPopup] = useState(false);
 
   return (
     <>
