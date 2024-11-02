@@ -13,7 +13,7 @@ interface TeamCardProps {
     instaSrc: string;
   }
 
-export const TeamCard: React.FC<TeamCardProps> = ({name, image, description ,  title, linkedinSrc, githubSrc, instaSrc}) => {
+export const TeamCard: React.FC<TeamCardProps> = ({name, image, description , title, linkedinSrc, githubSrc, instaSrc}) => {
   return (
     <>
     <div
@@ -114,7 +114,7 @@ export const TeamCard: React.FC<TeamCardProps> = ({name, image, description ,  t
   )
 }
 
-export const TeamCardMobile : React.FC<TeamCardProps> = ({name, image, description ,  title, linkedinSrc, githubSrc, instaSrc}) => {
+export const TeamCardMobile : React.FC<TeamCardProps> = ({name, image, description , title, linkedinSrc, githubSrc, instaSrc}) => {
   return (
     <div
     className="p-4 lg:w-1/4 md:w-1/2 side"
@@ -130,7 +130,7 @@ export const TeamCardMobile : React.FC<TeamCardProps> = ({name, image, descripti
         <h2 className="title-font font-medium text-lg">
           {name}
         </h2>
-        <h3 className="text-gray-400 mb-3">Community Lead</h3>
+        <h3 className="text-gray-400 mb-3">{title}</h3>
         <p className="mb-4">
           {description}
         </p>
