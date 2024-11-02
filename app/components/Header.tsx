@@ -1,17 +1,21 @@
 "use client";
 import React from "react";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useState} from "react";
 import Image from "next/image";
 import darklogo from "@/app/images/logo_dark.webp";
 import lightlogo from "@/app/images/logo_light.webp";
 import Link from "next/link";
 import { useTheme } from "../ThemeContext";
+import JoinPopup from "./JoinPopup";
 
 const Header = () => {
   const pathname = usePathname();
   const { theme, toggleTheme } = useTheme();
   const [mob, setMob] = useState(false);
+  const [isPopupOpen, setisPopupOpen] = useState(false);
+  const openPopup = () => setisPopupOpen(true);
+  const closePopup = () => setisPopupOpen(false);
 
   return (
     <>
@@ -26,12 +30,12 @@ const Header = () => {
       >
         <div className="container mx-auto flex flex-wrap p-5 flex-row md:flex-column justify-between items-center">
           <Link
+          onClick={closePopup}
             href="/"
             className="flex title-font font-medium items-center mb-4 md:mb-0"
             title="Home"
           >
             <Image
-              priority={true}
               src={theme === "dark" ? darklogo : lightlogo}
               alt="logo"
               className="w-36 object-cover cursor-pointer"
@@ -41,6 +45,7 @@ const Header = () => {
             {/* Desktop Nav */}
             <div className="menu-items hidden md:flex justify-center items-center">
               <Link
+              onClick={closePopup}
                 passHref
                 href="/"
                 className={
@@ -52,6 +57,7 @@ const Header = () => {
                 Home
               </Link>
               <Link
+              onClick={closePopup}
                 passHref
                 href="/about"
                 className={
@@ -63,6 +69,7 @@ const Header = () => {
                 About
               </Link>
               <Link
+              onClick={closePopup}
                 passHref
                 href="/event"
                 className={
@@ -74,22 +81,24 @@ const Header = () => {
                 Events
               </Link>
               <Link
+              onClick={closePopup}
                 passHref
-                href="/resources"
+                href="/contact"
                 className={
-                  pathname === "/resources"
+                  pathname === "/contact"
                     ? "mr-5 cursor-pointer"
                     : "mr-5 cursor-pointer text-gray-400"
                 }
               >
-                Resources
+                Contact
               </Link>
-              <Link passHref href="/contact">
+              
                 <button
-                  className="contact-btn h-10 mr-2 inline-flex items-center bg-transparent border-solid border-xounity-orange border-2 hover:bg-xounity-orange focus:outline-none hover:bg-transparent py-1 px-3 rounded text-base mt-4 md:mt-0"
+                onClick={openPopup}
+                  className="contact-btn tracking-wider h-10 mr-2 inline-flex items-center bg-transparent border-solid border-xounity-orange border-2 hover:bg-xounity-orange focus:outline-none hover:bg-transparent py-1 px-3 rounded text-base mt-4 md:mt-0"
                   style={{ transitionDuration: "0.5s" }}
                 >
-                  Contact Us
+                  Join Us
                   <svg
                     fill="none"
                     stroke="currentColor"
@@ -102,7 +111,7 @@ const Header = () => {
                     <path d="M5 12h14M12 5l7 7-7 7" />
                   </svg>
                 </button>
-              </Link>
+              
             </div>
 
             <button
@@ -186,28 +195,28 @@ const Header = () => {
                 </Link>
                 <Link
                   passHref
-                  href="/resources"
+                  href="/contact"
                   onClick={() => {
                     setMob(!mob);
                   }}
                   className={
-                    pathname === "/resources"
+                    pathname === "/contact"
                       ? "mr-5 cursor-pointer"
                       : "mr-5 cursor-pointer text-gray-400"
                   }
                 >
-                  Resources
+                  Contact
                 </Link>
                 <Link
                   passHref
-                  href="/contact"
+                  href="/join"
                   onClick={() => {
                     setMob(!mob);
                   }}
                   className="contact-btn h-10 mr-2 inline-flex items-center bg-transparent border-solid border-xounity-orange border-2 hover:bg-xounity-orange focus:outline-none hover:bg-transparent py-1 px-3 rounded text-base mt-4 md:mt-0"
                   style={{ transitionDuration: "0.5s" }}
                 >
-                  Contact Us
+                  Join Us
                   <svg
                     fill="none"
                     stroke="currentColor"
@@ -232,6 +241,11 @@ const Header = () => {
         <i className="fa fa-angle-up" />
       </Link>
       {/* home section */}
+      {
+        isPopupOpen && (
+          <JoinPopup onClose={closePopup} />
+        )
+      }
     </>
   );
 };

@@ -18,7 +18,6 @@ const Footer = () => {
       <div className="container px-5 py-8 mx-auto flex items-center sm:flex-row flex-col">
         <Link href="/" className="flex title-font font-medium items-center mb-4 md:mb-0">
           <Image
-          priority={true}
             src={ theme === "light" ? lightlogo : darklogo}
             alt="logo"
             className="w-36 object-cover cursor-pointer"
