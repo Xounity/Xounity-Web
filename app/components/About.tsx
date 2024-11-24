@@ -20,7 +20,6 @@ const About = () => {
             <h1 className="text-3xl font-medium title-font mb-4">OUR TEAM</h1>
             <p
               className="lg:w-2/3 mx-auto leading-relaxed text-base text-gray-400"
-              style={{ transitionDelay: "0.3s" }}
             >
               Get to know the faces shaping Xounity - our team of diverse
               visionaries.

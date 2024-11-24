@@ -3,8 +3,8 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background-light: #f4f4f4;
+  --background-dark: #050219;
   --xounity-orange: #ff9705;
   --xounity-blue: #090529;
 }
@@ -18,16 +18,17 @@
 
 body {
   font-family: Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
 }
 
 body.light{
-  color: black;
-  background-color: rgb(225, 224, 224);
+  color: #000000;
+  background-color: var(--background-light);
 }
 
 body.dark{
-  color: white;
-  background-color: black;
+  color: #f4f4f4;
+  background-color: var(--background-dark);
 }
 
 .load{

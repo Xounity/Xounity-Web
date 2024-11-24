@@ -1,9 +1,19 @@
+"use client";
+
 import React from "react";
 import Link from "next/link";
+import { motion } from "motion/react";
 
 const Contact = () => {
   return (
-    <section id="contact" className="bg-transparent body-font relative mt-8">
+    <motion.section
+      id="contact"
+      className="bg-transparent body-font relative mt-8"
+      initial={{ y: "10%", opacity: 0 }}
+      whileInView={{ y: 0, opacity: 1 }}
+      transition={{ duration: 1 }}
+      viewport={{ once: true }}
+    >
       <div className="container px-5 py-24 mx-auto">
         <div className="flex flex-col text-center w-full mb-12">
           <h1 className="sm:text-3xl text-2xl font-medium title-font mb-4">
@@ -11,7 +21,6 @@ const Contact = () => {
           </h1>
           <p
             className="lg:w-2/3 mx-auto leading-relaxed text-base text-gray-400"
-            style={{ transitionDelay: "0.3s" }}
           >
             Get in touch via our contact form or drop us an email &ndash;
             we&apos;d love to hear from you!
@@ -19,7 +28,6 @@ const Contact = () => {
         </div>
         <div
           className="lg:w-1/2 md:w-2/3 mx-auto reveal"
-          style={{ transitionDelay: "0.4s" }}
         >
           <form>
             <div className="flex flex-wrap -m-2">
@@ -82,7 +90,7 @@ const Contact = () => {
           </form>
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 };
 
