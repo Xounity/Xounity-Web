@@ -1,21 +1,19 @@
 "use client";
 import React from "react";
 import { usePathname } from "next/navigation";
-import { useState} from "react";
+import { useState } from "react";
 import Image from "next/image";
 import darklogo from "@/app/images/logo_dark.webp";
 import lightlogo from "@/app/images/logo_light.webp";
 import Link from "next/link";
 import { useTheme } from "../ThemeContext";
-import JoinPopup from "./JoinPopup";
+import { join } from "path";
 
 const Header = () => {
   const pathname = usePathname();
   const { theme, toggleTheme } = useTheme();
   const [mob, setMob] = useState(false);
-  const [isPopupOpen, setisPopupOpen] = useState(false);
-  const openPopup = () => setisPopupOpen(true);
-  const closePopup = () => setisPopupOpen(false);
+  const [joinMenu, setjoinMenu] = useState(false);
 
   return (
     <>
@@ -30,7 +28,6 @@ const Header = () => {
       >
         <div className="container mx-auto flex flex-wrap p-5 flex-row md:flex-column justify-between items-center">
           <Link
-          onClick={closePopup}
             href="/"
             className="flex title-font font-medium items-center mb-4 md:mb-0"
             title="Home"
@@ -45,7 +42,6 @@ const Header = () => {
             {/* Desktop Nav */}
             <div className="menu-items hidden md:flex justify-center items-center">
               <Link
-              onClick={closePopup}
                 passHref
                 href="/"
                 className={
@@ -57,7 +53,6 @@ const Header = () => {
                 Home
               </Link>
               <Link
-              onClick={closePopup}
                 passHref
                 href="/about"
                 className={
@@ -69,7 +64,6 @@ const Header = () => {
                 About
               </Link>
               <Link
-              onClick={closePopup}
                 passHref
                 href="/event"
                 className={
@@ -81,7 +75,6 @@ const Header = () => {
                 Events
               </Link>
               <Link
-              onClick={closePopup}
                 passHref
                 href="/contact"
                 className={
@@ -92,10 +85,13 @@ const Header = () => {
               >
                 Contact
               </Link>
-              
+
+              <div className="relative pb-1 w-[100%]">
                 <button
-                onClick={openPopup}
-                  className="contact-btn tracking-wider h-10 mr-2 inline-flex items-center bg-transparent border-solid border-xounity-orange border-2 hover:bg-xounity-orange focus:outline-none hover:bg-transparent py-1 px-3 rounded text-base mt-4 md:mt-0"
+                  onClick={() => {
+                    setjoinMenu(!joinMenu);
+                  }}
+                  className="join-btn tracking-wider h-10 inline-flex items-center bg-transparent border-solid border-xounity-orange border-2 hover:bg-xounity-orange outline-none hover:bg-transparent py-1 px-3 rounded text-base mt-4 md:mt-0"
                   style={{ transitionDuration: "0.5s" }}
                 >
                   Join Us
@@ -111,11 +107,26 @@ const Header = () => {
                     <path d="M5 12h14M12 5l7 7-7 7" />
                   </svg>
                 </button>
-              
+                {joinMenu && (
+                  <ul
+                    onClick={() => {
+                      setjoinMenu(!joinMenu);
+                    }}
+                    className="overflow-hidden cursor-pointer join-menu w-[100%] text-center top-[100%] absolute border-xounity-orange border-2 rounded"
+                  >
+                    <Link href="/join">
+                      <li className="hover:bg-xounity-orange p-2">As Speaker</li>
+                    </Link>
+                    <Link href="/join">
+                      <li className="hover:bg-xounity-orange p-2">As Member</li>
+                    </Link>
+                  </ul>
+                )}
+              </div>
             </div>
 
             <button
-              className="mr-5 md:mr-0"
+              className="ml-2 mr-5 md:mr-0"
               onClick={toggleTheme}
               title="Toggle theme"
             >
@@ -127,7 +138,6 @@ const Header = () => {
                 }
               ></i>
             </button>
-
             <div className="md:hidden z-50">
               <button
                 className="text-xl"
@@ -241,11 +251,6 @@ const Header = () => {
         <i className="fa fa-angle-up" />
       </Link>
       {/* home section */}
-      {
-        isPopupOpen && (
-          <JoinPopup onClose={closePopup} />
-        )
-      }
     </>
   );
 };
