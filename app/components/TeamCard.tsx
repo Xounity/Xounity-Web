@@ -28,7 +28,6 @@ export const TeamCard: React.FC<TeamCardProps> = ({
   return (
     <>
       <motion.div
-        initial={{ x: "-100%", opacity: 0 }}
         whileInView={{ x: 0, opacity: 1 }}
         transition={{ duration: 0.8 }}
         viewport={{ once: true }}
@@ -129,7 +128,6 @@ export const TeamCardMobile: React.FC<TeamCardProps> = ({
   return (
     <motion.div
       initial={{ x: "-100%", opacity: 0 }}
-      whileInView={{ x: 0, opacity: 1 }}
       transition={{ duration: 0.8 }}
       viewport={{ once: true }}
       className="p-4 lg:w-1/4 md:w-1/2"

@@ -12,7 +12,7 @@ const Loading = () => {
   return (
     <>
     <div className='w-full h-screen flex items-center justify-center'>
-    <Image src={theme === "dark" ? darklogo : lightlogo}
+    <Image priority src={theme === "dark" ? darklogo : lightlogo}
               alt="logo"
               className="w-36 object-cover cursor-pointer load" />
     </div>

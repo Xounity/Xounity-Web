@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import React from "react";
 import Image from "next/image";
@@ -69,18 +69,22 @@ const Events: React.FC = () => {
         {/* Current Events start */}
         <div className="container px-5 py-24 mx-auto">
           <div className="flex flex-col w-full mb-4">
-            <h1 className="text-center text-3xl font-medium title-font mb-2">
+            <motion.h1
+              className="text-center text-3xl font-medium title-font mb-2"
+              whileInView={{ y: 0, opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+            >
               Recent Events
-            </h1>
+            </motion.h1>
           </div>
           <div className="container mx-auto">
             <div className="flex flex-wrap -m-4 justify-center">
               <motion.div
                 className=""
-                initial={{ x: "-100%", opacity: 0 }}
                 whileInView={{ x: 0, opacity: 1 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.8}}
+                transition={{ duration: 0.8 }}
               >
                 <EventItem
                   href="https://www.youtube.com/watch?v=vpBBQ9OX2ho"
@@ -92,10 +96,9 @@ const Events: React.FC = () => {
               </motion.div>
               <motion.div
                 className=""
-                initial={{ y: "0%", opacity: 0 }}
                 whileInView={{ y: 0, opacity: 1 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.8}}
+                transition={{ duration: 0.8 }}
               >
                 <EventItem
                   href="https://youtu.be/aV5YVTzqsoQ?si=8CCx2tRrZ2AKd2JB"
@@ -107,10 +110,9 @@ const Events: React.FC = () => {
               </motion.div>
               <motion.div
                 className=""
-                initial={{ x: "100%", opacity: 0 }}
                 whileInView={{ x: 0, opacity: 1 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.8}}
+                transition={{ duration: 0.8 }}
               >
                 <EventItem
                   href="https://www.youtube.com/watch?v=YuT4maa08xg"

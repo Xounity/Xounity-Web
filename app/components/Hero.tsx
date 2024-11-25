@@ -26,6 +26,7 @@ const Hero = () => {
             transition={{ duration: 0.4 }}
           >
             <Image
+              priority
               className="object-cover object-center rounded"
               src={replace}
               alt="replace"

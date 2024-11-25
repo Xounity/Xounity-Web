@@ -168,7 +168,7 @@ const Header = () => {
                 initial={{ left: '-100%' }}
                 animate={{ left: 0 }}
                 exit={{ left: '-100%' }}
-                transition={{ duration: 0.3 }}
+                transition={{ duration: 0.2 }}
                 className={
                   theme === "light"
                     ? "bg-[var(--background-light)] md:hidden fixed top-0 left-0 z-40 h-screen w-full"

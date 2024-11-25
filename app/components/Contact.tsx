@@ -9,7 +9,6 @@ const Contact = () => {
     <motion.section
       id="contact"
       className="bg-transparent body-font relative mt-8"
-      initial={{ y: "10%", opacity: 0 }}
       whileInView={{ y: 0, opacity: 1 }}
       transition={{ duration: 1 }}
       viewport={{ once: true }}

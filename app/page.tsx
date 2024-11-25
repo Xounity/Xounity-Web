@@ -4,21 +4,9 @@ import Contact from "@/app/components/Contact";
 import Event from "@/app/components/Events";
 import Hero from "@/app/components/Hero";
 import Link from "next/link";
-import Loading from "@/app/loading";
-import { useEffect, useState } from "react";
+import React from 'react';
 
 export default function Home() {
-  const [loading, setloading] = useState(true);
-
-  useEffect(() => {
-    setTimeout(() => {
-      setloading(!loading);
-    }, 100);
-  }, []);
-
-  if (loading) {
-    return <Loading />;
-  } else {
     return (
       <>
         <Hero />
@@ -43,4 +31,3 @@ export default function Home() {
       </>
     );
   }
-}

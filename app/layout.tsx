@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
+import React from "react";
+import ClientWrapper from "@/app/clientwrapper";
 import localFont from "next/font/local";
 import "./globals.css";
-import 'remixicon/fonts/remixicon.css';
+import "remixicon/fonts/remixicon.css";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import { ThemeProvider } from "./ThemeContext";
@@ -30,11 +32,17 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={"max-w-screen h-screen flex flex-col " + `${geistSans.variable} ${geistMono.variable} antialiased`} >
-          <ThemeProvider>
-        <Header />
-        {children}
-        <Footer />
+        className={
+          "max-w-screen h-screen flex flex-col " +
+          `${geistSans.variable} ${geistMono.variable} antialiased`
+        }
+      >
+        <ThemeProvider>
+          <ClientWrapper>
+          <Header />
+          {children}
+          <Footer />
+          </ClientWrapper>
         </ThemeProvider>
       </body>
     </html>
