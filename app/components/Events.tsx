@@ -33,6 +33,7 @@ const EventItem: React.FC<EventItemProps> = ({
       title={title}
     >
       <Image
+        loading="lazy"
         alt="event"
         className="object-cover object-center max-h-64 w-full cursor-pointer hover:scale-110"
         src={imgSrc}

@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import React from "react";
 import Image from "next/image";
@@ -35,6 +35,7 @@ export const TeamCard: React.FC<TeamCardProps> = ({
       >
         <div className="image-card flex flex-col items-center text-center">
           <Image
+            loading="lazy"
             alt="team"
             className="flex-shrink-0 rounded-lg w-full h-80 object-cover object-center"
             src={image}
@@ -134,6 +135,7 @@ export const TeamCardMobile: React.FC<TeamCardProps> = ({
     >
       <div className="h-full flex flex-col items-center text-center">
         <Image
+          loading="lazy"
           alt="team"
           className="flex-shrink-0 rounded-lg w-full h-[60%] object-cover object-center mb-2"
           src={image}
