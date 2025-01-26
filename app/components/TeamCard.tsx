@@ -7,8 +7,6 @@ import { motion } from "motion/react";
 import Loading from "@/app/loading";
 const url = process.env.NEXT_PUBLIC_ROOT_URL + '/api/team';
 
-console.log(url)
-
 interface TeamCardProps {
   name: string;
   image: string;
