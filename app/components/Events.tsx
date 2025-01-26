@@ -1,17 +1,15 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import harsh from "@/app/images/harsh.webp";
-import { StaticImageData } from "next/image";
-import amna from "@/app/images/amna.webp";
-import hamza from "@/app/images/hamza.webp";
 import Link from "next/link";
 import { motion } from "motion/react";
+import Loading from "@/app/loading";
+const url = process.env.NEXT_PUBLIC_ROOT_URL + '/api/events';
 
 interface EventItemProps {
   href: string;
-  imgSrc: StaticImageData;
+  imgSrc: string;
   title: string;
   description: string;
   watchLink: string;
@@ -37,6 +35,8 @@ const EventItem: React.FC<EventItemProps> = ({
         alt="event"
         className="object-cover object-center max-h-64 w-full cursor-pointer hover:scale-110"
         src={imgSrc}
+        width={500}
+        height={300}
         style={{ transition: "all 0.5s" }}
       />
     </Link>
@@ -64,6 +64,24 @@ const EventItem: React.FC<EventItemProps> = ({
 );
 
 const Events: React.FC = () => {
+  const [data, setData] = useState<EventItemProps[]>([]);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(url);
+        if (!response.ok) {
+          throw new Error(`Error: ${response.statusText}`);
+        }
+        const result = await response.json();
+        setData(result);
+        //console.log(result);
+      } catch (error) {
+        console.error("Error fetching data: ", error);
+      }
+    };
+
+    fetchData();
+  }, []);
   return (
     <>
       <section className="body-font mt-10">
@@ -79,52 +97,33 @@ const Events: React.FC = () => {
               Recent Events
             </motion.h1>
           </div>
-          <div className="container mx-auto">
-            <div className="flex flex-wrap -m-4 justify-center">
-              <motion.div
-                className=""
-                whileInView={{ x: 0, opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8 }}
-              >
-                <EventItem
-                  href="https://www.youtube.com/watch?v=vpBBQ9OX2ho"
-                  imgSrc={harsh}
-                  title="How To Pursue Your Career in UI/UX"
-                  description="By Harsh Advani"
-                  watchLink="https://www.youtube.com/watch?v=vpBBQ9OX2ho"
-                />
-              </motion.div>
-              <motion.div
-                className=""
-                whileInView={{ y: 0, opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8 }}
-              >
-                <EventItem
-                  href="https://youtu.be/aV5YVTzqsoQ?si=8CCx2tRrZ2AKd2JB"
-                  imgSrc={amna}
-                  title="Unlocking Data Science"
-                  description="By Amna Shahzad"
-                  watchLink="https://youtu.be/aV5YVTzqsoQ?si=8CCx2tRrZ2AKd2JB"
-                />
-              </motion.div>
-              <motion.div
-                className=""
-                whileInView={{ x: 0, opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8 }}
-              >
-                <EventItem
-                  href="https://www.youtube.com/watch?v=YuT4maa08xg"
-                  imgSrc={hamza}
-                  title="Career Building While Studying"
-                  description="By Hamza Farooqui"
-                  watchLink="https://www.youtube.com/watch?v=YuT4maa08xg"
-                />
-              </motion.div>
+          {data.length > 0 ? (
+            <div className="container mx-auto">
+              <div className="flex flex-wrap -m-4 justify-center">
+                <motion.div
+                  className="flex flex-wrap justify-center"
+                  whileInView={{ x: 0, opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.8 }}
+                >
+                  {data.map((item) => {
+                    return (
+                      <EventItem
+                        href={item.href}
+                        imgSrc={item.imgSrc}
+                        title={item.title}
+                        description={item.description}
+                        watchLink={item.watchLink}
+                        key={item.title}
+                      />
+                    );
+                  })}
+                </motion.div>
+              </div>
             </div>
-          </div>
+          ) : (
+            <Loading />
+          )}
         </div>
         {/* Current Events end */}
       </section>
