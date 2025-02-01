@@ -46,13 +46,13 @@ export const TeamCard: React.FC = () => {
           whileInView={{ x: 0, opacity: 1 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="p-4 lg:w-1/4 md:w-1/2"
+          className="p-4"
         >
-          <div className="image-card flex flex-col items-center text-center">
+          <div className="image-card flex h-[300px] w-[280px] flex-col items-center text-center">
             <Image
               loading="lazy"
               alt="team"
-              className="flex-shrink-0 rounded-lg w-full h-80 object-cover object-center"
+              className="rounded-lg w-full h-full object-cover object-top"
               src={item.image}
               width={500}
               height={300}
@@ -162,20 +162,20 @@ export const TeamCardMobile: React.FC = () => {
   return (
     <>
     {data.length > 0 ? 
-    <div className="">
+    <div className="flex justify-start scroll-p-3 w-full snap-x overflow-x-scroll">
       {data.map((item, index) => (
         <motion.div
           key={index}
           whileInView={{ x: 0, opacity: 1 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="p-4 lg:w-1/4 md:w-1/2"
+          className="p-4"
         >
-          <div className="h-full flex flex-col items-center text-center">
+          <div className="flex snap-center flex-col w-[300px] text-center">
             <Image
               loading="lazy"
               alt="team"
-              className="flex-shrink-0 rounded-lg w-full h-[60%] object-cover object-center mb-2"
+              className="rounded-lg h-[300px] w-[300px] object-cover object-top mb-2"
               src={item.image}
               width={500}
               height={300}

@@ -1,5 +1,2 @@
 [[plugins]]
   package = "@netlify/plugin-nextjs"
-[build.environment]
-  MONGO_URL = "mongodb://127.0.0.1:27017/XounityDB"
-  NEXT_PUBLIC_ROOT_URL = "https://xounityy.netlify.app"

@@ -110,15 +110,15 @@ body.dark{
 }
 
 .image-card:hover .image-content{
-  bottom: 50%;
-  transform: translateY(50%);
+  top: 50%;
+  transform: translateY(-50%);
   transition: all 0.8s;
   opacity: 1;
 }
 
 .image-content{
   position: absolute;
-  bottom: -90px;
+  top: 80%;
   transition: all 0.8s;
   opacity: 1;
 }
