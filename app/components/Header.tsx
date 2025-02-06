@@ -27,17 +27,17 @@ const Header = () => {
         }}
       >
         <div className="container mx-auto flex flex-wrap p-5 flex-row md:flex-column justify-between items-center">
-          <Link
+          {/* <Link
             href="/"
             className="flex title-font font-medium items-center mb-4 md:mb-0"
             title="Home"
-          >
+          > */}
             <Image
               src={theme === "dark" ? darklogo : lightlogo}
               alt="logo"
-              className="w-36 object-cover cursor-pointer"
+              className="w-36 h-20 object-cover"
             />
-          </Link>
+          {/* </Link> */}
           <nav className="md:ml-auto flex-wrap flex items-center text-base justify-center menu-items md:flex">
             {/* Desktop Nav */}
             <div className="menu-items hidden md:flex justify-center items-center">

@@ -31,6 +31,11 @@ body.dark{
   background-color: var(--background-dark);
 }
 
+td{
+  border: 1px solid var(--xounity-orange);
+  padding: 1rem;
+}
+
 .load{
   animation: load 0.8s linear infinite alternate;
 }
