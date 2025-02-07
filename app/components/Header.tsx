@@ -8,12 +8,13 @@ import lightlogo from "@/app/images/logo_light.webp";
 import Link from "next/link";
 import { useTheme } from "../ThemeContext";
 import { motion, AnimatePresence } from "motion/react";
+import { FaArrowDown } from "react-icons/fa";
 
 const Header = () => {
   const pathname = usePathname();
   const { theme, toggleTheme } = useTheme();
   const [mob, setMob] = useState(false);
-  const [joinMenu, setjoinMenu] = useState(false);
+  const [isloggedin, setIsLoggedin] = useState(false);
 
   return (
     <>
@@ -32,11 +33,11 @@ const Header = () => {
             className="flex title-font font-medium items-center mb-4 md:mb-0"
             title="Home"
           > */}
-            <Image
-              src={theme === "dark" ? darklogo : lightlogo}
-              alt="logo"
-              className="w-36 h-20 object-cover"
-            />
+          <Image
+            src={theme === "dark" ? darklogo : lightlogo}
+            alt="logo"
+            className="w-36 h-20 object-cover"
+          />
           {/* </Link> */}
           <nav className="md:ml-auto flex-wrap flex items-center text-base justify-center menu-items md:flex">
             {/* Desktop Nav */}
@@ -85,16 +86,26 @@ const Header = () => {
               >
                 Contact
               </Link>
-
-              <div className="relative pb-1 w-[100%]">
+              {isloggedin ? (
+                <details className="flex flex-col items-center justify-center relative">
+                  <summary className="cursor-pointer">Muhaddis Afzal</summary>
+                  <ul className="border border-xounity-orange overflow-hidden w-full text-center rounded-md absolute top-[100%] left-[50%] translate-x-[-50%]">
+                    <li className="hover:bg-xounity-orange p-1 cursor-pointer border-b-2 border-b-xounity-orange">
+                      Dashboard
+                    </li>
+                    <li className="hover:bg-xounity-orange p-1 cursor-pointer">
+                      Logout
+                    </li>
+                  </ul>
+                </details>
+              ) : (
+                <div className="relative pb-1 w-[100%]">
+                <Link href="/signin">
                 <button
-                  onClick={() => {
-                    setjoinMenu(!joinMenu);
-                  }}
                   className="join-btn tracking-wider h-10 inline-flex items-center bg-transparent border-solid border-xounity-orange border-2 hover:bg-xounity-orange outline-none hover:bg-transparent py-1 px-3 rounded text-base mt-4 md:mt-0"
                   style={{ transitionDuration: "0.5s" }}
                 >
-                  Join Us
+                  Sign In
                   <svg
                     fill="none"
                     stroke="currentColor"
@@ -107,32 +118,11 @@ const Header = () => {
                     <path d="M5 12h14M12 5l7 7-7 7" />
                   </svg>
                 </button>
-                <AnimatePresence>
-                  {joinMenu && (
-                    <motion.ul
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      exit={{ opacity: 0 }}
-                      transition={{ duration: 0.4 }}
-                      onClick={() => {
-                        setjoinMenu(!joinMenu);
-                      }}
-                      className="overflow-hidden cursor-pointer join-menu w-[100%] text-center top-[100%] absolute border-xounity-orange border-2 rounded"
-                    >
-                      <Link href="/join">
-                        <li className="hover:bg-xounity-orange p-2">
-                          As Speaker
-                        </li>
-                      </Link>
-                      <Link href="/join">
-                        <li className="hover:bg-xounity-orange p-2">
-                          As Member
-                        </li>
-                      </Link>
-                    </motion.ul>
-                  )}
-                </AnimatePresence>
+                </Link>
               </div>
+              )
+              }
+              
             </div>
 
             <button
@@ -165,9 +155,9 @@ const Header = () => {
             {/* Mobile Nav */}
             {mob && (
               <motion.div
-                initial={{ left: '-100%' }}
+                initial={{ left: "-100%" }}
                 animate={{ left: 0 }}
-                exit={{ left: '-100%' }}
+                exit={{ left: "-100%" }}
                 transition={{ duration: 0.2 }}
                 className={
                   theme === "light"
@@ -234,14 +224,14 @@ const Header = () => {
                   </Link>
                   <Link
                     passHref
-                    href="/join"
+                    href="/signin"
                     onClick={() => {
                       setMob(!mob);
                     }}
                     className="contact-btn h-10 mr-2 inline-flex items-center bg-transparent border-solid border-xounity-orange border-2 hover:bg-xounity-orange focus:outline-none hover:bg-transparent py-1 px-3 rounded text-base mt-4 md:mt-0"
                     style={{ transitionDuration: "0.5s" }}
                   >
-                    Join Us
+                    Sign In
                     <svg
                       fill="none"
                       stroke="currentColor"

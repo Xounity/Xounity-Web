@@ -11,8 +11,10 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  --background-light: #f4f4f4;
+  --background-dark: #050219;
+  --xounity-orange: #ff9705;
+  --xounity-blue: #090529;
   }
 }
 
