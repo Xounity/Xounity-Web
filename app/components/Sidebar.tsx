@@ -6,9 +6,8 @@ import { FaCalendar, FaPowerOff, FaUser, FaUserTie } from 'react-icons/fa'
 
 const Sidebar = () => {
     const pathname = usePathname()
-    console.log(pathname)
   return (
-    <div className='border border-solid border-xounity-orange rounded-md overflow-hidden p-2 hidden md:block'>
+    <div className='border-r border-xounity-orange'>
       <p className='bg-transparent p-2 mb-4 rounded-sm font-bold'>Dashboard</p>
         <div className='mb-4'>
           <h2 className='p-2 font-bold'>Menu</h2>
