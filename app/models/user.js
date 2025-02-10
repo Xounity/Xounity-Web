@@ -50,7 +50,7 @@ userSchema.static("matchPassword", async function (email, password) {
 
   if(hashedPassword !== userProvidedHash) throw new Error("Invalid email or password");
 
-  return user;
+  return true;
 })
 
 export const User =

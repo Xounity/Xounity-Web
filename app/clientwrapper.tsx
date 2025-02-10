@@ -1,8 +1,11 @@
 "use client";
 import React, { useState, useEffect } from 'react';
 import Loading from "@/app/loading";
+import { SessionProvider } from 'next-auth/react';
+
 
 export default function ClientWrapper({ children }: { children: React.ReactNode }) {
+  
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -14,8 +17,8 @@ export default function ClientWrapper({ children }: { children: React.ReactNode 
   }, []);
 
   if (loading) {
-    return <Loading />;  
+    return <SessionProvider><Loading /></SessionProvider>;  
   }
 
-  return <>{children}</>;  
+  return <SessionProvider>{children}</SessionProvider>;  
 }

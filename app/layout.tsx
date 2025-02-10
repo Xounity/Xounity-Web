@@ -39,9 +39,9 @@ export default function RootLayout({
       >
         <ThemeProvider>
           <ClientWrapper>
-          <Header />
-          {children}
-          <Footer />
+            <Header />
+            {children}
+            <Footer />
           </ClientWrapper>
         </ThemeProvider>
       </body>

@@ -8,13 +8,13 @@ import lightlogo from "@/app/images/logo_light.webp";
 import Link from "next/link";
 import { useTheme } from "../ThemeContext";
 import { motion, AnimatePresence } from "motion/react";
-import { FaArrowDown } from "react-icons/fa";
+import { useSession, signOut } from "next-auth/react";
 
 const Header = () => {
   const pathname = usePathname();
   const { theme, toggleTheme } = useTheme();
   const [mob, setMob] = useState(false);
-  const [isloggedin, setIsLoggedin] = useState(false);
+  const { data: session } = useSession();
 
   return (
     <>
@@ -86,14 +86,14 @@ const Header = () => {
               >
                 Contact
               </Link>
-              {isloggedin ? (
+              {session ? (
                 <details className="flex flex-col items-center justify-center relative">
-                  <summary className="cursor-pointer">Muhaddis Afzal</summary>
-                  <ul className="border border-xounity-orange overflow-hidden w-full text-center rounded-md absolute top-[100%] left-[50%] translate-x-[-50%]">
+                  <summary className="cursor-pointer">{session.user?.name}</summary>
+                  <ul className="border border-xounity-orange overflow-hidden text-center rounded-md absolute top-[100%] left-[50%] translate-x-[-50%]">
                     <li className="hover:bg-xounity-orange p-1 cursor-pointer border-b-2 border-b-xounity-orange">
-                      Dashboard
+                    <Link href="/dashboard">Dashboard</Link>
                     </li>
-                    <li className="hover:bg-xounity-orange p-1 cursor-pointer">
+                    <li onClick={()=>{signOut}} className="hover:bg-xounity-orange p-1 cursor-pointer">
                       Logout
                     </li>
                   </ul>

@@ -2,6 +2,7 @@
 import Link from "next/link";
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
+import { signIn } from "next-auth/react";
 
 const SignIn = () => {
   const [email, setEmail] = useState("");
@@ -11,23 +12,21 @@ const SignIn = () => {
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-    const formData = new FormData();
-    formData.append("email", email);
-    formData.append("password", password);
 
-    const res = await fetch("/api/signin", {
-      method: "POST",
-      body: formData,
+    const res:any = await signIn("credentials", {
+      redirect: false,
+      email,
+      password,
     });
 
-    const data = await res.json();
     if (res.ok) {
       setError("");
       router.push("/");
     } else {
-      setError(data.message);
+      setError(res.error);
     }
   };
+
   return (
     <>
       <section id="contact" className="bg-transparent body-font relative mt-8">
@@ -41,15 +40,11 @@ const SignIn = () => {
             </p>
           </div>
           <div className="lg:w-1/2 md:w-2/3 mx-auto reveal">
-            <form
-              method="post"
-              action={`${process.env.NEXT_PUBLIC_ROOT_URL}/api/signin`}
-              onSubmit={handleSubmit}
-            >
+            <form method="post" onSubmit={handleSubmit}>
               <div className="flex flex-wrap -m-2">
                 <div className="p-2 w-1/2">
                   <div className="relative">
-                    <label htmlFor="name" className="leading-7 text-sm">
+                    <label htmlFor="email" className="leading-7 text-sm">
                       Email
                     </label>
                     <input
