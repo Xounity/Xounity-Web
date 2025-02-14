@@ -21,7 +21,7 @@ const SignIn = () => {
 
     if (res.ok) {
       setError("");
-      router.push("/");
+      router.push('/');
     } else {
       setError(res.error);
     }
@@ -53,6 +53,7 @@ const SignIn = () => {
                       id="email"
                       name="email"
                       value={email}
+                      required
                       onChange={(e) => setEmail(e.target.value)}
                       className="w-full bg-gray-800 bg-opacity-40 rounded border border-gray-700 focus:border-xounity-orange focus:bg-gray-900 focus:ring-2 focus:ring-yellow-900 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
                     />
@@ -68,6 +69,7 @@ const SignIn = () => {
                       id="password"
                       name="password"
                       value={password}
+                      required
                       onChange={(e) => setPassword(e.target.value)}
                       className="w-full bg-gray-800 bg-opacity-40 rounded border border-gray-700 focus:border-xounity-orange focus:bg-gray-900 focus:ring-2 focus:ring-yellow-900 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
                     />

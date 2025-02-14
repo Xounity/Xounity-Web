@@ -93,7 +93,7 @@ const Header = () => {
                     <li className="hover:bg-xounity-orange p-1 cursor-pointer border-b-2 border-b-xounity-orange">
                     <Link href="/dashboard">Dashboard</Link>
                     </li>
-                    <li onClick={()=>{signOut}} className="hover:bg-xounity-orange p-1 cursor-pointer">
+                    <li onClick={() => { signOut({ redirect: false, callbackUrl: '/' }); }} className="hover:bg-xounity-orange p-1 cursor-pointer">
                       Logout
                     </li>
                   </ul>

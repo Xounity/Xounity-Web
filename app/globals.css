@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 :root {
-  --background-light: #f4f4f4;
+  --background-light: #e9e9e9;
   --background-dark: #050219;
   --xounity-orange: #ff9705;
   --xounity-blue: #090529;

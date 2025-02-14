@@ -1,4 +1,5 @@
 'use client'
+import { signOut } from 'next-auth/react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import React from 'react'
@@ -20,7 +21,7 @@ const Sidebar = () => {
         <div>
           <h2 className='p-2 font-bold'>Settings</h2>
           <ul className='flex flex-col justify-center gap-2'>
-            <li className='bg-transparent hover:bg-xounity-orange p-2 rounded-sm flex items-center gap-2 cursor-pointer'><FaPowerOff />Logout</li>
+            <li onClick={()=>{ signOut({redirect: true, callbackUrl: '/'}) }} className='bg-transparent hover:bg-xounity-orange p-2 rounded-sm flex items-center gap-2 cursor-pointer'><FaPowerOff />Logout</li>
           </ul>
         </div>
       </div>

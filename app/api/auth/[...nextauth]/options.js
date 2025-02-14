@@ -1,8 +1,6 @@
-import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { connectDB } from "@/app/connectDB";
 import { User } from "@/app/models/user";
-import { strategy } from "sharp";
 
 export const authOptions = {
   providers: [
@@ -41,18 +39,26 @@ export const authOptions = {
     async jwt({ token, user }) {
       if (user) {
         token.email = user.email;
+        token.role = user.role;
       }
       return token;
     },
     async session({ session, token }) {
       if (token) {
         session.user.email = token.email;
+        session.user.role = token.role;
       }
       return session;
     },
   },
   session: {
-    strategy: "jwt"
+    strategy: "jwt",
+    maxAge: 60 * 60 * 24, // 1 day
+    updateAge: 24 * 60 * 60 // 1 day
+  },
+  jwt: {
+    secret: process.env.NEXTAUTH_SECRET,
+    maxAge: 60 * 60 * 24 * 7, // 7 days
   },
   secret: process.env.NEXTAUTH_SECRET
 };
