@@ -88,42 +88,90 @@ const Header = () => {
               </Link>
               {session ? (
                 <details className="flex flex-col items-center justify-center relative">
-                  <summary className="cursor-pointer">{session.user?.name}</summary>
+                  <summary className="cursor-pointer">
+                    {session.user?.name}
+                  </summary>
                   <ul className="border border-xounity-orange overflow-hidden text-center rounded-md absolute top-[100%] left-[50%] translate-x-[-50%]">
                     <li className="hover:bg-xounity-orange p-1 cursor-pointer border-b-2 border-b-xounity-orange">
-                    <Link href="/dashboard">Dashboard</Link>
+                      <Link href="/dashboard">Dashboard</Link>
                     </li>
-                    <li onClick={() => { signOut({ redirect: false, callbackUrl: '/' }); }} className="hover:bg-xounity-orange p-1 cursor-pointer">
+                    <li
+                      onClick={() => {
+                        signOut({ redirect: false, callbackUrl: "/" });
+                      }}
+                      className="hover:bg-xounity-orange p-1 cursor-pointer"
+                    >
                       Logout
                     </li>
                   </ul>
                 </details>
               ) : (
                 <div className="relative pb-1 w-[100%]">
-                <Link href="/signin">
-                <button
-                  className="join-btn tracking-wider h-10 inline-flex items-center bg-transparent border-solid border-xounity-orange border-2 hover:bg-xounity-orange outline-none hover:bg-transparent py-1 px-3 rounded text-base mt-4 md:mt-0"
-                  style={{ transitionDuration: "0.5s" }}
-                >
-                  Sign In
-                  <svg
-                    fill="none"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    className="w-4 h-4 ml-1"
-                    viewBox="0 0 24 24"
+                  <Link href="/signin">
+                    <button
+                      className="join-btn tracking-wider h-10 inline-flex items-center bg-transparent border-solid border-xounity-orange border-2 hover:bg-xounity-orange outline-none hover:bg-transparent py-1 px-3 rounded text-base mt-4 md:mt-0"
+                      style={{ transitionDuration: "0.5s" }}
+                    >
+                      Sign In
+                      <svg
+                        fill="none"
+                        stroke="currentColor"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        className="w-4 h-4 ml-1"
+                        viewBox="0 0 24 24"
+                      >
+                        <path d="M5 12h14M12 5l7 7-7 7" />
+                      </svg>
+                    </button>
+                  </Link>
+                </div>
+              )}
+            </div>
+
+            {session ? (
+              <details className="flex flex-col items-center ml-2 mr-2 md:hidden justify-center relative">
+                <summary className="cursor-pointer">
+                  {session.user?.name}
+                </summary>
+                <ul className="border border-xounity-orange overflow-hidden text-center rounded-md absolute top-[100%] left-[50%] translate-x-[-50%]">
+                  <li className="hover:bg-xounity-orange p-1 cursor-pointer border-b-2 border-b-xounity-orange">
+                    <Link href="/dashboard">Dashboard</Link>
+                  </li>
+                  <li
+                    onClick={() => {
+                      signOut({ redirect: false, callbackUrl: "/" });
+                    }}
+                    className="hover:bg-xounity-orange p-1 cursor-pointer"
                   >
-                    <path d="M5 12h14M12 5l7 7-7 7" />
-                  </svg>
-                </button>
+                    Logout
+                  </li>
+                </ul>
+              </details>
+            ) : (
+              <div className="relative ml-2 mr-2 md:hidden">
+                <Link href="/signin">
+                  <button
+                    className="join-btn tracking-wider h-10 inline-flex items-center bg-transparent border-solid border-xounity-orange border-2 hover:bg-xounity-orange outline-none hover:bg-transparent py-1 px-3 rounded text-base  md:mt-0"
+                    style={{ transitionDuration: "0.5s" }}
+                  >
+                    Sign In
+                    <svg
+                      fill="none"
+                      stroke="currentColor"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      className="w-4 h-4 ml-1"
+                      viewBox="0 0 24 24"
+                    >
+                      <path d="M5 12h14M12 5l7 7-7 7" />
+                    </svg>
+                  </button>
                 </Link>
               </div>
-              )
-              }
-              
-            </div>
+            )}
 
             <button
               className="ml-2 mr-5 md:mr-0"
@@ -138,6 +186,7 @@ const Header = () => {
                 }
               ></i>
             </button>
+
             <div className="md:hidden z-50">
               <button
                 className="text-xl"
@@ -221,28 +270,6 @@ const Header = () => {
                     }
                   >
                     Contact
-                  </Link>
-                  <Link
-                    passHref
-                    href="/signin"
-                    onClick={() => {
-                      setMob(!mob);
-                    }}
-                    className="contact-btn h-10 mr-2 inline-flex items-center bg-transparent border-solid border-xounity-orange border-2 hover:bg-xounity-orange focus:outline-none hover:bg-transparent py-1 px-3 rounded text-base mt-4 md:mt-0"
-                    style={{ transitionDuration: "0.5s" }}
-                  >
-                    Sign In
-                    <svg
-                      fill="none"
-                      stroke="currentColor"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      className="w-4 h-4 ml-1"
-                      viewBox="0 0 24 24"
-                    >
-                      <path d="M5 12h14M12 5l7 7-7 7" />
-                    </svg>
                   </Link>
                 </div>
               </motion.div>
