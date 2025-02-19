@@ -7,14 +7,14 @@ connectDB(process.env.MONGO_URL);
 export async function POST(request) {
   const formData = await request.formData();
 
-  const body = {name: undefined, email: undefined, password: undefined};
+  const body = {name: undefined, email: undefined, password: undefined, role: undefined};
   formData.forEach((value, key) => {
     body[key] = value;
   });
 
   console.log("body", body);
 
-  const { name, email, password } = body;
+  const { name, email, password, role } = body;
 
   if (
     !body ||
@@ -30,6 +30,7 @@ export async function POST(request) {
       name: name,
       email: email,
       password: password,
+      role: role || "user"
     });
 
     return NextResponse.json({redirectTo: `${process.env.NEXT_PUBLIC_ROOT_URL}/signin`}, {status: 200});

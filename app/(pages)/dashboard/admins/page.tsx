@@ -42,7 +42,7 @@ const admins = () => {
                 <div>Admins</div>
                 <div>
                   <Link
-                    href="/dashboard/users/add-admin"
+                    href="/dashboard/admins/add-admin"
                     className="bg-xounity-orange p-2 rounded-md"
                   >
                     Add Admin

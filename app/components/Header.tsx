@@ -92,9 +92,13 @@ const Header = () => {
                     {session.user?.name}
                   </summary>
                   <ul className="border border-xounity-orange overflow-hidden text-center rounded-md absolute top-[100%] left-[50%] translate-x-[-50%]">
-                    <li className="hover:bg-xounity-orange p-1 cursor-pointer border-b-2 border-b-xounity-orange">
-                      <Link href="/dashboard">Dashboard</Link>
-                    </li>
+                  {
+                    session.user?.role === "admin" && (
+                      <li className="hover:bg-xounity-orange p-1 cursor-pointer border-b-2 border-b-xounity-orange">
+                    <Link href="/dashboard">Dashboard</Link>
+                  </li>
+                    )
+                  }
                     <li
                       onClick={() => {
                         signOut({ redirect: false, callbackUrl: "/" });
@@ -136,9 +140,13 @@ const Header = () => {
                   {session.user?.name}
                 </summary>
                 <ul className="border border-xounity-orange overflow-hidden text-center rounded-md absolute top-[100%] left-[50%] translate-x-[-50%]">
-                  <li className="hover:bg-xounity-orange p-1 cursor-pointer border-b-2 border-b-xounity-orange">
+                  {
+                    session.user?.role === "admin" && (
+                      <li className="hover:bg-xounity-orange p-1 cursor-pointer border-b-2 border-b-xounity-orange">
                     <Link href="/dashboard">Dashboard</Link>
                   </li>
+                    )
+                  }
                   <li
                     onClick={() => {
                       signOut({ redirect: false, callbackUrl: "/" });

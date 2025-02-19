@@ -33,7 +33,7 @@ const About = () => {
       {/* About Mobile */}
       <section id="mob-about" className="body-font md:hidden">
         <div className="container px-5 py-24 mx-auto">
-          <div className="flex flex-col text-center w-full mb-20">
+          <div className="flex flex-col text-center w-full pt-10 pb-20">
             <h1 className="text-3xl font-medium title-font mb-4">OUR TEAM</h1>
             <p className="lg:w-2/3 mx-auto leading-relaxed text-base text-gray-400">
               Get to know the faces shaping Xounity - our team of diverse

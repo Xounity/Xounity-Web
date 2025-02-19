@@ -43,7 +43,7 @@ const events = () => {
                 <div>Events</div>
                 <div>
                   <Link
-                    href="/dashboard/users/add-event"
+                    href="/dashboard/events/add-event"
                     className="bg-xounity-orange p-2 rounded-md"
                   >
                     Add Event
