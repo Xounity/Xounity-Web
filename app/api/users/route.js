@@ -5,7 +5,7 @@ import { NextResponse } from "next/server";
 connectDB(process.env.MONGO_URL);
 
 export async function GET() {
-  const data = await User.find();
+  const data = await User.find({}, {password: 0, salt: 0, createdAt: 0, updatedAt: 0, __v: 0});
   return NextResponse.json(data);
 }
 

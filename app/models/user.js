@@ -38,10 +38,6 @@ userSchema.pre("save", function (next) {
     .update(user.password)
     .digest("hex");
 
-  console.log("Creating Password:");
-  console.log("Salt used for hashing:", salt);
-  console.log("New hashed password:", hashedPassword);
-
   this.salt = salt;
   this.password = hashedPassword;
 
@@ -59,10 +55,6 @@ userSchema.static(
       .update(password)
       .digest("hex");
 
-    console.log("Updating password:");
-    console.log("Salt used for hashing:", salt);
-    console.log("New hashed password:", hashedPassword);
-
     await User.updateOne({_id: id}, {$set: {name: name,email: email, salt: salt, role: role, password: hashedPassword }})
 
     return true;
@@ -79,11 +71,6 @@ userSchema.static("matchPassword", async function (email, password) {
   const userProvidedHash = createHmac("sha256", salt)
     .update(password)
     .digest("hex");
-
-  console.log("Matching password:");
-  console.log("Salt used for hashing:", salt);
-  console.log("User  provided hash:", userProvidedHash);
-  console.log("Stored hashed password:", hashedPassword);
 
   if (hashedPassword !== userProvidedHash)
     throw new Error("Invalid email or password");

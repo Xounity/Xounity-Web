@@ -2,7 +2,6 @@
 import Sidebar from "@/app/components/Sidebar";
 import React, { useEffect, useState } from "react";
 import Loading from "@/app/loading";
-const url = process.env.NEXT_PUBLIC_ROOT_URL + "/api/users";
 
 interface UserProps {
   name: string;
@@ -18,45 +17,70 @@ interface EventProps {
   description: string;
 }
 
+interface TeamProps {
+  name: string;
+  image: string;
+  description: string;
+  title: string;
+  linkedinSrc: string;
+  githubSrc: string;
+  instaSrc: string;
+}
+
 const DashboardPage = () => {
   const [Userdata, setUserData] = useState<UserProps[]>([]);
   const [Eventdata, setEventData] = useState<EventProps[]>([]);
+  const [Teamdata, setTeamData] = useState<TeamProps[]>([]);
+
+  const fetchUserData = async (url: string) => {
+    try {
+      const response = await fetch(url);
+      if (!response.ok) {
+        throw new Error(`Error: ${response.statusText}`);
+      }
+      const result = await response.json();
+      setUserData(result);
+      return result;
+      //console.log(result);
+    } catch (error) {
+      console.error("Error fetching data: ", error);
+    }
+  };
+
+  const fetchEventData = async (url: string) => {
+    try {
+      const response = await fetch(url);
+      if (!response.ok) {
+        throw new Error(`Error: ${response.statusText}`);
+      }
+      const result = await response.json();
+      setEventData(result);
+      //console.log(result);
+    } catch (error) {
+      console.error("Error fetching data: ", error);
+    }
+  };
+
+  const fetchTeamData = async (url: string) => {
+    try {
+      const response = await fetch(url);
+      if (!response.ok) {
+        throw new Error(`Error: ${response.statusText}`);
+      }
+      const result = await response.json();
+      setTeamData(result);
+      //console.log(result);
+    } catch (error) {
+      console.error("Error fetching data: ", error);
+    }
+  };
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch(url);
-        if (!response.ok) {
-          throw new Error(`Error: ${response.statusText}`);
-        }
-        const result = await response.json();
-        setUserData(result);
-        //console.log(result);
-      } catch (error) {
-        console.error("Error fetching data: ", error);
-      }
-    };
-
-    fetchData();
+    fetchUserData("/api/users");
+    fetchEventData("/api/events");
+    fetchTeamData("/api/team");
   }, []);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch("/api/events");
-        if (!response.ok) {
-          throw new Error(`Error: ${response.statusText}`);
-        }
-        const result = await response.json();
-        setEventData(result);
-        //console.log(result);
-      } catch (error) {
-        console.error("Error fetching data: ", error);
-      }
-    };
-
-    fetchData();
-  }, []);
 
   return (
     <>
@@ -67,7 +91,7 @@ const DashboardPage = () => {
             <div className="flex justify-between">
               <div>Analytics</div>
             </div>
-            {Userdata.length > 0 ? (
+            {Teamdata.length > 0 ? (
               <div className="mt-8">
                 <table className="w-full text-center">
                   <thead>
@@ -75,6 +99,7 @@ const DashboardPage = () => {
                       <td>Users</td>
                       <td>Admins</td>
                       <td>Events</td>
+                      <td>Team</td>
                     </tr>
                   </thead>
                   <tbody>
@@ -82,6 +107,7 @@ const DashboardPage = () => {
                       <td>{Userdata.filter((item) => item.role === "user" ).length}</td>
                       <td>{Userdata.filter((item) => item.role === "admin" ).length}</td>
                       <td>{Eventdata.length}</td>
+                      <td>{Teamdata.length}</td>
                     </tr>
                   </tbody>
                 </table>

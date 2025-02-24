@@ -83,7 +83,6 @@ const users = () => {
                       <td>Name</td>
                       <td>Role</td>
                       <td>Email</td>
-                      <td>Password</td>
                       <td>Actions</td>
                     </tr>
                   </thead>
@@ -96,7 +95,6 @@ const users = () => {
                             <td>{item.name}</td>
                             <td>{item.role}</td>
                             <td>{item.email}</td>
-                            <td>{item.password}</td>
                             <td>
                               <button className="text-blue-600 mr-2">
                                 <Link href={`/dashboard/users/edit-user/${item._id}`}><HiPencilAlt size={20} /></Link>

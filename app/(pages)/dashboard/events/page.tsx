@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
+import { FaYoutube } from "react-icons/fa";
 import { HiOutlineTrash, HiPencilAlt } from "react-icons/hi";
 const url = process.env.NEXT_PUBLIC_ROOT_URL + "/api/events";
 
@@ -81,7 +82,7 @@ const events = () => {
                       <td>Title</td>
                       <td>Image</td>
                       <td>Link</td>
-                      <td>Description</td>
+                      <td>Speaker</td>
                       <td>Actions</td>
                     </tr>
                   </thead>
@@ -91,15 +92,19 @@ const events = () => {
                         <tr key={index}>
                           <td>{item.title}</td>
                           <td>
+                            <button>
+                            <Link href={item.href}>
                             <Image
                               src={item.imgSrc}
                               alt=""
-                              width={100}
+                              width={150}
                               height={100}
                             />
+                            </Link>
+                            </button>
                           </td>
-                          <td>{item.href}</td>
-                          <td>{item.description}</td>
+                          <td><button><Link className="text-red-600 text-center" href={item.href}><FaYoutube size={20}/></Link></button></td>
+                          <td>{item.description.split("By")}</td>
                           <td>
                             <button className="text-blue-600 mr-2">
                               <HiPencilAlt size={20} />

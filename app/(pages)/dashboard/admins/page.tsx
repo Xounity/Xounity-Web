@@ -81,7 +81,6 @@ const admins = () => {
                       <td>Name</td>
                       <td>Role</td>
                       <td>Email</td>
-                      <td>Password</td>
                       <td>Actions</td>
                     </tr>
                   </thead>
@@ -94,10 +93,9 @@ const admins = () => {
                             <td>{item.name}</td>
                             <td>{item.role}</td>
                             <td>{item.email}</td>
-                            <td>{item.password}</td>
                             <td>
                               <button className="text-blue-600 mr-2">
-                                <HiPencilAlt size={20} />
+                              <Link href={`/dashboard/admins/edit-admin/${item._id}`}><HiPencilAlt size={20} /></Link>
                               </button>
                               <button onClick={ () => handleDelete(item._id) } className="text-red-600">
                                 <HiOutlineTrash size={20} />

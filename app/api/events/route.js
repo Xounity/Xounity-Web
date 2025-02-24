@@ -5,7 +5,7 @@ import { NextResponse } from "next/server";
 connectDB(process.env.MONGO_URL);
 
 export async function GET() {
-  const data = await Event.find();
+  const data = await Event.find({}, {__v: 0});
   return NextResponse.json(data);
 }
 
@@ -47,4 +47,39 @@ export async function DELETE(request) {
   const id = await request.nextUrl.searchParams.get("id");
   const event = await Event.findByIdAndDelete({_id: id})
   return NextResponse.json({message: "Event Deleted"}, {status: 200});
+}
+
+export async function PUT(request, {params}) {
+  const formData = await request.formData();
+
+  const body = {};
+  formData.forEach((value, key) => {
+    body[key] = value;
+  });
+
+  console.log("body", body);
+
+  if (
+    !body ||
+    !body.id ||
+    !body.href ||
+    !body.imgSrc ||
+    !body.title ||
+    !body.description ||
+    !body.watchLink
+  ) {
+    return NextResponse.json({ message: "All Fields are required!" }, {status: 400});
+  }
+
+  const result = await Event.updateOne({ _id: body.id },{
+    href: body.href,
+    imgSrc: body.imgSrc,
+    title: body.title,
+    description: body.description,
+    watchLink: body.watchLink,
+  });
+
+  console.log("result", result);
+
+  return NextResponse.json({ message: "Event Updated" }, { status: 200 });
 }

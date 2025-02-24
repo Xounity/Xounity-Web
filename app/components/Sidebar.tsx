@@ -3,7 +3,7 @@ import { signOut } from 'next-auth/react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import React from 'react'
-import { FaCalendar, FaPowerOff, FaUser, FaUserTie } from 'react-icons/fa'
+import { FaCalendar, FaPowerOff, FaUser, FaUsers, FaUserTie } from 'react-icons/fa'
 
 const Sidebar = () => {
     const pathname = usePathname()
@@ -16,6 +16,7 @@ const Sidebar = () => {
             <Link href="/dashboard/users" className={`${pathname === '/dashboard/users' ? 'bg-xounity-orange' : 'bg-transparent'} hover:bg-xounity-orange p-2 rounded-sm flex items-center gap-2 cursor-pointer`} ><FaUser />Users</Link>
             <Link href="/dashboard/admins" className={`${pathname === '/dashboard/admins' ? 'bg-xounity-orange' : 'bg-transparent'} hover:bg-xounity-orange p-2 rounded-sm flex items-center gap-2 cursor-pointer`}><FaUserTie />Admins</Link>
             <Link href="/dashboard/events" className={`${pathname === '/dashboard/events' ? 'bg-xounity-orange' : 'bg-transparent'} hover:bg-xounity-orange p-2 rounded-sm flex items-center gap-2 cursor-pointer`}><FaCalendar />Events</Link>
+            <Link href="/dashboard/team" className={`${pathname === '/dashboard/team' ? 'bg-xounity-orange' : 'bg-transparent'} hover:bg-xounity-orange p-2 rounded-sm flex items-center gap-2 cursor-pointer`}><FaUsers />Team</Link>
           </ul>
         </div>
         <div>
