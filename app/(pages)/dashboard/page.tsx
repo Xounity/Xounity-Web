@@ -79,8 +79,8 @@ const DashboardPage = () => {
                   </thead>
                   <tbody>
                     <tr>
-                      <td>{Userdata.filter((item) => item.role === "admin" ).length}</td>
                       <td>{Userdata.filter((item) => item.role === "user" ).length}</td>
+                      <td>{Userdata.filter((item) => item.role === "admin" ).length}</td>
                       <td>{Eventdata.length}</td>
                     </tr>
                   </tbody>

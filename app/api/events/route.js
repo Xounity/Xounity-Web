@@ -42,3 +42,9 @@ export async function POST(request) {
 
   return NextResponse.json({ message: "success" }, { status: 201 });
 }
+
+export async function DELETE(request) {
+  const id = await request.nextUrl.searchParams.get("id");
+  const event = await Event.findByIdAndDelete({_id: id})
+  return NextResponse.json({message: "Event Deleted"}, {status: 200});
+}
