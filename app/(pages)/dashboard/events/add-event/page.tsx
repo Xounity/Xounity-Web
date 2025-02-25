@@ -1,8 +1,12 @@
 "use client";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 const addEventPage = () => {
+  const [file, setFile] = useState<File>();
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
+  const [imgSrc, setImgSrc] = useState("/images/no-profile.jpg");
   const [watchLink, setwatchLink] = useState("");
   const [description, setDescription] = useState("");
   const [title, setTitle] = useState("");
@@ -16,7 +20,7 @@ const addEventPage = () => {
     formData.append("watchLink", watchLink);
     formData.append("href", watchLink);
     formData.append("description", `By ${description}`);
-    formData.append("imgSrc", "/images/furqan.webp");
+    formData.append("imgSrc", imgSrc);
 
     const res = await fetch("/api/events", {
       method: "POST",
@@ -31,6 +35,26 @@ const addEventPage = () => {
       router.back();
     } else {
       setError(data.message);
+    }
+  };
+
+  const handleFileSubmit = async (e: any) => {
+    e.preventDefault();
+    const fileData = new FormData();
+    if (file) {
+      fileData.set("file", file);
+    }
+
+    try {
+      const res = await fetch("/api/upload", {
+        method: "POST",
+        body: fileData,
+      });
+
+      console.log(res);
+      setImgSrc(`/images/${file?.name}`);
+    } catch (error: any) {
+      console.log(error.message);
     }
   };
 
@@ -53,7 +77,35 @@ const addEventPage = () => {
               onSubmit={handleSubmit}
             >
               <div className="flex flex-wrap -m-2">
-                <div className="p-2 w-1/2">
+                <div className="flex items-center justify-center w-full overflow-hidden">
+                  <input
+                    ref={fileInputRef}
+                    onChange={(e) => {
+                      setFile(e.target.files?.[0]);
+                    }}
+                    type="file"
+                    className="hidden"
+                  />
+                  <div className="text-center">
+                    <label htmlFor="image">Image</label>
+                    <Image
+                      className="w-32 h-32 aspect-square cursor-pointer"
+                      onClick={() => fileInputRef.current?.click()}
+                      src={imgSrc}
+                      alt=""
+                      width={100}
+                      height={100}
+                    />
+                    <button
+                      type="submit"
+                      onClick={handleFileSubmit}
+                      className="mt-2 py-1 p-3 bg-xounity-orange rounded-full"
+                    >
+                      Upload
+                    </button>
+                  </div>
+                </div>
+                <div className="p-2 w-full">
                   <div className="relative">
                     <label htmlFor="title" className="leading-7 text-sm">
                       Title
@@ -73,7 +125,7 @@ const addEventPage = () => {
                 <div className="p-2 w-1/2">
                   <div className="relative">
                     <label htmlFor="watchLink" className="leading-7 text-sm">
-                      Link
+                      Watch Link
                     </label>
                     <input
                       autoComplete="true"
@@ -87,7 +139,7 @@ const addEventPage = () => {
                     />
                   </div>
                 </div>
-                <div className="p-2 w-full">
+                <div className="p-2 w-1/2">
                   <div className="relative">
                     <label htmlFor="description" className="leading-7 text-sm">
                       Speaker

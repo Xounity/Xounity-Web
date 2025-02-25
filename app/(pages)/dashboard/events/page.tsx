@@ -95,6 +95,7 @@ const events = () => {
                             <button>
                             <Link href={item.href}>
                             <Image
+                              className="w-52 aspect-video"
                               src={item.imgSrc}
                               alt=""
                               width={150}
@@ -107,7 +108,7 @@ const events = () => {
                           <td>{item.description.split("By")}</td>
                           <td>
                             <button className="text-blue-600 mr-2">
-                              <HiPencilAlt size={20} />
+                            <Link href={`/dashboard/events/edit-event/${item._id}`}><HiPencilAlt size={20} /></Link>
                             </button>
                             <button onClick={ () => handleDelete(item._id) } className="text-red-600">
                               <HiOutlineTrash size={20} />

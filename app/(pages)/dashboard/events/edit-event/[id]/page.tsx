@@ -5,26 +5,21 @@ import Image from "next/image";
 
 interface EventProps{
   _id: string;
-  name: string;
-  image: string;
-  description: string;
+  href: string;
+  imgSrc: string;
   title: string;
-  linkedinSrc: string;
-  githubSrc: string;
-  instaSrc: string;
+  description: string;
+  watchLink: string;
 }
 
 const editEventPage = () => {
   const [data, setData] = useState<EventProps[]>([]);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
-  const [imageSrc, setImageSrc] = useState("/images/no-profile.jpg");
+  const [imgSrc, setImgSrc] = useState("/images/no-profile.jpg");
   const [file, setFile] = useState<File>();
-  const [name, setName] = useState("");
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [linkedinLink, setLinkedinLink] = useState("");
-  const [instaLink, setInstaLink] = useState("");
-  const [githubLink, setGithubLink] = useState("");
+  const [watchLink, setWatchLink] = useState("");
   const [error, setError] = useState("");
   const router = useRouter();
   const { id }: any = useParams();
@@ -39,13 +34,10 @@ const editEventPage = () => {
           }
           const result = await response.json();
           setData(result);
-          setName(result[0]?.name);
-          setImageSrc(result[0]?.image);
+          setImgSrc(result[0]?.imgSrc);
           setTitle(result[0]?.title);
-          setDescription(result[0]?.description);
-          setLinkedinLink(result[0]?.linkedinSrc);
-          setInstaLink(result[0]?.instaSrc);
-          setGithubLink(result[0]?.githubSrc);
+          setDescription(result[0]?.description.split("By ").join(""));
+          setWatchLink(result[0]?.watchLink);
           console.log(result);
         } catch (error) {
           console.error("Error fetching data: ", error);
@@ -70,7 +62,7 @@ const editEventPage = () => {
       });
 
       console.log(res);
-      setImageSrc(`/images/${file?.name}`);
+      setImgSrc(`/images/${file?.name}`);
 
     } catch (error: any) {
       console.log(error.message);
@@ -81,13 +73,11 @@ const editEventPage = () => {
     e.preventDefault();
     const formData = new FormData();
     formData.append("id", id);
-    formData.append("name", name);
     formData.append("title", title);
-    formData.append("description", description);
-    formData.append("image", imageSrc);
-    formData.append("linkedinSrc", linkedinLink);
-    formData.append("instaSrc", instaLink);
-    formData.append("githubSrc", githubLink);
+    formData.append("description", `By ${description}`);
+    formData.append("imgSrc", imgSrc);
+    formData.append("watchLink", watchLink);
+    formData.append("href", watchLink);
 
     const res = await fetch("/api/events", {
       method: "PUT",
@@ -119,8 +109,6 @@ const editEventPage = () => {
           </div>
           <div className="lg:w-1/2 md:w-2/3 mx-auto reveal">
             <form
-              method="post"
-              action={`${process.env.NEXT_PUBLIC_ROOT_URL}/api/team`}
               onSubmit={handleSubmit}
             >
               <div className="flex flex-wrap -m-2">
@@ -136,9 +124,9 @@ const editEventPage = () => {
                   <div className="text-center">
                     <label htmlFor="image">Image</label>
                     <Image
-                      className="rounded-full w-28 h-28 aspect-square cursor-pointer"
+                      className="w-32 h-32 aspect-square cursor-pointer"
                       onClick={() => fileInputRef.current?.click()}
-                      src={imageSrc}
+                      src={imgSrc}
                       alt=""
                       width={100}
                       height={100}
@@ -146,24 +134,7 @@ const editEventPage = () => {
                     <button type="submit" onClick={handleFileSubmit} className="mt-2 py-1 p-3 bg-xounity-orange rounded-full">Upload</button>
                   </div>
                 </div>
-                <div className="p-2 w-1/2">
-                  <div className="relative">
-                    <label htmlFor="name" className="leading-7 text-sm">
-                      Name
-                    </label>
-                    <input
-                      autoComplete="true"
-                      type="text"
-                      id="name"
-                      name="name"
-                      required
-                      value={name}
-                      onChange={(e) => setName(e.target.value)}
-                      className="w-full bg-gray-800 bg-opacity-40 rounded border border-gray-700 focus:border-xounity-orange focus:bg-gray-900 focus:ring-2 focus:ring-yellow-900 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
-                    />
-                  </div>
-                </div>
-                <div className="p-2 w-1/2">
+                <div className="p-2 w-full">
                   <div className="relative">
                     <label htmlFor="title" className="leading-7 text-sm">
                       Title
@@ -180,65 +151,32 @@ const editEventPage = () => {
                     />
                   </div>
                 </div>
-                <div className="p-2 w-1/3">
+                <div className="p-2 w-1/2">
                   <div className="relative">
-                    <label htmlFor="linkedinLink" className="leading-7 text-sm">
-                      LinkedIn Link
+                    <label htmlFor="watchLink" className="leading-7 text-sm">
+                      Watch Link
                     </label>
                     <input
                       autoComplete="true"
                       type="text"
-                      id="linkedinLink"
-                      name="linkedinLink"
-                      value={linkedinLink}
-                      onChange={(e) => setLinkedinLink(e.target.value)}
+                      id="watchLink"
+                      name="watchLink"
+                      value={watchLink}
+                      onChange={(e) => setWatchLink(e.target.value)}
                       required
                       className="w-full bg-gray-800 bg-opacity-40 rounded border border-gray-700 focus:border-xounity-orange focus:bg-gray-900 focus:ring-2 focus:ring-yellow-900 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
                     />
                   </div>
                 </div>
-                <div className="p-2 w-1/3">
-                  <div className="relative">
-                    <label htmlFor="githubLink" className="leading-7 text-sm">
-                      Github Link
-                    </label>
-                    <input
-                      autoComplete="true"
-                      type="text"
-                      id="githubLink"
-                      name="githubLink"
-                      value={githubLink}
-                      onChange={(e) => setGithubLink(e.target.value)}
-                      required
-                      className="w-full bg-gray-800 bg-opacity-40 rounded border border-gray-700 focus:border-xounity-orange focus:bg-gray-900 focus:ring-2 focus:ring-yellow-900 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
-                    />
-                  </div>
-                </div>
-                <div className="p-2 w-1/3">
-                  <div className="relative">
-                    <label htmlFor="instaLink" className="leading-7 text-sm">
-                      Insta Link
-                    </label>
-                    <input
-                      autoComplete="true"
-                      type="text"
-                      id="instaLink"
-                      name="instaLink"
-                      value={instaLink}
-                      onChange={(e) => setInstaLink(e.target.value)}
-                      required
-                      className="w-full bg-gray-800 bg-opacity-40 rounded border border-gray-700 focus:border-xounity-orange focus:bg-gray-900 focus:ring-2 focus:ring-yellow-900 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
-                    />
-                  </div>
-                </div>
-                <div className="p-2 w-full">
+                <div className="p-2 w-1/2">
                   <div className="relative">
                     <label htmlFor="description" className="leading-7 text-sm">
-                      Description
+                      Speaker
                     </label>
-                    <textarea
+                    <input
                       id="description"
                       name="description"
+                      type="text"
                       required
                       value={description}
                       onChange={(e) => setDescription(e.target.value)}
