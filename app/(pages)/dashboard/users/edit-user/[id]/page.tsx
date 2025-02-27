@@ -23,6 +23,7 @@ const EditUserPage = () => {
   const [error, setError] = useState("");
   const router = useRouter();
   const { id } = useParams<Params>();
+  console.log(data);
 
     useEffect(() => {
       const fetchData = async (url: string) => {
@@ -38,14 +39,14 @@ const EditUserPage = () => {
           setName(result[0]?.name);
           setEmail(result[0]?.email);
           setRole(result[0]?.role);
-          console.log(data);
+          
         } catch (error) {
           console.error("Error fetching data: ", error);
         }
       };
 
       fetchData(`/api/users/${id}`);
-    }, [id, data]);
+    }, [id]);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

@@ -33,6 +33,7 @@ const EditMemberPage = () => {
   const [error, setError] = useState("");
   const router = useRouter();
   const { id } = useParams<Params>();
+  console.log(data);
   
       useEffect(() => {
         const fetchData = async (url: string) => {
@@ -52,14 +53,14 @@ const EditMemberPage = () => {
             setLinkedinLink(result[0]?.linkedinSrc);
             setInstaLink(result[0]?.instaSrc);
             setGithubLink(result[0]?.githubSrc);
-            console.log(data);
+            
           } catch (error) {
             console.error("Error fetching data: ", error);
           }
         };
         
         fetchData(`/api/team/${id}`);
-      }, [id, data]);
+      }, [id]);
 
   const handleFileSubmit = async (e: React.FormEvent<HTMLButtonElement>) => {
     e.preventDefault();

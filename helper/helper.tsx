@@ -3,8 +3,6 @@ export default function checkError(err: unknown): string {
 
     if (err instanceof Error) {
         message = err.message;
-    } else if (typeof err === "object" && err !== null && "message" in err) {
-        message = (err as { message?: string }).message ?? "Unknown error";
     } else if (typeof err === "string") {
         message = err;
     } else {

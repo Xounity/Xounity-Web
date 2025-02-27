@@ -28,6 +28,7 @@ const EditEventPage = () => {
   const [error, setError] = useState("");
   const router = useRouter();
   const { id } = useParams<Params>();
+  console.log(data);
 
   useEffect(() => {
     const fetchData = async (url: string) => {
@@ -44,14 +45,13 @@ const EditEventPage = () => {
         setTitle(result[0]?.title);
         setDescription(result[0]?.description.split("By ").join(""));
         setWatchLink(result[0]?.watchLink);
-        console.log(data);
       } catch (error) {
         console.error("Error fetching data: ", error);
       }
     };
 
     fetchData(`/api/events/${id}`);
-  }, [id, data]);
+  }, [id]);
 
   const handleFileSubmit = async (e: React.FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
