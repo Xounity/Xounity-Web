@@ -1,6 +1,7 @@
 "use client";
 import Sidebar from "@/app/components/Sidebar";
 import Loading from "@/app/loading";
+import checkError from "@/helper/helper";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -17,7 +18,7 @@ interface EventProps {
   description: string;
 }
 
-const events = () => {
+const Events = () => {
   const [data, setData] = useState<EventProps[]>([]);
   const router = useRouter();
 
@@ -40,23 +41,24 @@ const events = () => {
   }, []);
 
   const handleDelete = async (id: string) => {
-    const confirmed = confirm("Are you sure?")
+    const confirmed = confirm("Are you sure?");
 
     try {
-      if(confirmed){
-      const res = await fetch(`/api/events?id=${id}`, {
-        method: "DELETE"
-      });
-  
-      if(res.ok){
-        fetchData(url);
-        router.refresh();
+      if (confirmed) {
+        const res = await fetch(`/api/events?id=${id}`, {
+          method: "DELETE",
+        });
+
+        if (res.ok) {
+          fetchData(url);
+          router.refresh();
+        }
       }
+    } catch (error: unknown) {
+      const message = checkError(error);
+      console.log(message);
     }
-    } catch (error: any) {
-      console.log(error.message);
-    }
-  }
+  };
   return (
     <>
       <section className="w-full h-screen mt-8 mb-4">
@@ -93,24 +95,40 @@ const events = () => {
                           <td>{item.title}</td>
                           <td>
                             <button>
-                            <Link href={item.href}>
-                            <Image
-                              className="w-52 aspect-video"
-                              src={item.imgSrc}
-                              alt=""
-                              width={150}
-                              height={100}
-                            />
-                            </Link>
+                              <Link href={item.href}>
+                                <Image
+                                  className="w-52 aspect-video"
+                                  src={item.imgSrc}
+                                  alt=""
+                                  width={150}
+                                  height={100}
+                                />
+                              </Link>
                             </button>
                           </td>
-                          <td><button><Link className="text-red-600 text-center" href={item.href}><FaYoutube size={20}/></Link></button></td>
+                          <td>
+                            <button>
+                              <Link
+                                className="text-red-600 text-center"
+                                href={item.href}
+                              >
+                                <FaYoutube size={20} />
+                              </Link>
+                            </button>
+                          </td>
                           <td>{item.description.split("By")}</td>
                           <td>
                             <button className="text-blue-600 mr-2">
-                            <Link href={`/dashboard/events/edit-event/${item._id}`}><HiPencilAlt size={20} /></Link>
+                              <Link
+                                href={`/dashboard/events/edit-event/${item._id}`}
+                              >
+                                <HiPencilAlt size={20} />
+                              </Link>
                             </button>
-                            <button onClick={ () => handleDelete(item._id) } className="text-red-600">
+                            <button
+                              onClick={() => handleDelete(item._id)}
+                              className="text-red-600"
+                            >
                               <HiOutlineTrash size={20} />
                             </button>
                           </td>
@@ -130,4 +148,4 @@ const events = () => {
   );
 };
 
-export default events;
+export default Events;

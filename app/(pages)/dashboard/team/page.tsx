@@ -1,6 +1,7 @@
 "use client";
 import Sidebar from "@/app/components/Sidebar";
 import Loading from "@/app/loading";
+import checkError from "@/helper/helper";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -20,7 +21,7 @@ interface TeamProps {
   instaSrc: string;
 }
 
-const team = () => {
+const Team = () => {
   const [data, setData] = useState<TeamProps[]>([]);
   const router = useRouter();
 
@@ -56,8 +57,9 @@ const team = () => {
           router.refresh();
         }
       }
-    } catch (error: any) {
-      console.log(error.message);
+    } catch (error: unknown) {
+      const message = checkError(error);
+      console.log(message);
     }
   };
   return (
@@ -95,48 +97,52 @@ const team = () => {
                       return (
                         <tr key={index}>
                           <td>
-                              <Image
-                                className="rounded-full aspect-square"
-                                src={item.image}
-                                alt=""
-                                width={50}
-                                height={50}
-                              />
+                            <Image
+                              className="rounded-full aspect-square"
+                              src={item.image}
+                              alt=""
+                              width={50}
+                              height={50}
+                            />
                           </td>
                           <td>{item.name}</td>
                           <td>{item.title}</td>
                           <td>{item.description}</td>
                           <td>
                             <div className="flex gap-2 items-center justify-center">
-                            <button>
-                              <Link
-                                className="text-blue-400 text-center hover:text-blue-300"
-                                href={item.linkedinSrc}
-                              >
-                                <FaLinkedin size={20} />
-                              </Link>
-                            </button>
-                            <button>
-                              <Link
-                                className="text-blue-500 text-center hover:text-blue-400"
-                                href={item.githubSrc}
-                              >
-                                <FaGithub size={20} />
-                              </Link>
-                            </button>
-                            <button>
-                              <Link
-                                className="text-red-500 text-center hover:text-red-400"
-                                href={item.instaSrc}
-                              >
-                                <FaInstagram size={20} />
-                              </Link>
-                            </button>
+                              <button>
+                                <Link
+                                  className="text-blue-400 text-center hover:text-blue-300"
+                                  href={item.linkedinSrc}
+                                >
+                                  <FaLinkedin size={20} />
+                                </Link>
+                              </button>
+                              <button>
+                                <Link
+                                  className="text-blue-500 text-center hover:text-blue-400"
+                                  href={item.githubSrc}
+                                >
+                                  <FaGithub size={20} />
+                                </Link>
+                              </button>
+                              <button>
+                                <Link
+                                  className="text-red-500 text-center hover:text-red-400"
+                                  href={item.instaSrc}
+                                >
+                                  <FaInstagram size={20} />
+                                </Link>
+                              </button>
                             </div>
                           </td>
                           <td>
                             <button className="text-blue-600 mr-2">
-                            <Link href={`/dashboard/team/edit-member/${item._id}`}><HiPencilAlt size={20} /></Link>
+                              <Link
+                                href={`/dashboard/team/edit-member/${item._id}`}
+                              >
+                                <HiPencilAlt size={20} />
+                              </Link>
                             </button>
                             <button
                               onClick={() => handleDelete(item._id)}
@@ -161,4 +167,4 @@ const team = () => {
   );
 };
 
-export default team;
+export default Team;

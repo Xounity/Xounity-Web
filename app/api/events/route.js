@@ -45,11 +45,11 @@ export async function POST(request) {
 
 export async function DELETE(request) {
   const id = await request.nextUrl.searchParams.get("id");
-  const event = await Event.findByIdAndDelete({_id: id})
+  await Event.findByIdAndDelete({_id: id})
   return NextResponse.json({message: "Event Deleted"}, {status: 200});
 }
 
-export async function PUT(request, {params}) {
+export async function PUT(request) {
   const formData = await request.formData();
 
   const body = {};

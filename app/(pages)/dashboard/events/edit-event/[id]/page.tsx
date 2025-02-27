@@ -2,8 +2,9 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useParams, useRouter } from "next/navigation";
 import Image from "next/image";
+import checkError from "@/helper/helper";
 
-interface EventProps{
+interface EventProps {
   _id: string;
   href: string;
   imgSrc: string;
@@ -12,7 +13,11 @@ interface EventProps{
   watchLink: string;
 }
 
-const editEventPage = () => {
+interface Params {
+  [key: string]: string;
+}
+
+const EditEventPage = () => {
   const [data, setData] = useState<EventProps[]>([]);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const [imgSrc, setImgSrc] = useState("/images/no-profile.jpg");
@@ -22,54 +27,54 @@ const editEventPage = () => {
   const [watchLink, setWatchLink] = useState("");
   const [error, setError] = useState("");
   const router = useRouter();
-  const { id }: any = useParams();
+  const { id } = useParams<Params>();
 
-  const fetchData = async (url: string) => {
-        try {
-          const response = await fetch(url, {
-            cache: "no-store"
-          });
-          if (!response.ok) {
-            throw new Error(`Error: ${response.statusText}`);
-          }
-          const result = await response.json();
-          setData(result);
-          setImgSrc(result[0]?.imgSrc);
-          setTitle(result[0]?.title);
-          setDescription(result[0]?.description.split("By ").join(""));
-          setWatchLink(result[0]?.watchLink);
-          console.log(result);
-        } catch (error) {
-          console.error("Error fetching data: ", error);
+  useEffect(() => {
+    const fetchData = async (url: string) => {
+      try {
+        const response = await fetch(url, {
+          cache: "no-store",
+        });
+        if (!response.ok) {
+          throw new Error(`Error: ${response.statusText}`);
         }
-      };
-  
-      useEffect(() => {
-        fetchData(`/api/events/${id}`);
-      }, []);
+        const result = await response.json();
+        setData(result);
+        setImgSrc(result[0]?.imgSrc);
+        setTitle(result[0]?.title);
+        setDescription(result[0]?.description.split("By ").join(""));
+        setWatchLink(result[0]?.watchLink);
+        console.log(data);
+      } catch (error) {
+        console.error("Error fetching data: ", error);
+      }
+    };
 
-  const handleFileSubmit = async (e: any) => {
+    fetchData(`/api/events/${id}`);
+  }, [id, data]);
+
+  const handleFileSubmit = async (e: React.FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
     const fileData = new FormData();
-    if(file){
+    if (file) {
       fileData.set("file", file);
     }
 
     try {
       const res = await fetch("/api/upload", {
         method: "POST",
-        body: fileData
+        body: fileData,
       });
 
       console.log(res);
       setImgSrc(`/images/${file?.name}`);
-
-    } catch (error: any) {
-      console.log(error.message);
+    } catch (error: unknown) {
+      const message = checkError(error);
+      console.log(message);
     }
-  }
+  };
 
-  const handleSubmit = async (e: any) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData();
     formData.append("id", id);
@@ -108,9 +113,7 @@ const editEventPage = () => {
             </p>
           </div>
           <div className="lg:w-1/2 md:w-2/3 mx-auto reveal">
-            <form
-              onSubmit={handleSubmit}
-            >
+            <form onSubmit={handleSubmit}>
               <div className="flex flex-wrap -m-2">
                 <div className="flex items-center justify-center w-full overflow-hidden">
                   <input
@@ -131,7 +134,13 @@ const editEventPage = () => {
                       width={100}
                       height={100}
                     />
-                    <button type="submit" onClick={handleFileSubmit} className="mt-2 py-1 p-3 bg-xounity-orange rounded-full">Upload</button>
+                    <button
+                      type="submit"
+                      onClick={handleFileSubmit}
+                      className="mt-2 py-1 p-3 bg-xounity-orange rounded-full"
+                    >
+                      Upload
+                    </button>
                   </div>
                 </div>
                 <div className="p-2 w-full">
@@ -201,4 +210,4 @@ const editEventPage = () => {
   );
 };
 
-export default editEventPage;
+export default EditEventPage;

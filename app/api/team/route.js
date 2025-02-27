@@ -11,7 +11,7 @@ export async function GET() {
 
 export async function DELETE(request) {
   const id = await request.nextUrl.searchParams.get("id");
-  const team = await Team.findByIdAndDelete({ _id: id });
+  await Team.findByIdAndDelete({ _id: id });
   return NextResponse.json({ message: "User Deleted" }, { status: 200 });
 }
 
@@ -53,7 +53,7 @@ export async function POST(request) {
   return NextResponse.json({ message: "success" }, { status: 201 });
 }
 
-export async function PUT(request, {params}) {
+export async function PUT(request) {
   const formData = await request.formData();
 
   const body = {};

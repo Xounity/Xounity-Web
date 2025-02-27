@@ -2,6 +2,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useParams, useRouter } from "next/navigation";
 import Image from "next/image";
+import checkError from "@/helper/helper";
 
 interface TeamProps{
   _id: string;
@@ -14,7 +15,11 @@ interface TeamProps{
   instaSrc: string;
 }
 
-const editMemberPage = () => {
+interface Params {
+  [key: string]: string;
+}
+
+const EditMemberPage = () => {
   const [data, setData] = useState<TeamProps[]>([]);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const [imageSrc, setImageSrc] = useState("/images/no-profile.jpg");
@@ -27,36 +32,36 @@ const editMemberPage = () => {
   const [githubLink, setGithubLink] = useState("");
   const [error, setError] = useState("");
   const router = useRouter();
-  const { id }: any = useParams();
-
-  const fetchData = async (url: string) => {
-        try {
-          const response = await fetch(url, {
-            cache: "no-store"
-          });
-          if (!response.ok) {
-            throw new Error(`Error: ${response.statusText}`);
-          }
-          const result = await response.json();
-          setData(result);
-          setName(result[0]?.name);
-          setImageSrc(result[0]?.image);
-          setTitle(result[0]?.title);
-          setDescription(result[0]?.description);
-          setLinkedinLink(result[0]?.linkedinSrc);
-          setInstaLink(result[0]?.instaSrc);
-          setGithubLink(result[0]?.githubSrc);
-          console.log(result);
-        } catch (error) {
-          console.error("Error fetching data: ", error);
-        }
-      };
+  const { id } = useParams<Params>();
   
       useEffect(() => {
+        const fetchData = async (url: string) => {
+          try {
+            const response = await fetch(url, {
+              cache: "no-store"
+            });
+            if (!response.ok) {
+              throw new Error(`Error: ${response.statusText}`);
+            }
+            const result = await response.json();
+            setData(result);
+            setName(result[0]?.name);
+            setImageSrc(result[0]?.image);
+            setTitle(result[0]?.title);
+            setDescription(result[0]?.description);
+            setLinkedinLink(result[0]?.linkedinSrc);
+            setInstaLink(result[0]?.instaSrc);
+            setGithubLink(result[0]?.githubSrc);
+            console.log(data);
+          } catch (error) {
+            console.error("Error fetching data: ", error);
+          }
+        };
+        
         fetchData(`/api/team/${id}`);
-      }, []);
+      }, [id, data]);
 
-  const handleFileSubmit = async (e: any) => {
+  const handleFileSubmit = async (e: React.FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
     const fileData = new FormData();
     if(file){
@@ -72,12 +77,13 @@ const editMemberPage = () => {
       console.log(res);
       setImageSrc(`/images/${file?.name}`);
 
-    } catch (error: any) {
-      console.log(error.message);
+    } catch (error: unknown) {
+      const message = checkError(error);
+      console.log(message);
     }
   }
 
-  const handleSubmit = async (e: any) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData();
     formData.append("id", id);
@@ -263,4 +269,4 @@ const editMemberPage = () => {
   );
 };
 
-export default editMemberPage;
+export default EditMemberPage;

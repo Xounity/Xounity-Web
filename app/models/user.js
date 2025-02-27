@@ -30,12 +30,11 @@ const userSchema = new Schema(
 );
 
 userSchema.pre("save", function (next) {
-  const user = this;
-  if (!user.isModified("password")) return;
+  if (!this.isModified("password")) return;
 
   const salt = randomBytes(16).toString();
   const hashedPassword = createHmac("sha256", salt)
-    .update(user.password)
+    .update(this.password)
     .digest("hex");
 
   this.salt = salt;

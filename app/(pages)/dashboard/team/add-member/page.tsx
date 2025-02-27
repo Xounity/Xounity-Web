@@ -2,8 +2,9 @@
 import React, { useState, useRef } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import checkError from "@/helper/helper";
 
-const addMemberPage = () => {
+const AddMemberPage = () => {
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const [imageSrc, setImageSrc] = useState("/images/no-profile.jpg");
   const [file, setFile] = useState<File>();
@@ -16,33 +17,33 @@ const addMemberPage = () => {
   const [error, setError] = useState("");
   const router = useRouter();
 
-  const handleFileSubmit = async (e: any) => {
+  const handleFileSubmit = async (e: React.FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
     const fileData = new FormData();
-    if(file){
+    if (file) {
       fileData.set("file", file);
     }
 
     try {
       const res = await fetch("/api/upload", {
         method: "POST",
-        body: fileData
+        body: fileData,
       });
 
       console.log(res);
       setImageSrc(`/images/${file?.name}`);
-
-    } catch (error: any) {
-      console.log(error.message);
+    } catch (error: unknown) {
+      const message = checkError(error);
+      console.log(message);
     }
-  }
+  };
 
-  const handleSubmit = async (e: any) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData();
     formData.append("name", name);
     formData.append("title", title);
-    formData.append("description", `By ${description}`);
+    formData.append("description", description);
     formData.append("image", imageSrc);
     formData.append("linkedinSrc", linkedinLink);
     formData.append("instaSrc", instaLink);
@@ -102,7 +103,13 @@ const addMemberPage = () => {
                       width={100}
                       height={100}
                     />
-                    <button type="submit" onClick={handleFileSubmit} className="mt-2 py-1 p-3 bg-xounity-orange rounded-full">Upload</button>
+                    <button
+                      type="submit"
+                      onClick={handleFileSubmit}
+                      className="mt-2 py-1 p-3 bg-xounity-orange rounded-full"
+                    >
+                      Upload
+                    </button>
                   </div>
                 </div>
                 <div className="p-2 w-1/2">
@@ -222,4 +229,4 @@ const addMemberPage = () => {
   );
 };
 
-export default addMemberPage;
+export default AddMemberPage;

@@ -26,7 +26,7 @@ export async function POST(request) {
   }
 
   try {
-    const result = await User.create({
+    await User.create({
       name: name,
       email: email,
       password: password,
@@ -35,7 +35,7 @@ export async function POST(request) {
 
     return NextResponse.json({redirectTo: `${process.env.NEXT_PUBLIC_ROOT_URL}/signin`}, {status: 200});
   } catch (error) {
-    return NextResponse.json({message: "Email already exists"}, {status: 400})
+    return NextResponse.json({message: "Email already exists" || error.message}, {status: 400})
   }
 
 }

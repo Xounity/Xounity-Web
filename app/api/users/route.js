@@ -11,7 +11,7 @@ export async function GET() {
 
 export async function DELETE(request) {
   const id = await request.nextUrl.searchParams.get("id");
-  const user = await User.findByIdAndDelete({ _id: id });
+  await User.findByIdAndDelete({ _id: id });
   return NextResponse.json({ message: "User Deleted" }, { status: 200 });
 }
 
@@ -33,11 +33,11 @@ export async function PUT(request) {
   }
 
   if(!body.password){
-    const result = await User.updateOne({_id: body.id}, {$set: {name: body.name, email: body.email, role: body.role}})
+    await User.updateOne({_id: body.id}, {$set: {name: body.name, email: body.email, role: body.role}})
     return NextResponse.json({ message: "User Updated" }, { status: 200 });
   }
   else{
-    const result = await User.updateOneAndSave(body.id, body.name, body.email, body.role, body.password)
+    await User.updateOneAndSave(body.id, body.name, body.email, body.role, body.password)
     return NextResponse.json({ message: "User Updated" }, { status: 200 });
   }
 

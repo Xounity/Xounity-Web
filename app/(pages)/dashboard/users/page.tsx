@@ -5,6 +5,7 @@ import Link from "next/link";
 import Loading from "@/app/loading";
 import { HiOutlineTrash, HiPencilAlt } from "react-icons/hi";
 import { useRouter } from "next/navigation";
+import checkError from "@/helper/helper";
 const url = process.env.NEXT_PUBLIC_ROOT_URL + "/api/users";
 
 interface UserProps {
@@ -15,14 +16,14 @@ interface UserProps {
   role: string;
 }
 
-const users = () => {
+const Users = () => {
   const [data, setData] = useState<UserProps[]>([]);
   const router = useRouter();
 
   const fetchData = async (url: string) => {
     try {
       const response = await fetch(url, {
-        cache: "no-store"
+        cache: "no-store",
       });
       if (!response.ok) {
         throw new Error(`Error: ${response.statusText}`);
@@ -39,24 +40,24 @@ const users = () => {
   }, []);
 
   const handleDelete = async (id: string) => {
-    const confirmed = confirm("Are you sure?")
+    const confirmed = confirm("Are you sure?");
 
     try {
-      if(confirmed){
-      const res = await fetch(`/api/users?id=${id}`, {
-        method: "DELETE"
-      });
-  
-      if(res.ok){
-        fetchData(url);
-        router.refresh();
-      }
-    }
-    } catch (error: any) {
-      console.log(error.message);
-    }
-  }
+      if (confirmed) {
+        const res = await fetch(`/api/users?id=${id}`, {
+          method: "DELETE",
+        });
 
+        if (res.ok) {
+          fetchData(url);
+          router.refresh();
+        }
+      }
+    } catch (error: unknown) {
+      const message = checkError(error);
+      console.log(message);
+    }
+  };
 
   return (
     <>
@@ -97,9 +98,16 @@ const users = () => {
                             <td>{item.email}</td>
                             <td>
                               <button className="text-blue-600 mr-2">
-                                <Link href={`/dashboard/users/edit-user/${item._id}`}><HiPencilAlt size={20} /></Link>
+                                <Link
+                                  href={`/dashboard/users/edit-user/${item._id}`}
+                                >
+                                  <HiPencilAlt size={20} />
+                                </Link>
                               </button>
-                              <button onClick={ () => handleDelete(item._id) } className="text-red-600">
+                              <button
+                                onClick={() => handleDelete(item._id)}
+                                className="text-red-600"
+                              >
                                 <HiOutlineTrash size={20} />
                               </button>
                             </td>
@@ -119,4 +127,4 @@ const users = () => {
   );
 };
 
-export default users;
+export default Users;

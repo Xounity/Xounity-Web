@@ -2,8 +2,9 @@
 import React, { useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import checkError from "@/helper/helper";
 
-const addEventPage = () => {
+const AddEventPage = () => {
   const [file, setFile] = useState<File>();
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const [imgSrc, setImgSrc] = useState("/images/no-profile.jpg");
@@ -13,7 +14,7 @@ const addEventPage = () => {
   const [error, setError] = useState("");
   const router = useRouter();
 
-  const handleSubmit = async (e: any) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData();
     formData.append("title", title);
@@ -38,7 +39,7 @@ const addEventPage = () => {
     }
   };
 
-  const handleFileSubmit = async (e: any) => {
+  const handleFileSubmit = async (e: React.FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
     const fileData = new FormData();
     if (file) {
@@ -53,8 +54,9 @@ const addEventPage = () => {
 
       console.log(res);
       setImgSrc(`/images/${file?.name}`);
-    } catch (error: any) {
-      console.log(error.message);
+    } catch (error: unknown) {
+      const message = checkError(error);
+      console.log(message);
     }
   };
 
@@ -172,4 +174,4 @@ const addEventPage = () => {
   );
 };
 
-export default addEventPage;
+export default AddEventPage;

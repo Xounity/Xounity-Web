@@ -2,7 +2,7 @@
 import Link from "next/link";
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
-import { signIn } from "next-auth/react";
+import { signIn, SignInResponse } from "next-auth/react";
 
 const SignIn = () => {
   const [email, setEmail] = useState("");
@@ -10,20 +10,20 @@ const SignIn = () => {
   const [error, setError] = useState("");
   const router = useRouter();
 
-  const handleSubmit = async (e: any) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const res:any = await signIn("credentials", {
+    const res: SignInResponse | undefined = await signIn("credentials", {
       redirect: false,
       email,
       password,
     });
 
-    if (res.ok) {
+    if (res?.ok) {
       setError("");
       router.push('/');
     } else {
-      setError(res.error);
+      setError(res?.error || "Something went wrong");
     }
   };
 
@@ -85,7 +85,7 @@ const SignIn = () => {
                 </div>
                 <div className="p-2 w-full pt-8 mt-8 border-t border-gray-800 text-center">
                   <p>
-                    Don't have an Account?{" "}
+                    Don&apos;t have an Account?{" "}
                     <Link
                       className="underline text-xounity-orange"
                       href="/signup"

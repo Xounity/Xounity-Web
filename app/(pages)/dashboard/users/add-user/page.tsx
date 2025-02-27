@@ -2,14 +2,14 @@
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 
-const addUserPage = () => {
+const AddUserPage = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const router = useRouter();
 
-  const handleSubmit = async (e: any) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData();
     formData.append("name", name);
@@ -118,4 +118,4 @@ const addUserPage = () => {
   );
 };
 
-export default addUserPage;
+export default AddUserPage;

@@ -1,6 +1,7 @@
 "use client";
 import Sidebar from "@/app/components/Sidebar";
 import Loading from "@/app/loading";
+import checkError from "@/helper/helper";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
@@ -15,7 +16,7 @@ interface AdminProps {
   role: string;
 }
 
-const admins = () => {
+const Admins = () => {
   const [data, setData] = useState<AdminProps[]>([]);
   const router = useRouter();
 
@@ -37,25 +38,24 @@ const admins = () => {
   }, []);
 
   const handleDelete = async (id: string) => {
-    const confirmed = confirm("Are you sure?")
+    const confirmed = confirm("Are you sure?");
 
-    if(confirmed){
-    
-    try {
-      const res = await fetch(`/api/users?id=${id}`, {
-        method: "DELETE"
-      });
-  
-      if(res.ok){
-        fetchData(url);
-        router.refresh()
+    if (confirmed) {
+      try {
+        const res = await fetch(`/api/users?id=${id}`, {
+          method: "DELETE",
+        });
+
+        if (res.ok) {
+          fetchData(url);
+          router.refresh();
+        }
+      } catch (error: unknown) {
+        const message = checkError(error);
+        console.log(message);
       }
-    } catch (error: any) {
-      console.log(error.message);
     }
-    
-  }
-  }
+  };
   return (
     <>
       <section className="w-full h-screen mt-8 mb-4">
@@ -95,9 +95,16 @@ const admins = () => {
                             <td>{item.email}</td>
                             <td>
                               <button className="text-blue-600 mr-2">
-                              <Link href={`/dashboard/admins/edit-admin/${item._id}`}><HiPencilAlt size={20} /></Link>
+                                <Link
+                                  href={`/dashboard/admins/edit-admin/${item._id}`}
+                                >
+                                  <HiPencilAlt size={20} />
+                                </Link>
                               </button>
-                              <button onClick={ () => handleDelete(item._id) } className="text-red-600">
+                              <button
+                                onClick={() => handleDelete(item._id)}
+                                className="text-red-600"
+                              >
                                 <HiOutlineTrash size={20} />
                               </button>
                             </td>
@@ -117,4 +124,4 @@ const admins = () => {
   );
 };
 
-export default admins;
+export default Admins;

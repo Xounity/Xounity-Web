@@ -10,7 +10,11 @@ interface UserProps {
   role: string;
 }
 
-const editUserPage = () => {
+interface Params {
+  [key: string]: string;
+}
+
+const EditUserPage = () => {
   const [data, setData] = useState<UserProps[]>([]);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -18,33 +22,32 @@ const editUserPage = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const router = useRouter();
-  const { id }: any = useParams();
-
-  const fetchData = async (url: string) => {
-      try {
-        const response = await fetch(url, {
-          cache: "no-store"
-        });
-        if (!response.ok) {
-          throw new Error(`Error: ${response.statusText}`);
-        }
-        const result = await response.json();
-        setData(result);
-        setName(result[0]?.name);
-        setEmail(result[0]?.email);
-        setRole(result[0]?.role);
-        console.log(result);
-      } catch (error) {
-        console.error("Error fetching data: ", error);
-      }
-    };
+  const { id } = useParams<Params>();
 
     useEffect(() => {
+      const fetchData = async (url: string) => {
+        try {
+          const response = await fetch(url, {
+            cache: "no-store"
+          });
+          if (!response.ok) {
+            throw new Error(`Error: ${response.statusText}`);
+          }
+          const result = await response.json();
+          setData(result);
+          setName(result[0]?.name);
+          setEmail(result[0]?.email);
+          setRole(result[0]?.role);
+          console.log(data);
+        } catch (error) {
+          console.error("Error fetching data: ", error);
+        }
+      };
+
       fetchData(`/api/users/${id}`);
+    }, [id, data]);
 
-    }, []);
-
-  const handleSubmit = async (e: any) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData();
     formData.append("name", name);
@@ -168,4 +171,4 @@ const editUserPage = () => {
   );
 };
 
-export default editUserPage;
+export default EditUserPage;
