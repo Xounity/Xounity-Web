@@ -3,6 +3,8 @@ export default function checkError(err: unknown): string {
 
     if (err instanceof Error) {
         message = err.message;
+    } else if (err && typeof err === "object" && "message" in err) {
+        message = String(err.message);
     } else if (typeof err === "string") {
         message = err;
     } else {

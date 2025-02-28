@@ -17,6 +17,7 @@ const SignIn = () => {
       redirect: false,
       email,
       password,
+      callbackUrl: "/dashboard"
     });
 
     if (res?.ok) {

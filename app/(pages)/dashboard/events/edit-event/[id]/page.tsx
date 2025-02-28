@@ -45,8 +45,9 @@ const EditEventPage = () => {
         setTitle(result[0]?.title);
         setDescription(result[0]?.description.split("By ").join(""));
         setWatchLink(result[0]?.watchLink);
-      } catch (error) {
-        console.error("Error fetching data: ", error);
+      } catch (error: unknown) {
+        const message = checkError(error);
+        console.error("Error fetching data: ", message);
       }
     };
 
@@ -70,7 +71,7 @@ const EditEventPage = () => {
       setImgSrc(`/images/${file?.name}`);
     } catch (error: unknown) {
       const message = checkError(error);
-      console.log(message);
+      console.error(message);
     }
   };
 

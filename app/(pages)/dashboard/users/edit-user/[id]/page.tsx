@@ -1,6 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { useRouter, useParams } from "next/navigation";
+import checkError from "@/helper/helper";
 
 interface UserProps {
   _id: string;
@@ -40,8 +41,9 @@ const EditUserPage = () => {
           setEmail(result[0]?.email);
           setRole(result[0]?.role);
           
-        } catch (error) {
-          console.error("Error fetching data: ", error);
+        } catch (error: unknown) {
+          const message = checkError(error);
+          console.error("Error fetching data: ", message);
         }
       };
 

@@ -54,8 +54,9 @@ const EditMemberPage = () => {
             setInstaLink(result[0]?.instaSrc);
             setGithubLink(result[0]?.githubSrc);
             
-          } catch (error) {
-            console.error("Error fetching data: ", error);
+          } catch (error: unknown) {
+            const message = checkError(error);
+            console.error("Error fetching data: ", message);
           }
         };
         
@@ -80,7 +81,7 @@ const EditMemberPage = () => {
 
     } catch (error: unknown) {
       const message = checkError(error);
-      console.log(message);
+      console.error(message);
     }
   }
 
