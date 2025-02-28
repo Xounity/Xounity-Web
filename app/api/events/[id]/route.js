@@ -3,9 +3,8 @@ import { Event } from "@/app/models/event.js";
 import { isObjectIdOrHexString } from "mongoose";
 import { NextResponse } from "next/server";
 
-connectDB(process.env.MONGO_URL);
-
 export async function GET(request, {params}) {
+    await connectDB(process.env.MONGO_URL);
     const {id} = await params;
 
     if(!isObjectIdOrHexString(id)){

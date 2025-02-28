@@ -2,20 +2,21 @@ import { connectDB } from "@/app/connectDB.js";
 import { User } from "@/app/models/user.js";
 import { NextResponse } from "next/server";
 
-connectDB(process.env.MONGO_URL);
-
 export async function GET() {
+  await connectDB(process.env.MONGO_URL);
   const data = await User.find({}, {password: 0, salt: 0, createdAt: 0, updatedAt: 0, __v: 0});
   return NextResponse.json(data);
 }
 
 export async function DELETE(request) {
+  await connectDB(process.env.MONGO_URL);
   const id = await request.nextUrl.searchParams.get("id");
   await User.findByIdAndDelete({ _id: id });
   return NextResponse.json({ message: "User Deleted" }, { status: 200 });
 }
 
 export async function PUT(request) {
+  await connectDB(process.env.MONGO_URL);
   const formData = await request.formData();
 
   const body = {};

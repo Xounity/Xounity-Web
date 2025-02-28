@@ -6,6 +6,6 @@ export const connectDB = async (url) => {
     console.log("MongoDB Connected Successfully...");
   }
   else{
-    console.log("Failed to connect MongoDB...");
+    console.error("Failed to connect MongoDB...");
   }
 };

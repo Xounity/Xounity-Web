@@ -2,9 +2,8 @@ import { connectDB } from "@/app/connectDB.js";
 import { User } from "@/app/models/user.js";
 import { NextResponse } from "next/server";
 
-connectDB(process.env.MONGO_URL);
-
 export async function POST(request) {
+  await connectDB(process.env.MONGO_URL);
   const formData = await request.formData();
 
   const body = {name: undefined, email: undefined, password: undefined, role: undefined};
