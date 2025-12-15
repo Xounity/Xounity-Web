@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "docx": "^9.5.1",
     "mongoose": "^8.9.5",
     "motion": "^11.11.17",
     "next": "^15.0.1",

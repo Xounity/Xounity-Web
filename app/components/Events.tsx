@@ -5,7 +5,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "motion/react";
 import Loading from "@/app/loading";
-const url = process.env.NEXT_PUBLIC_ROOT_URL + '/api/events';
+import checkError from "@/helper/helper";
+const url = process.env.NEXT_PUBLIC_ROOT_URL + "/api/events";
 
 interface EventItemProps {
   href: string;
@@ -75,8 +76,9 @@ const Events: React.FC = () => {
         const result = await response.json();
         setData(result);
         //console.log(result);
-      } catch (error) {
-        console.error("Error fetching data: ", error);
+      } catch (error: unknown) {
+        const message = checkError(error);
+        console.log(message);
       }
     };
 

@@ -4,14 +4,19 @@ import { isObjectIdOrHexString } from "mongoose";
 import { NextResponse } from "next/server";
 
 export async function GET(request, {params}) {
-    await connectDB(process.env.MONGO_URL);
-    const {id} = await params;
-
-    if(!isObjectIdOrHexString(id)){
-        return NextResponse.json({message: "Event not found"}, {status: 400});
+    try {
+        await connectDB(process.env.MONGO_URL);
+        const {id} = await params;
+    
+        if(!isObjectIdOrHexString(id)){
+            return NextResponse.json({message: "Event not found"}, {status: 400});
+        }
+    
+        const data = await Event.find({_id: id}, {password: 0, salt: 0, createdAt: 0, updatedAt: 0, __v: 0});
+    
+        return NextResponse.json(data);
+    } catch (error) {
+        console.error(error.message);
+        return NextResponse.json({error: error.message}, {status: 500});
     }
-
-    const data = await Event.find({_id: id}, {password: 0, salt: 0, createdAt: 0, updatedAt: 0, __v: 0});
-
-    return NextResponse.json(data);
   }

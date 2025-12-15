@@ -33,11 +33,13 @@ const Header = () => {
             className="flex title-font font-medium items-center mb-4 md:mb-0"
             title="Home"
           > */}
+          <div>
           <Image
             src={theme === "dark" ? darklogo : lightlogo}
             alt="logo"
-            className="w-36 h-20 object-cover"
+            className="w-28 md:w-32 h-20 object-cover"
           />
+          </div>
           {/* </Link> */}
           <nav className="md:ml-auto flex-wrap flex items-center text-base justify-center menu-items md:flex">
             {/* Desktop Nav */}
@@ -158,10 +160,10 @@ const Header = () => {
                 </ul>
               </details>
             ) : (
-              <div className="relative ml-2 mr-2 md:hidden">
+              <div className="relative ml-2 mr-1 md:hidden">
                 <Link href="/signin">
                   <button
-                    className="join-btn tracking-wider h-10 inline-flex items-center bg-transparent border-solid border-xounity-orange border-2 hover:bg-xounity-orange outline-none hover:bg-transparent py-1 px-3 rounded text-base  md:mt-0"
+                    className="join-btn tracking-wider h-10 inline-flex items-center bg-transparent border-solid border-xounity-orange border-2 hover:bg-xounity-orange outline-none hover:bg-transparent py-1 px-1 rounded text-sm md:mt-0"
                     style={{ transitionDuration: "0.5s" }}
                   >
                     Sign In
