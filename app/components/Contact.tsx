@@ -10,17 +10,15 @@ const Contact = () => {
 
   const handleSubmit = async (e: React.SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
-
     const form = e.currentTarget;
     const formData = new FormData(form);
 
-    formData.append("form-name", "contact-form");
+    formData.set("form-name", "contact-form");
 
     try {
       const response = await fetch("/", {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        // Use URLSearchParams to format the data exactly like a standard HTML form
         body: new URLSearchParams(formData as any).toString(),
       });
 
