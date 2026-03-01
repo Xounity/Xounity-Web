@@ -55,6 +55,8 @@ const Contact = () => {
           {/* 3. Handle the onSubmit manually */}
           <form
             name="contact-form"
+            method="POST"
+            action="/"
             onSubmit={handleSubmit}
             data-netlify="true"
             data-netlify-honeypot="bot-field"
