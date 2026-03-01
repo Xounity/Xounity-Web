@@ -16,7 +16,7 @@ const Contact = () => {
     formData.set("form-name", "contact-form");
 
     try {
-      const response = await fetch("/", {
+      const response = await fetch("/.netlify/forms/", {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
         body: new URLSearchParams(formData as any).toString(),
@@ -56,7 +56,7 @@ const Contact = () => {
           <form
             name="contact-form"
             method="POST"
-            action="/"
+            action="/.netlify/forms/"
             onSubmit={handleSubmit}
             data-netlify="true"
             data-netlify-honeypot="bot-field"
