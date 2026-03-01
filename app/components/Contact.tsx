@@ -11,16 +11,16 @@ const Contact = () => {
   const handleSubmit = async (e: React.SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    // We cast to HTMLFormElement so TypeScript doesn't cry about 'currentTarget'
     const form = e.currentTarget;
     const formData = new FormData(form);
+
+    formData.append("form-name", "contact-form");
 
     try {
       const response = await fetch("/", {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        // The 'as any' is a shortcut because URLSearchParams doesn't
-        // strictly map to the FormData type in some TS configs
+        // Use URLSearchParams to format the data exactly like a standard HTML form
         body: new URLSearchParams(formData as any).toString(),
       });
 
@@ -62,7 +62,7 @@ const Contact = () => {
             data-netlify-honeypot="bot-field"
           >
             {/* HIDDEN INPUTS FOR NETLIFY BOT */}
-            <input type="hidden" name="form-name" value="contact" />
+            <input type="hidden" name="form-name" value="contact-form" />
             <p className="hidden">
               <label>
                 Don't fill this out if you're human: <input name="bot-field" />
