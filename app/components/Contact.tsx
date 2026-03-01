@@ -54,7 +54,7 @@ const Contact = () => {
         <div className="lg:w-1/2 md:w-2/3 mx-auto reveal">
           {/* 3. Handle the onSubmit manually */}
           <form
-            name="contact"
+            name="contact-form"
             onSubmit={handleSubmit}
             data-netlify="true"
             data-netlify-honeypot="bot-field"
