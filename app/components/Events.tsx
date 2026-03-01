@@ -1,12 +1,10 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "motion/react";
-import Loading from "@/app/loading";
-import checkError from "@/helper/helper";
-const url = process.env.NEXT_PUBLIC_ROOT_URL + "/api/events";
+import { eventsData } from "../../data/eventData";
 
 interface EventItemProps {
   href: string;
@@ -23,23 +21,29 @@ const EventItem: React.FC<EventItemProps> = ({
   description,
   watchLink,
 }) => (
-  <div className="p-4 transition-delay-03">
+  <div className="p-4 md:w-1/3 transition-delay-03">
     <Link
-      className="rounded-lg overflow-hidden drop-shadow-lg"
+      className="rounded-lg overflow-hidden drop-shadow-lg block"
       href={href}
       target="_blank"
       rel="noopener noreferrer"
       title={title}
     >
-      <Image
-        loading="lazy"
-        alt="event"
-        className="object-cover object-center max-h-64 w-full cursor-pointer hover:scale-110"
-        src={imgSrc}
-        width={500}
-        height={300}
-        style={{ transition: "all 0.5s" }}
-      />
+      {/* ASPECT-VIDEO fixes the cropping.
+          Standard YT thumbnails are 16:9.
+          h-64 was too tall, causing the zoom-in crop.
+      */}
+      <div className="relative w-full aspect-video overflow-hidden">
+        <Image
+          loading="lazy"
+          alt="event"
+          className="object-cover object-center w-full h-full cursor-pointer hover:scale-110"
+          src={imgSrc}
+          width={500}
+          height={300}
+          style={{ transition: "all 0.5s" }}
+        />
+      </div>
     </Link>
     <h2 className="text-xl font-medium title-font mt-5">{title}</h2>
     <p className="text-base font-normal leading-relaxed text-gray-400 mt-2">
@@ -64,72 +68,45 @@ const EventItem: React.FC<EventItemProps> = ({
   </div>
 );
 
-const Events: React.FC = () => {
-  const [data, setData] = useState<EventItemProps[]>([]);
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch(url);
-        if (!response.ok) {
-          throw new Error(`Error: ${response.statusText}`);
-        }
-        const result = await response.json();
-        setData(result);
-        //console.log(result);
-      } catch (error: unknown) {
-        const message = checkError(error);
-        console.log(message);
-      }
-    };
+interface EventsProps {
+  limit?: number;
+}
 
-    fetchData();
-  }, []);
+const Events: React.FC<EventsProps> = ({ limit }) => {
+  const displayedEvents = [...eventsData].reverse();
+  const eventsToShow = limit
+    ? displayedEvents.slice(0, limit)
+    : displayedEvents;
+
   return (
-    <>
-      <section className="body-font mt-10">
-        {/* Current Events start */}
-        <div className="container px-5 py-24 mx-auto">
-          <div className="flex flex-col w-full mb-4">
-            <motion.h1
-              className="text-center text-3xl font-medium title-font mb-2"
-              whileInView={{ y: 0, opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-            >
-              Recent Events
-            </motion.h1>
-          </div>
-          {data.length > 0 ? (
-            <div className="container mx-auto">
-              <div className="flex flex-wrap -m-4 justify-center">
-                <motion.div
-                  className="flex flex-wrap justify-center"
-                  whileInView={{ x: 0, opacity: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.8 }}
-                >
-                  {data.map((item) => {
-                    return (
-                      <EventItem
-                        href={item.href}
-                        imgSrc={item.imgSrc}
-                        title={item.title}
-                        description={item.description}
-                        watchLink={item.watchLink}
-                        key={item.title}
-                      />
-                    );
-                  })}
-                </motion.div>
-              </div>
-            </div>
-          ) : (
-            <Loading />
-          )}
+    <section className="body-font mt-10">
+      <div className="container px-5 py-24 mx-auto">
+        <div className="flex flex-col w-full mb-4">
+          <motion.h1
+            className="text-center text-3xl font-medium title-font mb-2"
+            whileInView={{ y: 0, opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+          >
+            Recent Events
+          </motion.h1>
         </div>
-        {/* Current Events end */}
-      </section>
-    </>
+        <div className="container mx-auto">
+          <div className="flex flex-wrap -m-4 justify-center">
+            {eventsToShow.map((item) => (
+              <EventItem
+                href={item.href}
+                imgSrc={item.imgSrc}
+                title={item.title}
+                description={item.description}
+                watchLink={item.watchLink}
+                key={item.title}
+              />
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
   );
 };
 

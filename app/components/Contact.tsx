@@ -18,17 +18,17 @@ const Contact = () => {
           <h1 className="sm:text-3xl text-2xl font-medium title-font mb-4">
             Contact Us
           </h1>
-          <p
-            className="lg:w-2/3 mx-auto leading-relaxed text-base text-gray-400"
-          >
+          <p className="lg:w-2/3 mx-auto leading-relaxed text-base text-gray-400">
             Get in touch via our contact form or drop us an email &ndash;
             we&apos;d love to hear from you!
           </p>
         </div>
-        <div
-          className="lg:w-1/2 md:w-2/3 mx-auto reveal"
-        >
-          <form>
+        <div className="lg:w-1/2 md:w-2/3 mx-auto reveal">
+          {/* UPDATED FORM TAG FOR NETLIFY */}
+          <form name="contact" method="POST" data-netlify="true">
+            {/* HIDDEN INPUT FOR NETLIFY BOT */}
+            <input type="hidden" name="form-name" value="contact" />
+
             <div className="flex flex-wrap -m-2">
               <div className="p-2 w-1/2">
                 <div className="relative">
@@ -36,7 +36,8 @@ const Contact = () => {
                     Name
                   </label>
                   <input
-                    autoComplete="true"
+                    required
+                    autoComplete="name"
                     type="text"
                     id="name"
                     name="name"
@@ -50,7 +51,8 @@ const Contact = () => {
                     Email
                   </label>
                   <input
-                    autoComplete="true"
+                    required
+                    autoComplete="email"
                     type="email"
                     id="email"
                     name="email"
@@ -64,21 +66,27 @@ const Contact = () => {
                     Message
                   </label>
                   <textarea
-                    autoComplete="true"
+                    required
                     id="message"
                     name="message"
                     className="w-full bg-gray-800 bg-opacity-40 rounded border border-gray-700 focus:border-xounity-orange focus:bg-gray-900 focus:ring-2 focus:ring-yellow-900 h-32 text-base outline-none text-gray-100 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"
-                    defaultValue={""}
                   />
                 </div>
               </div>
               <div className="p-2 w-full">
-                <button className="send-btn flex mx-auto border-solid border-2 border-xounity-orange py-2 px-8 focus:outline-none rounded text-lg hover:bg-xounity-orange transition duration-300">
+                {/* ADDED type="submit" */}
+                <button
+                  type="submit"
+                  className="send-btn flex mx-auto border-solid border-2 border-xounity-orange py-2 px-8 focus:outline-none rounded text-lg hover:bg-xounity-orange transition duration-300"
+                >
                   Send
                 </button>
               </div>
               <div className="p-2 w-full pt-8 mt-8 border-t border-gray-800 text-center">
-                <Link href="#" className="text-xounity-orange">
+                <Link
+                  href="mailto:xounity1@gmail.com"
+                  className="text-xounity-orange"
+                >
                   xounity1@gmail.com
                 </Link>
                 <p className="leading-normal my-5 text-gray-400">

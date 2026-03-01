@@ -1,24 +1,20 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
 import Image from "next/image";
 import darklogo from "@/app/images/logo_dark.webp";
 import lightlogo from "@/app/images/logo_light.webp";
 import Link from "next/link";
 import { useTheme } from "../ThemeContext";
 import { motion, AnimatePresence } from "motion/react";
-import { useSession, signOut } from "next-auth/react";
 
 const Header = () => {
   const pathname = usePathname();
   const { theme, toggleTheme } = useTheme();
   const [mob, setMob] = useState(false);
-  const { data: session } = useSession();
 
   return (
     <>
-      {/* Header start */}
       <header
         className="z-50 bg-transparent top-0 body-font w-full h-24 flex justify-between items-center"
         style={{
@@ -28,19 +24,13 @@ const Header = () => {
         }}
       >
         <div className="container mx-auto flex flex-wrap p-5 flex-row md:flex-column justify-between items-center">
-          {/* <Link
-            href="/"
-            className="flex title-font font-medium items-center mb-4 md:mb-0"
-            title="Home"
-          > */}
           <div>
-          <Image
-            src={theme === "dark" ? darklogo : lightlogo}
-            alt="logo"
-            className="w-28 md:w-32 h-20 object-cover"
-          />
+            <Image
+              src={theme === "dark" ? darklogo : lightlogo}
+              alt="logo"
+              className="w-28 md:w-32 h-20 object-cover"
+            />
           </div>
-          {/* </Link> */}
           <nav className="md:ml-auto flex-wrap flex items-center text-base justify-center menu-items md:flex">
             {/* Desktop Nav */}
             <div className="menu-items hidden md:flex justify-center items-center">
@@ -88,100 +78,7 @@ const Header = () => {
               >
                 Contact
               </Link>
-              {session ? (
-                <details className="flex flex-col items-center justify-center relative">
-                  <summary className="cursor-pointer">
-                    {session.user?.name}
-                  </summary>
-                  <ul className="border border-xounity-orange overflow-hidden text-center rounded-md absolute top-[100%] left-[50%] translate-x-[-50%]">
-                  {
-                    session.user?.role === "admin" && (
-                      <li className="hover:bg-xounity-orange p-1 cursor-pointer border-b-2 border-b-xounity-orange">
-                    <Link href="/dashboard">Dashboard</Link>
-                  </li>
-                    )
-                  }
-                    <li
-                      onClick={() => {
-                        signOut({ redirect: false, callbackUrl: "/" });
-                      }}
-                      className="hover:bg-xounity-orange p-1 cursor-pointer"
-                    >
-                      Logout
-                    </li>
-                  </ul>
-                </details>
-              ) : (
-                <div className="relative pb-1 w-[100%]">
-                  <Link href="/signin">
-                    <button
-                      className="join-btn tracking-wider h-10 inline-flex items-center bg-transparent border-solid border-xounity-orange border-2 hover:bg-xounity-orange outline-none hover:bg-transparent py-1 px-3 rounded text-base mt-4 md:mt-0"
-                      style={{ transitionDuration: "0.5s" }}
-                    >
-                      Sign In
-                      <svg
-                        fill="none"
-                        stroke="currentColor"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        className="w-4 h-4 ml-1"
-                        viewBox="0 0 24 24"
-                      >
-                        <path d="M5 12h14M12 5l7 7-7 7" />
-                      </svg>
-                    </button>
-                  </Link>
-                </div>
-              )}
             </div>
-
-            {session ? (
-              <details className="flex flex-col items-center ml-2 mr-2 md:hidden justify-center relative">
-                <summary className="cursor-pointer">
-                  {session.user?.name}
-                </summary>
-                <ul className="border border-xounity-orange overflow-hidden text-center rounded-md absolute top-[100%] left-[50%] translate-x-[-50%]">
-                  {
-                    session.user?.role === "admin" && (
-                      <li className="hover:bg-xounity-orange p-1 cursor-pointer border-b-2 border-b-xounity-orange">
-                    <Link href="/dashboard">Dashboard</Link>
-                  </li>
-                    )
-                  }
-                  <li
-                    onClick={() => {
-                      signOut({ redirect: false, callbackUrl: "/" });
-                    }}
-                    className="hover:bg-xounity-orange p-1 cursor-pointer"
-                  >
-                    Logout
-                  </li>
-                </ul>
-              </details>
-            ) : (
-              <div className="relative ml-2 mr-1 md:hidden">
-                <Link href="/signin">
-                  <button
-                    className="join-btn tracking-wider h-10 inline-flex items-center bg-transparent border-solid border-xounity-orange border-2 hover:bg-xounity-orange outline-none hover:bg-transparent py-1 px-1 rounded text-sm md:mt-0"
-                    style={{ transitionDuration: "0.5s" }}
-                  >
-                    Sign In
-                    <svg
-                      fill="none"
-                      stroke="currentColor"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      className="w-4 h-4 ml-1"
-                      viewBox="0 0 24 24"
-                    >
-                      <path d="M5 12h14M12 5l7 7-7 7" />
-                    </svg>
-                  </button>
-                </Link>
-              </div>
-            )}
 
             <button
               className="ml-2 mr-5 md:mr-0"
@@ -200,9 +97,7 @@ const Header = () => {
             <div className="md:hidden z-50">
               <button
                 className="text-xl"
-                onClick={() => {
-                  setMob(!mob);
-                }}
+                onClick={() => setMob(!mob)}
                 title={mob ? "Close menu" : "Open menu"}
               >
                 <i className={mob ? "ri-close-line" : "ri-menu-line"}></i>
@@ -228,9 +123,7 @@ const Header = () => {
                   <Link
                     passHref
                     href="/"
-                    onClick={() => {
-                      setMob(!mob);
-                    }}
+                    onClick={() => setMob(!mob)}
                     className={
                       pathname === "/"
                         ? "mr-5 cursor-pointer"
@@ -242,9 +135,7 @@ const Header = () => {
                   <Link
                     passHref
                     href="/about"
-                    onClick={() => {
-                      setMob(!mob);
-                    }}
+                    onClick={() => setMob(!mob)}
                     className={
                       pathname === "/about"
                         ? "mr-5 cursor-pointer"
@@ -256,9 +147,7 @@ const Header = () => {
                   <Link
                     passHref
                     href="/event"
-                    onClick={() => {
-                      setMob(!mob);
-                    }}
+                    onClick={() => setMob(!mob)}
                     className={
                       pathname === "/event"
                         ? "mr-5 cursor-pointer"
@@ -270,9 +159,7 @@ const Header = () => {
                   <Link
                     passHref
                     href="/contact"
-                    onClick={() => {
-                      setMob(!mob);
-                    }}
+                    onClick={() => setMob(!mob)}
                     className={
                       pathname === "/contact"
                         ? "mr-5 cursor-pointer"
@@ -287,13 +174,9 @@ const Header = () => {
           </AnimatePresence>
         </div>
       </header>
-
-      {/* Header end */}
-      {/* Goto Top button */}
       <Link href="#home" target="_self" id="myBtn" title="Go to Top">
         <i className="fa fa-angle-up" />
       </Link>
-      {/* home section */}
     </>
   );
 };
