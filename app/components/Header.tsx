@@ -115,8 +115,8 @@ const Header = () => {
                 transition={{ duration: 0.2 }}
                 className={
                   theme === "light"
-                    ? "bg-[var(--background-light)] md:hidden fixed top-0 left-0 z-40 h-screen w-full"
-                    : "bg-[var(--background-dark)] md:hidden fixed top-0 left-0 z-40 h-screen w-full"
+                    ? "`bg-(--background-light) md:hidden fixed top-0 left-0 z-40 h-screen w-full"
+                    : "bg-(--background-dark) md:hidden fixed top-0 left-0 z-40 h-screen w-full"
                 }
               >
                 <div className="h-full w-full flex flex-col items-center justify-evenly">

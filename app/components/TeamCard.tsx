@@ -16,7 +16,7 @@ export const TeamCard: React.FC = () => {
           viewport={{ once: true }}
           className="p-4"
         >
-          <div className="image-card flex h-[300px] w-[280px] flex-col items-center text-center">
+          <div className="image-card flex h-75 w-70 flex-col items-center text-center">
             <Image
               loading="lazy"
               alt="team"
@@ -115,11 +115,11 @@ export const TeamCardMobile: React.FC = () => {
           viewport={{ once: true }}
           className="p-4"
         >
-          <div className="flex snap-center flex-col w-[300px] text-center">
+          <div className="flex snap-center flex-col w-75 text-center">
             <Image
               loading="lazy"
               alt="team"
-              className="rounded-lg h-[300px] w-[300px] object-cover object-top mb-2"
+              className="rounded-lg h-75 w-75 object-cover object-top mb-2"
               src={item.image}
               width={500}
               height={300}
