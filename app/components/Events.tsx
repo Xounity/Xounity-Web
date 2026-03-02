@@ -1,9 +1,6 @@
-"use client";
-
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "motion/react";
 import { eventsData } from "../../data/eventData";
 
 interface EventItemProps {
@@ -82,14 +79,9 @@ const Events: React.FC<EventsProps> = ({ limit }) => {
     <section className="body-font mt-10">
       <div className="container px-5 py-24 mx-auto">
         <div className="flex flex-col w-full mb-4">
-          <motion.h1
-            className="text-center text-3xl font-medium title-font mb-2"
-            whileInView={{ y: 0, opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-          >
+          <h1 className="text-center text-3xl font-medium title-font mb-2 animate-fade-in-up">
             Recent Events
-          </motion.h1>
+          </h1>
         </div>
         <div className="container mx-auto">
           <div className="flex flex-wrap -m-4 justify-center">
