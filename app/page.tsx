@@ -1,4 +1,3 @@
-// "use client";
 import About from "@/app/components/About";
 import Contact from "@/app/components/Contact";
 import Event from "@/app/components/Events";
@@ -10,23 +9,25 @@ export default function Home() {
   return (
     <>
       <Hero />
-      <hr />
+      <hr className="border-gray-800" />
+
       <Event limit={3} />
-      <Link
-        passHref
-        href="/event"
-        className="flex justify-center items-center mb-8"
-      >
-        <button
-          className="contact-btn h-10 mr-2 inline-flex items-center bg-transparent border-solid border-xounity-orange border-2 hover:bg-xounity-orange focus:outline-none hover:bg-transparent cursor-pointer py-1 px-3 rounded text-base mt-4 md:mt-0"
-          style={{ transitionDuration: "0.5s" }}
-        >
-          More Events
-        </button>
-      </Link>
-      <hr />
+
+      <div className="flex justify-center items-center mb-12">
+        <Link passHref href="/event">
+          <button
+            className="h-10 inline-flex items-center bg-transparent border-solid border-xounity-orange border-2 hover:bg-xounity-orange focus:outline-none cursor-pointer py-1 px-8 rounded text-base transition-all ease-in-out"
+            style={{ transitionDuration: "0.5s" }}
+          >
+            More Events
+          </button>
+        </Link>
+      </div>
+
+      <hr className="border-gray-800" />
       <About />
-      <hr />
+
+      <hr className="border-gray-800" />
       <Contact />
     </>
   );
