@@ -1,21 +1,13 @@
-"use client";
-
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "motion/react";
 import { teamMembers } from "../../data/teamData";
+
 export const TeamCard: React.FC = () => {
   return (
     <div className="flex flex-wrap justify-center">
       {teamMembers.map((item, index) => (
-        <motion.div
-          key={index}
-          whileInView={{ x: 0, opacity: 1 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="p-4"
-        >
+        <div key={index} className="p-4 animate-fade-in-up">
           <div className="image-card flex h-75 w-70 flex-col items-center text-center">
             <Image
               loading="lazy"
@@ -98,7 +90,7 @@ export const TeamCard: React.FC = () => {
               </span>
             </div>
           </div>
-        </motion.div>
+        </div>
       ))}
     </div>
   );
@@ -108,13 +100,7 @@ export const TeamCardMobile: React.FC = () => {
   return (
     <div className="flex justify-start scroll-p-3 w-full snap-x overflow-x-scroll">
       {teamMembers.map((item, index) => (
-        <motion.div
-          key={index}
-          whileInView={{ x: 0, opacity: 1 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="p-4"
-        >
+        <div key={index} className="p-4 animate-fade-in-up">
           <div className="flex snap-center flex-col w-75 text-center">
             <Image
               loading="lazy"
@@ -191,7 +177,7 @@ export const TeamCardMobile: React.FC = () => {
               </span>
             </div>
           </div>
-        </motion.div>
+        </div>
       ))}
     </div>
   );
