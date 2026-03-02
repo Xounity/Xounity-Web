@@ -1,23 +1,25 @@
-"use client"
-import Image from 'next/image'
-import React from 'react'
-import { useTheme } from "@/app/ThemeContext";
-import darklogo from '@/app/images/logo_dark.webp'
-import lightlogo from '@/app/images/logo_light.webp'
+import Image from "next/image";
+import React from "react";
+import darklogo from "@/app/images/logo_dark.webp";
+import lightlogo from "@/app/images/logo_light.webp";
 
 const Loading = () => {
-
-    const { theme } = useTheme();
-
   return (
-    <>
-    <div className='w-full h-screen flex items-center justify-center'>
-    <Image priority src={theme === "dark" ? darklogo : lightlogo}
-              alt="logo"
-              className="w-36 object-cover cursor-pointer load" />
+    <div className="w-full h-screen flex items-center justify-center bg-transparent">
+      <Image
+        priority
+        src={lightlogo}
+        alt="loading"
+        className="logo-light w-36 object-cover load"
+      />
+      <Image
+        priority
+        src={darklogo}
+        alt="loading"
+        className="logo-dark w-36 object-cover load"
+      />
     </div>
-    </>
-  )
-}
+  );
+};
 
-export default Loading
+export default Loading;

@@ -182,3 +182,16 @@ td {
     color: #ffffff;
     cursor: pointer;
 }
+
+.logo-light,
+.logo-dark {
+    display: none !important;
+}
+
+body.light .logo-light {
+    display: block !important;
+}
+
+body.dark .logo-dark {
+    display: block !important;
+}
