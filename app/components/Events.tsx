@@ -47,7 +47,7 @@ const EventItem: React.FC<EventItemProps> = ({
       {description}
     </p>
     <Link href={watchLink} target="_blank" rel="noopener noreferrer">
-      <button className="text-xounity-orange inline-flex items-center mt-3 hover:text-orange-600 duration-300 ease-in-out font-medium">
+      <button className="text-xounity-orange inline-flex items-center mt-3 hover:text-orange-600 cursor-pointer duration-300 ease-in-out font-medium">
         Watch Now
         <svg
           fill="none"

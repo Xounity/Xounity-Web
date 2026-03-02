@@ -2,7 +2,6 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import { motion } from "motion/react";
 
 const Contact = () => {
   // 1. Manage form state
@@ -34,12 +33,9 @@ const Contact = () => {
   };
 
   return (
-    <motion.section
+    <section
       id="contact"
-      className="bg-transparent body-font relative mt-8"
-      whileInView={{ y: 0, opacity: 1 }}
-      transition={{ duration: 1 }}
-      viewport={{ once: true }}
+      className="bg-transparent body-font relative mt-8 animate-fade-in-up"
     >
       <div className="container px-5 py-24 mx-auto">
         <div className="flex flex-col text-center w-full mb-12">
@@ -116,7 +112,7 @@ const Contact = () => {
               <div className="p-2 w-full">
                 <button
                   type="submit"
-                  className="send-btn flex mx-auto border-solid border-2 border-xo-orange py-2 px-8 focus:outline-none rounded text-lg hover:bg-xo-orange transition duration-300"
+                  className="send-btn flex mx-auto bg-transparent border-solid border-2 border-xounity-orange py-2 px-8 focus:outline-none hover:bg-xounity-orange rounded text-lg cursor-pointer transition-all duration-500 ease-in-out"
                 >
                   Send
                 </button>
@@ -124,12 +120,12 @@ const Contact = () => {
 
               {/* Status Message Display */}
               {status === "SUCCESS" && (
-                <p className="text-green-500 text-center w-full mt-4">
+                <p className="text-green-500 text-center w-full mt-4 animate-fade-in-up">
                   Message sent successfully!
                 </p>
               )}
               {status === "ERROR" && (
-                <p className="text-red-500 text-center w-full mt-4">
+                <p className="text-red-500 text-center w-full mt-4 animate-fade-in-up">
                   Something went wrong. Try again.
                 </p>
               )}
@@ -149,7 +145,7 @@ const Contact = () => {
           </form>
         </div>
       </div>
-    </motion.section>
+    </section>
   );
 };
 
