@@ -30,17 +30,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
         className={
-          "max-w-screen h-screen flex flex-col " +
-          `${geistSans.variable} ${geistMono.variable} antialiased`
+          `${geistSans.variable} ${geistMono.variable} antialiased ` +
+          "max-w-screen min-h-screen flex flex-col overflow-x-hidden"
         }
       >
         <ThemeProvider>
           <ClientWrapper>
             <Header />
-            {children}
+            <main className="grow">{children}</main>
             <Footer />
           </ClientWrapper>
         </ThemeProvider>
