@@ -1,4 +1,4 @@
-"use client";
+// "use client";
 import About from "@/app/components/About";
 import Contact from "@/app/components/Contact";
 import Event from "@/app/components/Events";

@@ -10,7 +10,6 @@ import wa_channel from "@/app/images/wa-channel.webp";
 import whatsapp from "@/app/images/whatsapp.webp";
 import youtube from "@/app/images/youtube.webp";
 import Link from "next/link";
-import { motion } from "motion/react";
 
 const Hero = () => {
   return (
@@ -18,13 +17,7 @@ const Hero = () => {
       {/* Hero start */}
       <section id="home" className="body-font mt-10">
         <div className="container mx-auto flex px-5 py-24 md:flex-row flex-col items-center">
-          <motion.div
-            className="lg:max-w-lg lg:w-full md:w-1/2 w-5/6 md:mb-0 mb-10"
-            initial={{ x: "-100%", opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-            exit={{ x: 0, opacity: 0 }}
-            transition={{ duration: 0.4 }}
-          >
+          <div className="lg:max-w-lg lg:w-full md:w-1/2 w-5/6 md:mb-0 mb-10 animate-slide-in-left">
             <Image
               priority
               className="object-cover object-center rounded"
@@ -32,13 +25,8 @@ const Hero = () => {
               alt="replace"
             />
             {/* https://dummyimage.com/720x600 */}
-          </motion.div>
-          <motion.div
-            className="lg:grow md:w-1/2 lg:pl-24 md:pl-16 flex flex-col md:items-start md:text-left items-center text-center"
-            initial={{ x: "100%", opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-            transition={{ duration: 0.4 }}
-          >
+          </div>
+          <div className="lg:grow md:w-1/2 lg:pl-24 md:pl-16 flex flex-col md:items-start md:text-left items-center text-center animate-slide-in-right">
             <h1 className="main-heading title-font sm:text-4xl text-3xl mb-4 font-medium delay-75">
               Diverse Minds, One Vision
             </h1>
@@ -156,7 +144,7 @@ const Hero = () => {
                 </Link>
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
       {/* Hero end */}
