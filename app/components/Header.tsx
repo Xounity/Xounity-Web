@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
 import darklogo from "@/app/images/logo_dark.webp";
@@ -12,6 +12,25 @@ const Header = () => {
   const pathname = usePathname();
   const { theme, toggleTheme } = useTheme();
   const [mob, setMob] = useState(false);
+
+  // scroll lock
+  useEffect(() => {
+    if (mob) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+    // Cleanup if component unmounts
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [mob]);
+
+  const getLinkClass = (path: string) => {
+    const baseClass =
+      "mr-5 cursor-pointer transition-colors duration-300 hover:text-xounity-orange text-lg md:text-base";
+    return pathname === path ? baseClass : `${baseClass} text-gray-400`;
+  };
 
   return (
     <>
@@ -32,56 +51,27 @@ const Header = () => {
             />
           </div>
           <nav className="md:ml-auto flex-wrap flex items-center text-base justify-center menu-items md:flex">
-            {/* Desktop Nav */}
             <div className="menu-items hidden md:flex justify-center items-center">
-              <Link
-                passHref
-                href="/"
-                className={
-                  pathname === "/"
-                    ? "mr-5 cursor-pointer"
-                    : "mr-5 cursor-pointer text-gray-400"
-                }
-              >
+              <Link passHref href="/" className={getLinkClass("/")}>
                 Home
               </Link>
-              <Link
-                passHref
-                href="/about"
-                className={
-                  pathname === "/about"
-                    ? "mr-5 cursor-pointer"
-                    : "mr-5 cursor-pointer text-gray-400"
-                }
-              >
+              <Link passHref href="/about" className={getLinkClass("/about")}>
                 About
               </Link>
-              <Link
-                passHref
-                href="/event"
-                className={
-                  pathname === "/event"
-                    ? "mr-5 cursor-pointer "
-                    : "mr-5 cursor-pointer text-gray-400"
-                }
-              >
+              <Link passHref href="/event" className={getLinkClass("/event")}>
                 Events
               </Link>
               <Link
                 passHref
                 href="/contact"
-                className={
-                  pathname === "/contact"
-                    ? "mr-5 cursor-pointer"
-                    : "mr-5 cursor-pointer text-gray-400"
-                }
+                className={getLinkClass("/contact")}
               >
                 Contact
               </Link>
             </div>
 
             <button
-              className="ml-2 mr-5 md:mr-0"
+              className="ml-2 mr-5 md:mr-0 cursor-pointer p-2"
               onClick={toggleTheme}
               title="Toggle theme"
             >
@@ -94,77 +84,70 @@ const Header = () => {
               ></i>
             </button>
 
+            {/* HAMBURGER OPEN BUTTON */}
             <div className="md:hidden z-50">
               <button
-                className="text-xl"
-                onClick={() => setMob(!mob)}
-                title={mob ? "Close menu" : "Open menu"}
+                className="text-2xl p-4 -mr-4 cursor-pointer" // BIGGER TOUCH AREA
+                onClick={() => setMob(true)}
+                title="Open menu"
               >
-                <i className={mob ? "ri-close-line" : "ri-menu-line"}></i>
+                <i className="ri-menu-line"></i>
               </button>
             </div>
           </nav>
 
           <AnimatePresence>
-            {/* Mobile Nav */}
             {mob && (
               <motion.div
-                initial={{ left: "-100%" }}
-                animate={{ left: 0 }}
-                exit={{ left: "-100%" }}
-                transition={{ duration: 0.2 }}
+                initial={{ x: "100%" }}
+                animate={{ x: 0 }}
+                exit={{ x: "100%" }}
+                transition={{ duration: 0.3, ease: "easeInOut" }}
                 className={
                   theme === "light"
-                    ? "`bg-(--background-light) md:hidden fixed top-0 left-0 z-40 h-screen w-full"
-                    : "bg-(--background-dark) md:hidden fixed top-0 left-0 z-40 h-screen w-full"
+                    ? "bg-background-light md:hidden fixed top-0 left-0 z-60 h-screen w-full"
+                    : "bg-background-dark md:hidden fixed top-0 left-0 z-60 h-screen w-full"
                 }
               >
-                <div className="h-full w-full flex flex-col items-center justify-evenly">
+                <div className="absolute top-5 right-5">
+                  <button
+                    className="text-3xl p-6 cursor-pointer"
+                    onClick={() => setMob(false)}
+                  >
+                    <i className="ri-close-line"></i>
+                  </button>
+                </div>
+
+                <div className="h-full w-full flex flex-col items-center justify-evenly py-20">
                   <Link
                     passHref
                     href="/"
-                    onClick={() => setMob(!mob)}
-                    className={
-                      pathname === "/"
-                        ? "mr-5 cursor-pointer"
-                        : "mr-5 cursor-pointer text-gray-400"
-                    }
+                    onClick={() => setMob(false)}
+                    className={getLinkClass("/")}
                   >
                     Home
                   </Link>
                   <Link
                     passHref
                     href="/about"
-                    onClick={() => setMob(!mob)}
-                    className={
-                      pathname === "/about"
-                        ? "mr-5 cursor-pointer"
-                        : "mr-5 cursor-pointer text-gray-400"
-                    }
+                    onClick={() => setMob(false)}
+                    className={getLinkClass("/about")}
                   >
                     About
                   </Link>
                   <Link
                     passHref
                     href="/event"
-                    onClick={() => setMob(!mob)}
-                    className={
-                      pathname === "/event"
-                        ? "mr-5 cursor-pointer"
-                        : "mr-5 cursor-pointer text-gray-400"
-                    }
+                    onClick={() => setMob(false)}
+                    className={getLinkClass("/event")}
                   >
                     Events
                   </Link>
                   <Link
                     passHref
                     href="/contact"
-                    onClick={() => setMob(!mob)}
-                    className={
-                      pathname === "/contact"
-                        ? "mr-5 cursor-pointer"
-                        : "mr-5 cursor-pointer text-gray-400"
-                    }
+                    onClick={() => setMob(false)}
+                    className={getLinkClass("/contact")}
                   >
                     Contact
                   </Link>
@@ -174,9 +157,6 @@ const Header = () => {
           </AnimatePresence>
         </div>
       </header>
-      <Link href="#home" target="_self" id="myBtn" title="Go to Top">
-        <i className="fa fa-angle-up" />
-      </Link>
     </>
   );
 };
