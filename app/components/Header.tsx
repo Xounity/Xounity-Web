@@ -43,7 +43,7 @@ const Header = () => {
         }}
       >
         <div className="container mx-auto flex flex-wrap p-5 flex-row md:flex-column justify-between items-center">
-          <Link href="/" className="flex items-center">
+          <Link href="#" className="flex items-center">
             <Image
               src={lightlogo}
               alt="logo"
