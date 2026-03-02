@@ -43,13 +43,18 @@ const Header = () => {
         }}
       >
         <div className="container mx-auto flex flex-wrap p-5 flex-row md:flex-column justify-between items-center">
-          <div>
+          <Link href="/" className="flex items-center">
             <Image
-              src={theme === "dark" ? darklogo : lightlogo}
+              src={lightlogo}
               alt="logo"
-              className="w-28 md:w-32 h-20 object-cover"
+              className="logo-light w-28 md:w-32 h-20 object-cover"
             />
-          </div>
+            <Image
+              src={darklogo}
+              alt="logo"
+              className="logo-dark w-28 md:w-32 h-20 object-cover"
+            />
+          </Link>
           <nav className="md:ml-auto flex-wrap flex items-center text-base justify-center menu-items md:flex">
             <div className="menu-items hidden md:flex justify-center items-center">
               <Link passHref href="/" className={getLinkClass("/")}>
