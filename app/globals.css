@@ -195,3 +195,20 @@ body.light .logo-light {
 body.dark .logo-dark {
     display: block !important;
 }
+
+.section-divider {
+    border: 0;
+    height: 1px;
+    background-color: rgba(255, 151, 5, 0.3);
+    margin-left: auto !important;
+    margin-right: auto !important;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    width: 90%;
+    display: block !important;
+    clear: both;
+}
+
+body.light .section-divider {
+    background-color: rgba(0, 0, 0, 0.15);
+}

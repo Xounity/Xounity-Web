@@ -9,7 +9,7 @@ export default function Home() {
   return (
     <>
       <Hero />
-      <hr className="border-gray-800" />
+      <hr className="section-divider" />
 
       <Event limit={3} />
 
@@ -24,10 +24,10 @@ export default function Home() {
         </Link>
       </div>
 
-      <hr className="border-gray-800" />
+      <hr className="section-divider" />
       <About />
 
-      <hr className="border-gray-800" />
+      <hr className="section-divider" />
       <Contact />
     </>
   );

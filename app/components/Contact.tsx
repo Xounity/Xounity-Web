@@ -77,7 +77,7 @@ const Contact = () => {
                     type="text"
                     id="name"
                     name="name"
-                    className="w-full bg-gray-800 bg-opacity-40 rounded border border-gray-700 focus:border-xo-orange focus:bg-gray-900 focus:ring-2 focus:ring-yellow-900 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                    className="w-full bg-gray-800 bg-opacity-40 rounded border border-gray-700 focus:border-xounity-orange focus:bg-gray-900 focus:ring-2 focus:ring-yellow-900 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
                   />
                 </div>
               </div>
@@ -92,7 +92,7 @@ const Contact = () => {
                     type="email"
                     id="email"
                     name="email"
-                    className="w-full bg-gray-800 bg-opacity-40 rounded border border-gray-700 focus:border-xo-orange focus:bg-gray-900 focus:ring-2 focus:ring-yellow-900 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                    className="w-full bg-gray-800 bg-opacity-40 rounded border border-gray-700 focus:border-xounity-orange focus:bg-gray-900 focus:ring-2 focus:ring-yellow-900 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
                   />
                 </div>
               </div>
@@ -105,7 +105,7 @@ const Contact = () => {
                     required
                     id="message"
                     name="message"
-                    className="w-full bg-gray-800 bg-opacity-40 rounded border border-gray-700 focus:border-xo-orange focus:bg-gray-900 focus:ring-2 focus:ring-yellow-900 h-32 text-base outline-none text-gray-100 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"
+                    className="w-full bg-gray-800 bg-opacity-40 rounded border border-gray-700 focus:border-xounity-orange focus:bg-gray-900 focus:ring-2 focus:ring-yellow-900 h-32 text-base outline-none text-gray-100 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"
                   />
                 </div>
               </div>
@@ -130,10 +130,14 @@ const Contact = () => {
                 </p>
               )}
 
-              <div className="p-2 w-full pt-8 mt-8 border-t border-gray-800 text-center">
+              <div className="w-full mt-6 mb-4 px-2">
+                <hr className="section-divider" />
+              </div>
+
+              <div className="p-2 w-full text-center">
                 <Link
                   href="mailto:xounity1@gmail.com"
-                  className="text-xo-orange"
+                  className="text-xounity-orange hover:underline"
                 >
                   xounity1@gmail.com
                 </Link>
