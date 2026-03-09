@@ -8,7 +8,6 @@ const Contact = () => {
       className="bg-transparent body-font relative mt-8 animate-fade-in-up scroll-mt-24"
     >
       <div className="container px-5 py-24 mx-auto">
-        {/* Same Heading Position */}
         <div className="flex flex-col text-center w-full mb-12">
           <h1 className="sm:text-4xl text-3xl font-bold title-font mb-4">
             Need help or have any queries?
@@ -19,7 +18,6 @@ const Contact = () => {
           </p>
         </div>
 
-        {/* Centered Email - No Form, No Bloat */}
         <div className="lg:w-1/2 md:w-2/3 mx-auto text-center">
           <div className="flex flex-col items-center justify-center space-y-4">
             <span className="text-gray-500 uppercase tracking-widest text-xs">
@@ -32,8 +30,6 @@ const Contact = () => {
               xounity1@gmail.com
             </Link>
           </div>
-
-          {/* Additional line REMOVED - Leads directly to Footer now */}
 
           <div className="p-2 w-full text-center mt-12">
             <p className="leading-normal text-gray-500 text-sm">
